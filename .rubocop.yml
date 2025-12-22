@@ -3,11 +3,11 @@
 
 # Overwrite or add rules to create your own house style
 plugins:
+  - rubocop-rails
   - rubocop-factory_bot
   - rubocop-capybara
 require:
   - rubocop-rspec
-  - rubocop-rails
 
 AllCops:
   NewCops: enable
