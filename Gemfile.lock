@@ -47,6 +47,12 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+    active_storage_validations (2.0.0)
+      activejob (>= 6.1.4)
+      activemodel (>= 6.1.4)
+      activestorage (>= 6.1.4)
+      activesupport (>= 6.1.4)
+      marcel (>= 1.0.3)
     activejob (8.1.1)
       activesupport (= 8.1.1)
       globalid (>= 0.3.6)
@@ -92,19 +98,28 @@ GEM
       thor (~> 1.0)
     concurrent-ruby (1.3.6)
     connection_pool (3.0.2)
+    cpf_cnpj (1.0.1)
     crass (1.0.6)
     date (3.5.1)
     debug (1.11.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.6.2)
+    docile (1.4.1)
     dotenv (3.2.0)
     drb (2.2.3)
     ed25519 (1.4.0)
+    enumerate_it (4.1.0)
+      activesupport (>= 6.0.0)
     erb (6.0.1)
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
+    factory_bot (6.5.6)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.4.4)
+      factory_bot (~> 6.5)
+      railties (>= 5.0.0)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
     ffi (1.17.2-arm-linux-gnu)
@@ -336,6 +351,14 @@ GEM
       ffi (~> 1.12)
       logger
     securerandom (0.4.1)
+    shoulda-matchers (6.5.0)
+      activesupport (>= 5.2.0)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.2)
+    simplecov_json_formatter (0.1.4)
     solid_cable (3.0.12)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -414,10 +437,14 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  active_storage_validations (= 2.0.0)
   bootsnap
   brakeman
   bundler-audit
+  cpf_cnpj (= 1.0.1)
   debug
+  enumerate_it
+  factory_bot_rails (= 6.4.4)
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
@@ -431,6 +458,8 @@ DEPENDENCIES
   rubocop-rails-omakase
   rubocop-rspec (= 2.23.2)
   rubocop-rspec_rails (= 2.29.1, != 2.29.0)
+  shoulda-matchers (~> 6.0)
+  simplecov
   solid_cable
   solid_cache
   solid_queue
@@ -449,6 +478,7 @@ CHECKSUMS
   actionpack (8.1.1) sha256=192e27c39a63c7d801ac7b6d50505f265e389516985eed9b2ee364896a6a06d7
   actiontext (8.1.1) sha256=fd8d8da1e6bc0b04ff72fccfd127e78431238a99a82e736c7b52727c576a7640
   actionview (8.1.1) sha256=ca480c8b099dea0862b0934f24182b84c2d29092e7dbf464fb3e6d4eb9b468dc
+  active_storage_validations (2.0.0) sha256=19ccb25a45b7bd3090d8dd46fd09b2b9741d76095b23390219ec899163f689d2
   activejob (8.1.1) sha256=94f438a9f3b5a6b130fef53d8313f869dbd379309e7d639891bda36b12509383
   activemodel (8.1.1) sha256=8b7e2496b9e333ced06248c16a43217b950192c98e0fe3aa117eee21501c6fbd
   activerecord (8.1.1) sha256=e32c3a03e364fd803498eb4150c21bedc995aa83bc27122a94d480ab1dcb3d17
@@ -467,16 +497,21 @@ CHECKSUMS
   bundler-audit (0.9.3) sha256=81c8766c71e47d0d28a0f98c7eed028539f21a6ea3cd8f685eb6f42333c9b4e9
   concurrent-ruby (1.3.6) sha256=6b56837e1e7e5292f9864f34b69c5a2cbc75c0cf5338f1ce9903d10fa762d5ab
   connection_pool (3.0.2) sha256=33fff5ba71a12d2aa26cb72b1db8bba2a1a01823559fb01d29eb74c286e62e0a
+  cpf_cnpj (1.0.1) sha256=18e21f12ea44ee3cc24113fd2d1796154cf2a8b695a4bba6fc2eec5d577daa9e
   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d
   date (3.5.1) sha256=750d06384d7b9c15d562c76291407d89e368dda4d4fff957eb94962d325a0dc0
   debug (1.11.1) sha256=2e0b0ac6119f2207a6f8ac7d4a73ca8eb4e440f64da0a3136c30343146e952b6
   diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
+  docile (1.4.1) sha256=96159be799bfa73cdb721b840e9802126e4e03dfc26863db73647204c727f21e
   dotenv (3.2.0) sha256=e375b83121ea7ca4ce20f214740076129ab8514cd81378161f11c03853fe619d
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
   ed25519 (1.4.0) sha256=16e97f5198689a154247169f3453ef4cfd3f7a47481fde0ae33206cdfdcac506
+  enumerate_it (4.1.0) sha256=93473c9e9a12edddcb1b82aedef4d2b9520ec9aa0f7b0ab1986ab596e9ca6e6b
   erb (6.0.1) sha256=28ecdd99c5472aebd5674d6061e3c6b0a45c049578b071e5a52c2a7f13c197e5
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
   et-orbi (1.4.0) sha256=6c7e3c90779821f9e3b324c5e96fda9767f72995d6ae435b96678a4f3e2de8bc
+  factory_bot (6.5.6) sha256=12beb373214dccc086a7a63763d6718c49769d5606f0501e0a4442676917e077
+  factory_bot_rails (6.4.4) sha256=139e17caa2c50f098fddf5e5e1f29e8067352024e91ca1186d018b36589e5c88
   ffi (1.17.2-aarch64-linux-gnu) sha256=c910bd3cae70b76690418cce4572b7f6c208d271f323d692a067d59116211a1a
   ffi (1.17.2-aarch64-linux-musl) sha256=69e6556b091d45df83e6c3b19d3c54177c206910965155a6ec98de5e893c7b7c
   ffi (1.17.2-arm-linux-gnu) sha256=d4a438f2b40224ae42ec72f293b3ebe0ba2159f7d1bd47f8417e6af2f68dbaa5
@@ -570,6 +605,10 @@ CHECKSUMS
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
   ruby-vips (2.3.0) sha256=e685ec02c13969912debbd98019e50492e12989282da5f37d05f5471442f5374
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
+  shoulda-matchers (6.5.0) sha256=ef6b572b2bed1ac4aba6ab2c5ff345a24b6d055a93a3d1c3bfc86d9d499e3f44
+  simplecov (0.22.0) sha256=fe2622c7834ff23b98066bb0a854284b2729a569ac659f82621fc22ef36213a5
+  simplecov-html (0.13.2) sha256=bd0b8e54e7c2d7685927e8d6286466359b6f16b18cb0df47b508e8d73c777246
+  simplecov_json_formatter (0.1.4) sha256=529418fbe8de1713ac2b2d612aa3daa56d316975d307244399fa4838c601b428
   solid_cable (3.0.12) sha256=a168a54731a455d5627af48d8441ea3b554b8c1f6e6cd6074109de493e6b0460
   solid_cache (1.0.10) sha256=bc05a2fb3ac78a6f43cbb5946679cf9db67dd30d22939ededc385cb93e120d41
   solid_queue (1.2.4) sha256=bb60f9552a969ac377d87601b0ff6a088f5e6f20b0cbbe3844a59d022cac0e4b

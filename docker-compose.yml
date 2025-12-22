@@ -3,22 +3,23 @@ services:
   web:
     build: .
     environment:
-      DATABASE_PASSWORD: <%= Rails.application.credentials.dig(:database, :password) %>
-      DATABASE_USERNAME: <%= Rails.application.credentials.dig(:database, :username) %>
-      DATABASE_HOST: <%= Rails.application.credentials.dig(:database, :host) %>
-      DATABASE_PORT: <%= Rails.application.credentials.dig(:database, :port) %>
+      RAILS_ENV: development
     depends_on:
       - postgres
       - redis
     ports:
       - "3000:3000"
     volumes:
-      - .:/rails
+      - .:/app
     command: rails server -b 0.0.0.0
 
   postgres:
     image: postgres:16.1
     restart: unless-stopped
+    environment:
+      RAILS_ENV: development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:

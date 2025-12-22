@@ -2,10 +2,11 @@ default: &default
   adapter: postgresql
   encoding: unicode
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV["DATABASE_USERNAME"] %>
-  password: <%= ENV["DATABASE_PASSWORD"] %>
-  host: <%= ENV["DATABASE_HOST"] %>
-  port: <%= ENV["DATABASE_PORT"] %>
+  <% if ENV["RAILS_ENV"] %>
+  host: <%= Rails.application.credentials.dig(:database, :host) %>
+  username: postgres
+  password: postgres
+  <% end %>
 
 development:
   <<: *default
@@ -18,9 +19,11 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: managers_recruitment_production
-    username: managers_recruitment
-    password: <%= ENV["DATABASE_PASSWORD"] %>
+    database: <%= Rails.application.credentials.dig(:database, :name) %>
+    username: <%= Rails.application.credentials.dig(:database, :username) %>
+    password: <%= Rails.application.credentials.dig(:database, :password) %>
+    host: <%= Rails.application.credentials.dig(:database, :host) %>
+    port: <%= Rails.application.credentials.dig(:database, :port) || 5432 %>
   cache:
     <<: *primary_production
     database: managers_recruitment_production_cache
