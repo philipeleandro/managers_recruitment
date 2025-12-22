@@ -1,0 +1,6 @@
+pt-BR:
+  enumerations:
+    candidate/status:
+      new: Novo
+      active: Active
+      inactive: Inativo

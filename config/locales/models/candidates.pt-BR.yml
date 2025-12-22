@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      candidate:
+        one: Candidato
+        other: Candidatos
+    attributes:
+      candidate:
+        cpf: CPF
+        name: Nome
+        phone_number: Telefone
+        email: E-mail
+        status: Status
+        created_at: Criado em
+        updated_at: Atualizado em
+    errors:
+      not_valid: 'não é válido'
