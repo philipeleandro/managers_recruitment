@@ -24,9 +24,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-gradient-to-b from-slate-50 to-slate-100">
+    <%= render "shareds/header" %>
+
+    <main class="flex min-h-screen items-center justify-center px-5 pt-20">
       <%= yield %>
     </main>
+
+    <%= render "shareds/footer" %>
   </body>
 </html>
