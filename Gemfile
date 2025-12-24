@@ -44,6 +44,8 @@ gem 'factory_bot_rails', '6.4.4'
 
 gem 'active_storage_validations', '2.0.0'
 
+gem 'inline_svg'
+
 group :development, :test do
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
 
@@ -70,4 +72,8 @@ group :test do
   gem 'shoulda-matchers', '~> 6.0'
 
   gem 'simplecov', require: false
+
+  gem 'capybara'
+
+  gem 'selenium-webdriver'
 end

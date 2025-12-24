@@ -1,0 +1,26 @@
+<header data-controller="header" class="fixed top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+        <span class="text-lg font-bold text-white">M</span>
+      </div>
+      <h1 class="text-xl font-bold text-slate-900">Managers</h1>
+    </div>
+
+    <nav class="hidden items-center gap-8 md:flex">
+      <%= link_to "Início", root_path, class: "text-sm font-medium text-slate-900", data: { header_target: "link" } %>
+      <%= link_to "Processos", 'process_path', class: "text-sm font-medium text-slate-600 hover:text-slate-900", data: { header_target: "link" } %>
+      <%= link_to "Candidatos", candidates_path, class: "text-sm font-medium text-slate-600 hover:text-slate-900", data: { header_target: "link" } %>
+      <%= link_to "Empresas", 'process_path', class: "text-sm font-medium text-slate-600 hover:text-slate-900", data: { header_target: "link" } %>
+    </nav>
+
+    <div class="flex items-center gap-2 text-sm text-slate-600">
+      <span class= "flex-col text-right">
+        <div class='logged_account'>
+          <%= 'testasdsdsada@example.com' %><br>
+        </div>
+        <%= link_to "Logout", '#', method: :post, class: "text-blue-600 hover:text-blue-700 font-medium" %>
+      </span>
+    </div>
+  </div>
+</header>

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Candidate, type: :model do
+RSpec.describe Candidate do
   describe 'validations' do
     subject(:candidate) { build(:candidate) }
 

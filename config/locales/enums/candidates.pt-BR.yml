@@ -2,5 +2,5 @@ pt-BR:
   enumerations:
     candidate/status:
       new: Novo
-      active: Active
+      active: Ativo
       inactive: Inativo
