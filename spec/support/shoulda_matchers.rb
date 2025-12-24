@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'shoulda/matchers'
 
 Shoulda::Matchers.configure do |config|
@@ -6,4 +8,3 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
-
