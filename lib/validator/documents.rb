@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Validator
   class Documents
     def self.valid_cpf?(cpf_number)
