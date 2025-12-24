@@ -7,7 +7,19 @@ RSpec.describe 'Dashboards#Home' do
     before { visit root_path }
 
     it { expect(page).to have_current_path(root_path) }
-    it { expect(page).to have_content('Processos Abertos') }
+    it { expect(page).to have_content('Processos abertos') }
     it { expect(page).to have_content('Bem vindo de volta') }
+  end
+
+  context 'when click on services links' do
+    context 'when click on create candidate' do
+      before do
+        visit root_path
+        click_link 'Adicionar candidato'
+      end
+
+      it { expect(page).to have_current_path(new_candidate_path) }
+      it { expect(page).to have_content('Adicionar Novo Candidato') }
+    end
   end
 end

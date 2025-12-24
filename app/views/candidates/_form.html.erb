@@ -1,0 +1,49 @@
+<div>
+  <%= form_with(model: candidate, local: true) do |form| %>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="col-span-1">
+        <%= form.label :name, class: "block text-sm text-slate-900 mb-2" %>
+        <%= form.text_field :name, class: "w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+      </div>
+
+      <div class="col-span-1">
+        <%= form.label :email, class: "block text-sm text-slate-900 mb-2" %>
+        <%= form.email_field :email, class: "w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+      </div>
+
+      <div class="col-span-1">
+        <%= form.label :cpf, class: "block text-sm text-slate-900 mb-2" %>
+        <%= form.text_field :cpf, class: "w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", data: { action: "blur->candidate-form#formatCPF" } %>
+      </div>
+
+      <div class="col-span-1">
+        <%= form.label :phone_number, class: "block text-sm text-slate-900 mb-2" %>
+        <%= form.telephone_field :phone_number, class: "w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", data: { action: "blur->candidate-form#formatPhone" } %>
+      </div>
+
+      <div class="col-span-1">
+        <%= form.label :status, class: "block text-sm text-slate-900 mb-2" %>
+        <div class="relative">
+          <%= form.select :status, Candidate::Status.to_a.map { |s| [s.first, s.last] }, {}, class: "appearance-none w-full rounded-lg border border-slate-300 px-4 py-2 pr-10 text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white" %>
+          <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-500">
+            <%= inline_svg_tag 'icons/dropdown-arrow.svg' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-1">
+        <%= form.label :resume, class: "block text-sm text-slate-900 mb-2" %>
+        <%= form.file_field :resume, accept: ".pdf", class: "block w-full py-2.5 pl-4 text-sm text-slate-500 border border-slate-300 rounded-lg cursor-pointer bg-white focus:outline-none file:hidden flex items-center" %>
+
+        <% if candidate.resume.present? %>
+          <p class="mt-2 text-sm text-slate-600">Atual: <%= link_to candidate.resume.filename, rails_blob_path(candidate.resume), target: "_blank", class: "text-blue-600 hover:text-blue-700" %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="mt-8 flex gap-6">
+      <%= form.submit candidate.new_record? ? "Criar Candidato" : "Atualizar Candidato", class: "rounded-lg w-full bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer" %>
+      <%= link_to "Cancelar", candidates_path, class: "rounded-lg w-full border border-slate-200 px-6 py-2 text-sm font-medium text-slate-900 hover:bg-slate-50 flex justify-center" %>
+    </div>
+  <% end %>
+</div>

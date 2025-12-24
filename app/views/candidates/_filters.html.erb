@@ -1,0 +1,30 @@
+<div class="mb-6">
+  <div class="flex gap-2 flex-wrap">
+    <% current_status = params[:status].presence %>
+
+    <% link_classes = lambda { |is_active|
+      base = "inline-flex rounded-lg px-4 py-2 text-sm font-medium cursor-pointer"
+      is_active ? "#{base} bg-blue-600 text-white hover:bg-blue-700" : "#{base} text-slate-600 hover:bg-slate-100"
+    } %>
+
+    <button
+      type="button"
+      data-action="click->candidates#filterByStatus"
+      data-status=""
+      data-candidates-target="filterButton"
+      class="<%= link_classes.call(current_status.blank?) %>">
+      Todos
+    </button>
+
+    <% Candidate::Status.to_a.each do |status| %>
+      <button
+        type="button"
+        data-action="click->candidates#filterByStatus"
+        data-status="<%= status.last %>"
+        data-candidates-target="filterButton"
+        class="<%= link_classes.call(current_status == status.last) %>">
+        <%= status.first %>
+      </button>
+    <% end %>
+  </div>
+</div>

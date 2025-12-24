@@ -11,6 +11,7 @@ pt-BR:
         phone_number: Telefone
         email: E-mail
         status: Status
+        resume: Currículo
         created_at: Criado em
         updated_at: Atualizado em
     errors:
