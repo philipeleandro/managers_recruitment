@@ -1,6 +1,20 @@
 # frozen_string_literal: true
 
 module CandidatesHelper
+  def formatted_cpf(cpf)
+    return cpf unless ::Validator::Documents.valid_cpf?(cpf)
+
+    cpf_instance = CPF.new(cpf)
+
+    cpf_instance.formatted
+  end
+
+  def formatted_phone(phone)
+    return phone unless ::Phonelib.valid_for_country?(phone, 'BR')
+
+    ::Phonelib.parse(phone).national
+  end
+
   def link_classes
     ->(is_active) { filter_button_classes(is_active) }
   end
