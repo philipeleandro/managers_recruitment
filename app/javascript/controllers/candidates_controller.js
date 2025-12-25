@@ -18,11 +18,23 @@ export default class extends Controller {
     })
   }
 
-  filterByStatus(event) {
-    const status = event.currentTarget.dataset.status
-    const url = status ? `/candidates?status=${status}` : "/candidates"
-    window.location.href = url
-  }
+    filterByStatus(event) {
+      const status = event.currentTarget.dataset.status
+      const url = status ? `/candidates?status=${status}` : "/candidates"
+      const frame = document.getElementById("candidates_list")
+      frame.src = url
+
+      this.updateActiveFilterButton(event.currentTarget)
+    }
+
+    updateActiveFilterButton(clickedButton) {
+      this.filterButtonTargets.forEach(btn => {
+        btn.classList.remove("bg-blue-600", "text-white", "hover:bg-blue-700")
+        btn.classList.add("text-slate-600", "hover:bg-slate-100")
+      })
+      clickedButton.classList.remove("text-slate-600", "hover:bg-slate-100")
+      clickedButton.classList.add("bg-blue-600", "text-white", "hover:bg-blue-700")
+    }
 
   deleteCandidate(event) {
     event.preventDefault()
