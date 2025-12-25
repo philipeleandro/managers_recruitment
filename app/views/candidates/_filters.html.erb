@@ -3,44 +3,28 @@
     <div class="flex gap-2 flex-wrap">
       <% current_status = params[:status].presence %>
 
-      <% link_classes = lambda { |is_active|
-        base = "inline-flex rounded-lg px-4 py-2 text-sm font-medium cursor-pointer"
-        is_active ? "#{base} bg-blue-600 text-white hover:bg-blue-700" : "#{base} text-slate-600 hover:bg-slate-100"
-      } %>
-
-      <button
-        type="button"
-        data-action="click->candidates#filterByStatus"
-        data-status=""
-        data-candidates-target="filterButton"
-        class="<%= link_classes.call(current_status.blank?) %>">
-        Todos
-      </button>
+      <%= button_tag 'Todos',
+          class: link_classes.call(current_status.blank?),
+          data: {
+            action: "click->candidates#filterByStatus",
+            status: "",
+            candidates_target: "filterButton"
+          }
+        %>
 
       <% Candidate::Status.to_a.each do |status| %>
-        <button
-          type="button"
-          data-action="click->candidates#filterByStatus"
-          data-status="<%= status.last %>"
-          data-candidates-target="filterButton"
-          class="<%= link_classes.call(current_status == status.last) %>">
-          <%= status.first %>
-        </button>
-      <% end %>
+          <%= button_tag status.first,
+            type: 'button',
+            class: link_classes.call(current_status == status.last),
+            data: {
+              action: "click->candidates#filterByStatus",
+              status: status.last,
+              candidates_target: "filterButton"
+            }
+          %>
+        <% end %>
     </div>
 
-    <%= form_with url: candidates_path, method: :get, data: { controller: "search", turbo_frame: "candidates_list" }, class: "relative w-full sm:w-72" do |f| %>
-      <%= f.text_field :query,
-        value: params[:query],
-        placeholder: "Buscar nome, email ou CPF...",
-        class: "block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg leading-5 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
-        autocomplete: "off",
-        data: { action: "input->search#search" }
-      %>
-
-      <%= f.button type: "submit", class: "absolute inset-y-0 left-0 pl-3 flex items-center bg-transparent border-0 cursor-pointer z-10 focus:outline-none group" do %>
-        <%= inline_svg_tag 'icons/search.svg', class: "w-5 h-5 text-slate-400 group-hover:text-blue-600 transition-colors" %>
-      <% end %>
-    <% end %>
+    <%= render 'form_search' %>
   </div>
 </div>

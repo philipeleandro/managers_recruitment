@@ -4,7 +4,7 @@
 
 .logged_account {
   display: block;
-  width: 150px;
+  width: 160px;
   overflow: hidden;
   text-overflow: ellipsis;
 }

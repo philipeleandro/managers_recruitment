@@ -52,6 +52,8 @@ gem 'pry'
 
 gem 'pry-remote'
 
+gem 'phonelib'
+
 group :development, :test do
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
 
