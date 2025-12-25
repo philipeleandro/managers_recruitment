@@ -15,6 +15,11 @@ RSpec.describe Candidate do
     it { expect(candidate).to validate_uniqueness_of(:email).case_insensitive }
     it { expect(candidate).to validate_uniqueness_of(:cpf).case_insensitive }
 
+    it { expect(candidate).to validate_length_of(:cpf).is_at_most(11) }
+
+    it { expect(candidate).not_to allow_value('123.456.789-00').for(:cpf) }
+    it { expect(candidate).not_to allow_value('abcde123456').for(:cpf) }
+
     context 'when email format is invalid' do
       let(:candidate) { build(:candidate, email: 'invalid_email') }
       let(:error_messages) { candidate.errors.full_messages_for(:email) }
