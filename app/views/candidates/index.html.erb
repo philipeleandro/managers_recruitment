@@ -1,6 +1,5 @@
 <main class="min-h-screen" data-controller="candidates-form candidates">
   <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-    <!-- Header Section -->
     <div class="mb-8">
       <div class="flex items-center justify-between">
         <div>
@@ -8,7 +7,10 @@
           <p class="mt-2 text-slate-600">Gerencie e acompanhe todas as candidaturas</p>
         </div>
         <%= link_to "Adicionar Candidato", new_candidate_path,
-            class: "rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700", data: { turbo_frame: "candidate_management", action: "click->candidates-form#showForm" }, id: 'new-candidate-button' %>
+            class: "rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700",
+            data: { turbo_frame: "candidate_management",
+            action: "click->candidates-form#showForm" },
+            id: 'new-candidate-button' %>
       </div>
 
       <div class="mt-6 hidden" data-candidates-form-target="candidateForm">
@@ -19,95 +21,6 @@
 
     <%= render 'filters' %>
 
-    <%= turbo_frame_tag "candidates_list" do %>
-      <% if @candidates.any? %>
-        <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm" data-candidates-target="table">
-          <table class="w-full">
-            <div class="px-6 py-4 border-b border-slate-200">
-              <h2 class="text-lg font-semibold text-slate-900">Lista de Candidatos</h2>
-              <p class="text-sm text-slate-600 mt-1">Mostrando <%= @candidates.count %> de de <%= @candidates.total_count %> candidatos</p>
-            </div>
-            <thead class="border-b border-slate-200">
-              <tr>
-                <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Nome</th>
-                <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">E-mail</th>
-                <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">CPF</th>
-                <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Telefone</th>
-                <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Status</th>
-                <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Currículo</th>
-                <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @candidates.each do |candidate| %>
-                <tr class="text-center border-b border-slate-200 hover:bg-slate-50 transition-colors" data-candidates-target="candidateRow">
-                  <td class="px-6 py-4">
-                    <p class="text-left text-slate-900"><%= candidate.name %></p>
-                  </td>
-                  <td class="px-6 py-4">
-                    <p class="text-center text-sm text-slate-600"><%= candidate.email %></p>
-                  </td>
-                  <td class="px-6 py-4">
-                    <p class="text-center text-sm text-slate-600"><%= candidate.cpf %></p>
-                  </td>
-                  <td class="px-6 py-4">
-                    <p class="text-center text-sm text-slate-600"><%= candidate.phone_number %></p>
-                  </td>
-                  <td class="px-6 py-4 text-center">
-
-                  <!-- COLOCAR EM HELPER TO -->
-                    <% status_colors = {
-                      'new' => 'bg-yellow-100 text-yellow-700',
-                      'active' => 'bg-green-100 text-green-700',
-                      'inactive' => 'bg-red-100 text-red-700'
-                    } %>
-                    <span class="inline-flex w-[60px] items-center justify-center rounded-lg px-3 py-0.5 text-xs <%= status_colors[candidate.status] %>">
-                      <%= candidate.status_humanize %>
-                    </span>
-                  </td>
-                  <td class="px-6 py-4">
-                    <% if candidate.resume.present? %>
-                      <%= link_to "Visualizar", rails_blob_path(candidate.resume), target: "_blank", class: "text-sm font-medium text-blue-600 hover:text-blue-700" %>
-                    <% else %>
-                      <span class="text-sm text-slate-400">Sem curriculo</span>
-                    <% end %>
-                  </td>
-                  <td class="px-6 py-4 text-right">
-                    <div class="flex gap-2 justify-center">
-                      <%= link_to inline_svg_tag('icons/archive.svg', class: "lucide lucide-file-text h-4 w-4 text-blue-600"),
-                            candidate_path(candidate),
-                            class: "text-sm font-medium text-blue-600 hover:text-blue-700",
-                            data: { turbo_frame: "_top" } %>
-
-                      <%= link_to inline_svg_tag('icons/pencil.svg', class: "lucide lucide-pen h-4 w-4 text-blue-600"),
-                            edit_candidate_path(candidate),
-                            class: "text-sm font-medium text-blue-600 hover:text-blue-700",
-                            data: { turbo_frame: "candidate_management", action: "click->candidates-form#forceOpen" } %>
-
-                      <%= link_to inline_svg_tag('icons/trash_can.svg', class: "lucide lucide-trash2 h-4 w-4 text-red-600"),
-                          candidate_path(candidate),
-                          data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?" },
-                          class: "text-sm font-medium text-red-600 hover:text-red-700",
-                          id: 'delete-candidate-button' %>
-                    </div>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-
-          <%= paginate @candidates, window: 1, outer_window: 1 %>
-        </div>
-      <% else %>
-        <div class="rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm">
-          <h2 class="text-lg font-semibold text-slate-900">Lista de Candidatos</h2>
-          <p class="text-sm text-slate-600 mt-1">Mostrando <%= @candidates.count %> candidatos</p>
-
-          <div class="p-12 text-center">
-            <p class="text-slate-600">Nenhum candidato encontrado</p>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+    <%= render 'index_candidates_list' %>
   </div>
 </main>
