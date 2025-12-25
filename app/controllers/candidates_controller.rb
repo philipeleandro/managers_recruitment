@@ -7,8 +7,8 @@ class CandidatesController < ApplicationController
     @candidates = Candidate.all
     @candidates = @candidates.where(status: params[:status]) if params[:status].present?
     @candidates = @candidates.order(created_at: :desc)
-                             .page(params[:page])
-                             .per(10)
+      .page(params[:page])
+      .per(10)
   end
 
   def show
@@ -19,6 +19,8 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new
   end
 
+  def edit; end
+
   def create
     @candidate = Candidate.new(candidate_params)
 
@@ -26,8 +28,6 @@ class CandidatesController < ApplicationController
 
     render :new, status: :unprocessable_entity, error: 'Erro ao criar candidato.'
   end
-
-  def edit; end
 
   def update
     if @candidate.update(candidate_params)
@@ -42,7 +42,6 @@ class CandidatesController < ApplicationController
 
     redirect_to candidates_path, notice: 'Candidato excluído com sucesso.'
   end
-
 
   private
 

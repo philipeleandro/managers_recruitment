@@ -8,7 +8,7 @@ class Candidate < ApplicationRecord
   validates :name, :email, :cpf, :phone_number, :status, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :email, :cpf, uniqueness: { case_sensitive: false }
-  validates :cpf, format: { with: /\A\d+\z/, message: "deve conter apenas números" }
+  validates :cpf, format: { with: /\A\d+\z/, message: 'deve conter apenas números' }
   validates :cpf, length: { maximum: 11 }
   validates :resume, attached: true,
     content_type: ['application/pdf'],
