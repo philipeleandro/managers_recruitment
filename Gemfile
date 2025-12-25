@@ -46,6 +46,12 @@ gem 'active_storage_validations', '2.0.0'
 
 gem 'inline_svg'
 
+gem 'kaminari'
+
+gem 'pry'
+
+gem 'pry-remote'
+
 group :development, :test do
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
 

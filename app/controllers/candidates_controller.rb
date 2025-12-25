@@ -7,6 +7,8 @@ class CandidatesController < ApplicationController
     @candidates = Candidate.all
     @candidates = @candidates.where(status: params[:status]) if params[:status].present?
     @candidates = @candidates.order(created_at: :desc)
+                             .page(params[:page])
+                             .per(10)
   end
 
   def new

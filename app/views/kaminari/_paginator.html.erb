@@ -1,0 +1,31 @@
+<%# app/views/kaminari/_paginator.html.erb %>
+<%= paginator.render do %>
+  <div class="flex items-center justify-between border-t border-slate-200 bg-white px-4 py-3 sm:px-6 rounded-b-xl">
+    <div class="flex flex-1 justify-between sm:hidden">
+      <%= prev_page_tag unless current_page.first? %>
+    </div>
+
+    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+      <div>
+        <p class="text-sm text-slate-700">
+          Mostrando página <span class="font-medium"><%= current_page %></span> de <span class="font-medium"><%= total_pages %></span>
+        </p>
+      </div>
+      <div>
+        <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+          <%= first_page_tag unless current_page.first? %>
+
+          <% each_page do |page| %>
+            <% if page.display_tag? %>
+              <%= page_tag page %>
+            <% elsif !page.was_truncated? %>
+              <%= gap_tag %>
+            <% end %>
+          <% end %>
+
+          <%= last_page_tag unless current_page.last? %>
+        </nav>
+      </div>
+    </div>
+  </div>
+<% end %>

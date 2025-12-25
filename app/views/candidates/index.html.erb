@@ -111,22 +111,7 @@
                           class: "text-sm font-medium text-blue-600 hover:text-blue-700",
                           data: { turbo_frame: "candidate_management", action: "click->candidates-form#showForm" } %>
 
-                    <%= link_to inline_svg_tag('icons/trash_can.svg', class: "lucide lucide-trash2 h-4 w-4 text-red-600"), 
-                        '#',
-                        method: :delete,
-                        data: { confirm: "Are you sure?" },
-                        class: "text-sm font-medium text-red-600 hover:text-red-700" %>
-                  </div>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    <% else %>
-      <div class="rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm">
-        <h2 class="text-lg font-semibold text-slate-900">Lista de Candidatos</h2>
-        <p class="text-sm text-slate-600 mt-1">Mostrando <%= @candidates.count %> candidatos</p>
+          <%= paginate @candidates, window: 1, outer_window: 1 %>
 
         <div class="p-12 text-center">
           <p class="text-slate-600">Nenhum candidato encontrado</p>
