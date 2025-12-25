@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module CandidatesHelper
   def link_classes
-    lambda { |is_active| filter_button_classes(is_active) }
+    ->(is_active) { filter_button_classes(is_active) }
   end
 
   def data_form(page_load)
-    return { turbo_frame: '_top'} if page_load
+    return { turbo_frame: '_top' } if page_load
 
     { action: 'turbo:submit-end->candidates-form#onPostSuccess' }
   end
@@ -22,18 +24,20 @@ module CandidatesHelper
            'px-6 py-2 text-sm font-medium text-slate-900 ' \
            'hover:bg-slate-50 flex justify-center'
 
-    return link_to 'Cancelar',
-      request.referer || root_path,
-      class: base,
-      data: { turbo_frame: '_top' } if page_load
+    if page_load
+      return link_to 'Cancelar',
+        request.referer || root_path,
+        class: base,
+        data: { turbo_frame: '_top' }
+    end
 
     link_to 'Cancelar',
-            candidates_path,
-            class: base,
-            data: {
-              turbo_frame: 'candidate_management',
-              action: 'click->candidates-form#hideForm'
-            }
+      candidates_path,
+      class: base,
+      data: {
+        turbo_frame: 'candidate_management',
+        action: 'click->candidates-form#hideForm'
+      }
   end
 
   def resume_present?(candidate)
@@ -43,7 +47,8 @@ module CandidatesHelper
       link_to @candidate.resume.filename,
         rails_blob_path(@candidate.resume),
         target: '_blank',
-        class: 'text-sm text-blue-600 hover:text-blue-700'
+        class: 'text-sm text-blue-600 hover:text-blue-700',
+        rel: 'noopener'
     else
       tag.span '-', class: 'text-sm text-slate-400'
     end
