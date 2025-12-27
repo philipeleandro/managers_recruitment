@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif !important;
+  }
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inter'), url('../fonts/regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter Semibold';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Inter Semibold'), url('../fonts/semibold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter Bold';
+  src: local('Inter Bold'), url('../fonts/bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 .logged_account {
   display: block;
   width: 160px;
