@@ -57,9 +57,9 @@ module CandidatesHelper
   def resume_present?(candidate)
     return false if candidate.blank?
 
-    if @candidate.try(:resume).try(:attached?) && @candidate.try(:resume).try(:persisted?)
-      link_to @candidate.resume.filename,
-        rails_blob_path(@candidate.resume),
+    if candidate.try(:resume).try(:attached?) && candidate.try(:resume).try(:persisted?)
+      link_to candidate.resume.filename,
+        rails_blob_path(candidate.resume),
         target: '_blank',
         class: 'text-sm text-blue-600 hover:text-blue-700',
         rel: 'noopener'
