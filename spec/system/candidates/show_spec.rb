@@ -6,7 +6,7 @@ RSpec.describe 'Candidates#Show' do
   context 'when visit Candidates Show' do
     let(:candidate) { create(:candidate) }
     let(:phone) { candidate.phone_number }
-    let(:formatted_phone) { ::Phonelib.parse(phone).national }
+    let(:formatted_phone) { Phonelib.parse(phone).national }
     let(:cpf) { candidate.cpf }
     let(:formatted_cpf) { CPF.new(cpf).formatted }
 
