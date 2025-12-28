@@ -32,9 +32,10 @@
   font-display: swap;
 }
 
-.logged_account {
+.hidden_exceed_text {
   display: block;
   width: 160px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }

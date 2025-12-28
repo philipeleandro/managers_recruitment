@@ -3,28 +3,28 @@
     <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm" data-candidates-target="table">
       <table class="w-full">
         <div class="px-6 py-4 border-b border-slate-200">
-          <h2 class="text-lg font-semibold text-slate-900">Lista de Candidatos</h2>
-          <p class="text-sm text-slate-600 mt-1">Mostrando <%= @candidates.count %> de de <%= @candidates.total_count %> candidatos</p>
+          <h2 class="text-lg font-semibold text-slate-900"><%= t('candidates.index_candidates_list.title') %></h2>
+          <p class="text-sm text-slate-600 mt-1"><%= t('candidates.index_candidates_list.candidates_count', candidates: @candidates.count, total: @candidates.total_count) %></p>
         </div>
         <thead class="border-b border-slate-200">
           <tr>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Nome</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">E-mail</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">CPF</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Telefone</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Status</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Currículo</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Ações</th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.index_candidates_list.name') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.index_candidates_list.email') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.index_candidates_list.cpf') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.index_candidates_list.phone') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.index_candidates_list.status') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.index_candidates_list.resume') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.index_candidates_list.actions') %></th>
           </tr>
         </thead>
         <tbody>
           <% @candidates.each do |candidate| %>
             <tr class="text-center border-b border-slate-200 hover:bg-slate-50 transition-colors" data-candidates-target="candidateRow">
               <td class="px-6 py-4">
-                <p class="text-left text-sm text-slate-600"><%= candidate.name %></p>
+                <p class="text-left text-sm text-slate-600 hidden_exceed_text"><%= candidate.name %></p>
               </td>
               <td class="px-6 py-4">
-                <p class="text-center text-sm text-slate-600"><%= candidate.email %></p>
+                <p class="text-center text-sm text-slate-600 hidden_exceed_text"><%= candidate.email %></p>
               </td>
               <td class="px-6 py-4">
                 <p class="text-center text-sm text-slate-600"><%= formatted_cpf(candidate.cpf) %></p>
@@ -66,11 +66,11 @@
     </div>
   <% else %>
     <div class="rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm">
-      <h2 class="text-lg font-semibold text-slate-900">Lista de Candidatos</h2>
-      <p class="text-sm text-slate-600 mt-1">Mostrando <%= @candidates.count %> candidatos</p>
+      <h2 class="text-lg font-semibold text-slate-900"><%= t('candidates.index_candidates_list.title') %></h2>
+      <p class="text-sm text-slate-600 mt-1"><%= t('candidates.index_candidates_list.candidates_count', candidates: @candidates.count, total: @candidates.total_count) %></p>
 
       <div class="p-12 text-center">
-        <p class="text-slate-600">Nenhum candidato encontrado</p>
+        <p class="text-slate-600"><%= t('candidates.index_candidates_list.none_candidate') %></p>
       </div>
     </div>
   <% end %>

@@ -1,0 +1,12 @@
+pt-BR:
+  candidates:
+    create:
+      flashes:
+        success: Candidato criado com sucesso
+    update:
+      flashes:
+        success: Candidato atualizado com sucesso
+    delete:
+      flashes:
+        success: Candidato excluído com sucesso
+
