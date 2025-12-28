@@ -65,7 +65,7 @@ group :development, :test do
 
   gem 'rubocop-rails-omakase', require: false
 
-  gem 'rubocop-rails', '2.20.2'
+  gem 'rubocop-rails', '2.34.2'
 
   gem 'rubocop-rspec', '2.23.2'
 
