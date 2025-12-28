@@ -8,5 +8,5 @@ pt-BR:
         success: Candidato atualizado com sucesso
     delete:
       flashes:
-        success: Candidato deletado com sucesso
+        success: Candidato excluído com sucesso
 
