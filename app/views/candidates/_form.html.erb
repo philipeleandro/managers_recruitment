@@ -1,5 +1,5 @@
 <div>
-  <%= form_with(model: candidate, local: true, data: data_form(page_load)) do |form| %>
+  <%= form_with(model: candidate, data: data_form(page_load)) do |form| %>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="col-span-1">
         <%= form.label :name, class: "block text-sm text-slate-900 mb-2" %>

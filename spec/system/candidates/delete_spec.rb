@@ -2,10 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Candidates#delete' do # js: true do
+RSpec.describe 'Candidates#delete', js: true do
   let(:candidate) { create(:candidate) }
 
-  before { visit candidates_path }
+  before do
+    candidate
+    visit candidates_path
+  end
 
   context 'when successfully' do
     it 'deletes a candidate' do
