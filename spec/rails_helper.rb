@@ -76,7 +76,28 @@ RSpec.configure do |config|
     driven_by :rack_test
   end
 
-  config.before(:each, js: true, type: :system) do
-    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+  config.before(:each, type: :system, js: true) do
+    Capybara.register_driver :selenium_remote do |app|
+      options = Selenium::WebDriver::Chrome::Options.new
+      options.add_argument('--no-sandbox')
+      options.add_argument('--disable-dev-shm-usage')
+      options.add_argument('--window-size=1400,1400')
+      options.add_argument('--headless=new')
+
+      Capybara::Selenium::Driver.new(app,
+        browser: :remote,
+        url: "http://selenium:4444/wd/hub",
+        options: options
+      )
+    end
+
+    driven_by :selenium_remote
+
+    Capybara.server_host = '0.0.0.0'
+    Capybara.server_port = 4000
+
+    ip = Socket.ip_address_list.detect(&:ipv4_private?).ip_address
+
+    Capybara.app_host = "http://#{ip}:#{Capybara.server_port}"
   end
 end
