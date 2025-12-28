@@ -3,28 +3,28 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="col-span-1">
         <%= form.label :name, class: "block text-sm text-slate-900 mb-2" %>
-        <%= form.text_field :name, class: "w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+        <%= form.text_field :name, class: "w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: t('candidates.form.placeholder.name') %>
       </div>
 
       <div class="col-span-1">
         <%= form.label :email, class: "block text-sm text-slate-900 mb-2" %>
-        <%= form.email_field :email, class: "w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+        <%= form.email_field :email, class: "w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-500 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: t('candidates.form.placeholder.email') %>
       </div>
 
       <div class="col-span-1">
         <%= form.label :cpf, class: "block text-sm text-slate-900 mb-2" %>
-        <%= form.text_field :cpf, class: "w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", data: { action: "blur->candidate-form#formatCPF" } %>
+        <%= form.text_field :cpf, class: "w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: t('candidates.form.placeholder.cpf'), data: { action: "blur->candidate-form#formatCPF" } %>
       </div>
 
       <div class="col-span-1">
         <%= form.label :phone_number, class: "block text-sm text-slate-900 mb-2" %>
-        <%= form.telephone_field :phone_number, class: "w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", data: { action: "blur->candidate-form#formatPhone" } %>
+        <%= form.telephone_field :phone_number, class: "w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: t('candidates.form.placeholder.phone'), data: { action: "blur->candidate-form#formatPhone" } %>
       </div>
 
       <div class="col-span-1">
         <%= form.label :status, class: "block text-sm text-slate-900 mb-2" %>
         <div class="relative">
-          <%= form.select :status, Candidate::Status.to_a.map { |s| [s.first, s.last] }, {}, class: "appearance-none w-full rounded-lg border border-slate-300 px-4 py-2 pr-10 text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white" %>
+          <%= form.select :status, Candidate::Status.to_a.map { |s| [s.first, s.last] }, {}, class: "appearance-none w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 pr-10 text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white" %>
           <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-500">
             <%= inline_svg_tag 'icons/dropdown-arrow.svg' %>
           </div>
@@ -43,7 +43,7 @@
 
     <div class="mt-8 flex gap-6">
       <%= form.submit candidate.new_record? ? "Criar Candidato" : "Atualizar Candidato", class: "rounded-lg w-full bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer" %>
-      <%= link_cancel_form(page_load) %>
+      <%= link_cancel_form(page_load, candidate.try(:id)) %>
     </div>
   <% end %>
 </div>

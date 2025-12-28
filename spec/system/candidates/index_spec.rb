@@ -21,6 +21,16 @@ RSpec.describe 'Candidates#Index' do
       it { expect(page).to have_content('Status') }
       it { expect(page).to have_content('Currículo') }
       it { expect(page).to have_content('Ações') }
+
+      context 'with filter', js: true do
+        before do
+          fill_in 'query', with: candidate.name
+          find('input[name="query"]').send_keys(:enter)
+        end
+
+        it { expect(page).to have_content('Lista de Candidatos') }
+        it { expect(page).to have_content(candidate.name) }
+      end
     end
 
     context 'when there is no candidates' do

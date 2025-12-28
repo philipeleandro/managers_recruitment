@@ -1,7 +1,7 @@
 <%= form_with url: candidates_path, method: :get, data: { controller: "search", turbo_frame: "candidates_list" }, class: "relative w-full sm:w-72" do |f| %>
   <%= f.text_field :query,
     value: params[:query],
-    placeholder: "Buscar nome, email ou CPF...",
+    placeholder: t('candidates.form_search.placeholder.query'),
     class: "block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg leading-5 bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
     autocomplete: "off",
     data: { action: "input->search#search" }

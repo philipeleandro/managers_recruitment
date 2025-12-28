@@ -33,14 +33,14 @@ module CandidatesHelper
     }.with_indifferent_access
   end
 
-  def link_cancel_form(page_load)
+  def link_cancel_form(page_load, candidate_id)
     base = 'rounded-lg w-full border border-slate-200 ' \
            'px-6 py-2 text-sm font-medium text-slate-900 ' \
            'hover:bg-slate-50 flex justify-center'
 
     if page_load
       return link_to 'Cancelar',
-        request.referer || root_path,
+        candidate_id.nil? ? root_path : candidate_path(id: candidate_id),
         class: base,
         data: { turbo_frame: '_top' }
     end
@@ -61,7 +61,7 @@ module CandidatesHelper
       link_to candidate.resume.filename,
         rails_blob_path(candidate.resume),
         target: '_blank',
-        class: 'text-sm text-blue-600 hover:text-blue-700',
+        class: 'text-sm text-blue-600 hover:text-blue-700 hidden_exceed_text',
         rel: 'noopener'
     else
       tag.span '-', class: 'text-sm text-slate-400'

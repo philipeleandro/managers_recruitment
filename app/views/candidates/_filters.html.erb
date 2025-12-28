@@ -3,7 +3,7 @@
     <div class="flex gap-2 flex-wrap">
       <% current_status = params[:status].presence %>
 
-      <%= button_tag 'Todos',
+      <%= button_tag t('candidates.filters.buttons.all'),
           class: link_classes.call(current_status.blank?),
           data: {
             action: "click->candidates#filterByStatus",

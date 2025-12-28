@@ -3,10 +3,10 @@
     <div class="mb-8">
       <div class="flex items-center justify-between">
         <div>
-          <h1 class="text-4xl font-bold text-slate-900">Candidatos</h1>
-          <p class="mt-2 text-slate-600">Gerencie e acompanhe todas as candidaturas</p>
+          <h1 class="text-4xl font-bold text-slate-900"><%= t('candidates.index.title') %></h1>
+          <p class="mt-2 text-slate-600"><%= t('candidates.index.subtitle') %></p>
         </div>
-        <%= link_to "Adicionar Candidato", new_candidate_path,
+        <%= link_to t('candidates.index.new_candidate'), new_candidate_path,
             class: "rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700",
             data: { turbo_frame: "candidate_management",
             action: "click->candidates-form#showForm" },
