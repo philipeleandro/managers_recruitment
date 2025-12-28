@@ -19,17 +19,18 @@ RSpec.describe 'Candidates#Create' do
     end
   end
 
-  # context 'when fails' do
-  #   it 'shows errors when data is invalid' do
-  #     fill_in 'Nome', with: 'João Silva'
-  #     fill_in 'Telefone', with: '11999999999'
-  #     fill_in 'CPF', with: 'fake_cpf'
-  #     fill_in 'E-mail', with: 'user@test.com'
-  #     attach_file 'Currículo', Rails.root.join('spec/fixtures/files/resume_test.pdf')
-  #     click_button 'Criar Candidato'
+  context 'when fails' do
+    it 'shows errors when data is invalid' do
+      fill_in 'Nome', with: 'João Silva'
+      fill_in 'Telefone', with: '11999999999'
+      fill_in 'CPF', with: 'fake_cpf'
+      fill_in 'E-mail', with: 'user@test.com'
+      attach_file 'Currículo', Rails.root.join('spec/fixtures/files/resume_test.pdf')
+      click_button 'Criar Candidato'
 
-  #     expect(page).to have_content("CPF inválido")
-  #     expect(Candidate.count).to eq(0)
-  #   end
-  # end
+      expect(page).to have_content("Verifique os erros abaixo")
+      expect(page).to have_content("CPF não é válido")
+      expect(Candidate.count).to eq(0)
+    end
+  end
 end

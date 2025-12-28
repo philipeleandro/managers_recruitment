@@ -35,6 +35,13 @@ services:
     volumes:
       - redis-data:/data
 
+  selenium:
+    image: selenium/standalone-chrome:latest
+    shm_size: "2gb"
+    ports:
+      - "4444:4444"
+      - "7900:7900"
+
 volumes:
   postgres-data:
   redis-data:

@@ -14,18 +14,20 @@ RSpec.describe 'Candidates#update' do
 
       expect(page).to have_current_path(candidates_path)
       expect(page).to have_content('João Silva')
+      expect(page).to have_content('Candidato atualizado com sucesso')
     end
   end
 
-  # context 'when successfully' do
-  #   let(:old_cpf) { candidate.cpf }
+  context 'when fails' do
+    let(:old_cpf) { candidate.cpf }
 
-  #   it 'updates a candidate' do
-  #     fill_in 'CPF', with: 'fake_cpf'
-  #     click_button 'Atualizar Candidato'
+    it 'updates a candidate' do
+      fill_in 'CPF', with: 'fake_cpf'
+      click_button 'Atualizar Candidato'
 
-  #     expect(page).to have_current_path(candidate_path(id: candidate.id))
-  #     expect(page).to have_content(old_cpf)
-  #   end
-  # end
+      expect(page).to have_current_path(candidate_path(id: candidate.id))
+      expect(page).to have_content('Verifique os erros abaixo')
+      expect(page).to have_content('CPF não é válido')
+    end
+  end
 end

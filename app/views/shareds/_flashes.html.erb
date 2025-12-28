@@ -1,0 +1,30 @@
+<% flash.each do |key, message| %>
+  <div data-controller="flash"
+       data-flash-type-value="<%= key %>"
+       class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 flex items-center justify-between max-w-md w-full p-4 rounded-lg shadow-lg border transition-all duration-500 ease-out opacity-0 translate-y-[-20px] <%= flash_colors(key) %>"
+       role="alert">
+
+    <div class="flex-1">
+      <% if message.is_a?(Array) %>
+        <% if is_alert %>
+          <h2 class='font-bold mb-2'>Verifique os erros abaixo:</h2>
+        <% end %>
+        <ul class="list-disc pl-5 space-y-1">
+          <% message.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <span class="block"><%= message %></span>
+      <% end %>
+    </div>
+
+    <button type="button"
+            data-action="click->flash#dismiss"
+            class="ml-4 p-1.5 rounded-md transition-colors focus:outline-none <%= flash_button_hover(key) %>">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+<% end %>

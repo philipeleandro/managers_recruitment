@@ -35,17 +35,39 @@ class CandidatesController < ApplicationController
   def create
     @candidate = Candidate.new(candidate_params)
 
-    return redirect_to candidates_path, notice: 'Candidato criado com sucesso.' if @candidate.save
+    if @candidate.save
+      return handle_success_response(
+        template: 'candidates/new',
+        message: 'Candidato criado com sucesso.',
+        location: 'candidate_management',
+        path_redirect: candidates_path
+      )
+    end
 
-    render :new, status: :unprocessable_entity, error: 'Erro ao criar candidato.'
+    handle_error_response(
+      template: :new,
+      message: @candidate.errors.full_messages,
+      location: 'candidate_management',
+      path_template: 'candidates/new'
+    )
   end
 
   def update
     if @candidate.update(candidate_params)
-      return redirect_to candidates_path, notice: 'Candidato atualizado com sucesso.'
+      return handle_success_response(
+        template: 'candidates/edit',
+        message: 'Candidato atualizado com sucesso.',
+        location: 'candidate_management',
+        path_redirect: candidates_path
+      )
     end
 
-    render :edit, status: :unprocessable_entity, error: 'Erro ao atualizar candidato.'
+    handle_error_response(
+      template: :edit,
+      message: @candidate.errors.full_messages,
+      location: 'candidate_management',
+      path_template: 'candidates/edit'
+    )
   end
 
   def destroy
