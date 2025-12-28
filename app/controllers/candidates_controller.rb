@@ -4,22 +4,11 @@ class CandidatesController < ApplicationController
   before_action :candidate, only: %i[show edit update destroy]
 
   def index
-    # passar para service
-    @candidates = Candidate.all
-
-    if params[:query].present?
-      sql_query = "
-        unaccent(name) ILIKE unaccent(:q) OR
-        unaccent(email) ILIKE unaccent(:q) OR
-        unaccent(cpf) ILIKE unaccent(:q)
-      "
-      @candidates = @candidates.where(sql_query, q: "%#{params[:query]}%")
-    end
-
-    @candidates = @candidates.where(status: params[:status]) if params[:status].present?
-    @candidates = @candidates.order(created_at: :desc)
-      .page(params[:page])
-      .per(10)
+    @candidates = ::Candidates::Filter.call(
+      query: params[:query],
+      status: params[:status],
+      page: params[:page]
+    )
   end
 
   def show
