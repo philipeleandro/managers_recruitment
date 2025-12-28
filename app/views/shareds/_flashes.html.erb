@@ -6,7 +6,7 @@
 
     <div class="flex-1">
       <% if message.is_a?(Array) %>
-        <% if is_alert %>
+        <% if key.to_sym == :alert %>
           <h2 class='font-bold mb-2'>Verifique os erros abaixo:</h2>
         <% end %>
         <ul class="list-disc pl-5 space-y-1">

@@ -1,0 +1,51 @@
+pt-BR:
+  candidates:
+    filters:
+      buttons:
+        all: Todos
+    form_search:
+      placeholder:
+        query: Buscar nome, email ou CPF...
+    form:
+      placeholder:
+        name: Nome completo
+        email: teste@exemplo.com
+        cpf: Apenas números
+        phone: DDD + número
+    index_candidates_list:
+      title: Lista de Candidatos
+      candidates_count: 'Mostrando %{candidates} de %{total} candidatos'
+      name: Nome
+      email: E-mail
+      cpf: CPF
+      phone: Telefone
+      status: Status
+      resume: Currículo
+      actions: Ações
+      none_candidate: Nenhum candidato encontrado
+    show_actions:
+      actions: Ações
+      edit: Editar candidato
+      delete: Excluir candidato
+      add_candidate_to_role: Atrelar a vaga
+      confirm: Tem certeza que deseja excluir?
+    show_applications_list:
+    edit:
+      title: Editar Candidato
+    index:
+      title: Candidatos
+      subtitle: Gerencie e acompanhe todas as candidaturas
+      new_candidate: Adicionar Candidato
+    new:
+      title: Adicionar Novo Candidato
+    show:
+      subtitle: Detalhes e informações do candidato
+      details: Informações pessoais
+      labels:
+        cpf: CPF
+        email: E-mail
+        phone: Telefone
+        resume: Currículo
+      buttons:
+        back: Voltar
+
