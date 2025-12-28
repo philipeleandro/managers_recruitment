@@ -76,7 +76,7 @@ RSpec.configure do |config|
     driven_by :rack_test
   end
 
-  config.before(:each, type: :system, js: true) do
+  config.before(:each, js: true, type: :system) do
     Capybara.register_driver :selenium_remote do |app|
       options = Selenium::WebDriver::Chrome::Options.new
       options.add_argument('--no-sandbox')
@@ -84,9 +84,10 @@ RSpec.configure do |config|
       options.add_argument('--window-size=1400,1400')
       options.add_argument('--headless=new')
 
-      Capybara::Selenium::Driver.new(app,
+      Capybara::Selenium::Driver.new(
+        app,
         browser: :remote,
-        url: "http://selenium:4444/wd/hub",
+        url: 'http://selenium:4444/wd/hub',
         options: options
       )
     end

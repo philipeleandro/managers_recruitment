@@ -28,8 +28,8 @@ RSpec.describe 'Candidates#Create' do
       attach_file 'Currículo', Rails.root.join('spec/fixtures/files/resume_test.pdf')
       click_button 'Criar Candidato'
 
-      expect(page).to have_content("Verifique os erros abaixo")
-      expect(page).to have_content("CPF não é válido")
+      expect(page).to have_content('Verifique os erros abaixo')
+      expect(page).to have_content('CPF não é válido')
       expect(Candidate.count).to eq(0)
     end
   end
