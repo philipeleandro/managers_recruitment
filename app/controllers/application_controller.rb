@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-   def handle_success_response
+  def handle_success_response
     message = I18n.t("#{controller_name}.#{action_name}.flashes.success")
     flash.now[:notice] = message
 

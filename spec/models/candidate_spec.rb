@@ -81,7 +81,7 @@ RSpec.describe Candidate do
     subject(:candidate) { create(:candidate) }
 
     describe 'before_destroy' do
-      context '#purge_resume' do
+      describe '#purge_resume' do
         let(:blob_attachment_id) { candidate.resume.blob.id }
 
         before do
@@ -91,7 +91,7 @@ RSpec.describe Candidate do
 
         it { expect(ActiveStorage::Blob.find_by(id: blob_attachment_id)).to be_nil }
         it { expect(ActiveStorage::Attachment.find_by(id: blob_attachment_id)).to be_nil }
-        it { expect(Candidate.count).to be(0) }
+        it { expect(described_class.count).to be(0) }
       end
     end
   end

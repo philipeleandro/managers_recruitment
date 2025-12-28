@@ -2,13 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe ::Candidates::Filter do
+RSpec.describe Candidates::Filter do
   let(:resource_new) { create(:candidate) }
   let(:resource_active) { create(:candidate, status: :active) }
   let(:resource_inactive) { create(:candidate, status: :inactive) }
 
-
-  context '#initialize' do
+  describe '#initialize' do
     subject(:instance) { described_class.new(*params) }
 
     context 'when success' do
@@ -21,14 +20,14 @@ RSpec.describe ::Candidates::Filter do
 
     context 'when fail' do
       context 'when missing arguments' do
-        let(:params) { [resource_new.cpf, status: 'new'] }
+        let(:params) { [resource_new.cpf, 'new'] }
 
         it { expect { instance }.to raise_error(ArgumentError) }
       end
     end
   end
 
-  context '.call' do
+  describe '.call' do
     subject(:result) { described_class.call(**params) }
 
     let(:params) { { query: resource_new.cpf, status: 'new', page: 1 } }
@@ -40,7 +39,7 @@ RSpec.describe ::Candidates::Filter do
     end
   end
 
-  context '#call' do
+  describe '#call' do
     subject(:result) { instance.call }
 
     let(:instance) { described_class.new(*params) }

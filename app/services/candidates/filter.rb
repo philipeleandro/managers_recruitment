@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Candidates
   class Filter
     LIMIT = 10
@@ -26,7 +28,7 @@ module Candidates
     end
 
     def filtered_by_name_or_email_or_cpf
-      return default_resources unless @query.present?
+      return default_resources if @query.blank?
 
       default_resources.where(name_or_email_or_cpf_sql_query, query: "%#{@query}%")
     end
