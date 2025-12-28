@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module FlashResponder
   extend ActiveSupport::Concern
 
-   def handle_error_response(resource)
+  def handle_error_response(resource)
     flash.now[:alert] = resource.errors.full_messages
 
     respond_to do |format|
