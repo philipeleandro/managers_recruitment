@@ -38,7 +38,7 @@ class CandidatesController < ApplicationController
     if @candidate.save
       return handle_success_response(
         template: 'candidates/new',
-        message: 'Candidato criado com sucesso.',
+        message: I18n.t('candidates.create.flashes.success'),
         location: 'candidate_management',
         path_redirect: candidates_path
       )
@@ -56,7 +56,7 @@ class CandidatesController < ApplicationController
     if @candidate.update(candidate_params)
       return handle_success_response(
         template: 'candidates/edit',
-        message: 'Candidato atualizado com sucesso.',
+        message: I18n.t('candidates.update.flashes.success'),
         location: 'candidate_management',
         path_redirect: candidates_path
       )
@@ -73,7 +73,7 @@ class CandidatesController < ApplicationController
   def destroy
     @candidate.destroy
 
-    redirect_to candidates_path, notice: 'Candidato excluído com sucesso.'
+    redirect_to candidates_path, notice: I18n.t('candidates.delete.flashes.success')
   end
 
   private
