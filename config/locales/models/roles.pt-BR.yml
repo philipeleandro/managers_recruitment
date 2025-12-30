@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      role:
+        one: Vaga
+        other: Vagas
+    attributes:
+      role:
+        name: Nome
+        description: Descrição
+        status: Status
+        company_id: Empresa
+        company: Empresa
+        created_at: criada em
+        updated_at: Atualizada em
+    errors:
+      not_valid: 'não é válida'

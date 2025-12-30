@@ -1,0 +1,10 @@
+<div class="flex flex-col h-full">
+  <div class="flex-1 rounded-lg border border-slate-200 bg-white p-6">
+    <h3 class="font-semibold text-slate-900 mb-4"><%= t('roles.show_actions.actions') %></h3>
+    <div class="space-y-2">
+      <%= link_to t('roles.show_actions.create_role'), role_path(@role), class: "block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-900 text-center hover:bg-slate-50" %>
+      <%= link_to t('roles.show_actions.edit'), edit_role_path(@role), class: "block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-900 text-center hover:bg-slate-50" %>
+      <%= link_to t('roles.show_actions.delete'), role_path(@role), data: { turbo_method: :delete, turbo_confirm: t('roles.show_actions.confirm') ,turbo_frame: "_top" }, class: "block rounded-lg border border-red-200 px-4 py-2 text-sm font-medium text-red-600 text-center hover:bg-red-50" %>
+    </div>
+  </div>
+</div>

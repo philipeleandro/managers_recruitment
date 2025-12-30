@@ -1,0 +1,36 @@
+<main class="w-full mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+  <div class="mb-8 flex items-center justify-between">
+    <div>
+      <h1 class="text-4xl font-bold text-slate-900"><%= @role.name %></h1>
+      <p class="mt-2 text-slate-600"><%= link_to @role.company.name, company_path(@role.company_id), target: '_blank', rel: 'noopener', class: "text-blue-600 hover:text-blue-700" %></p>
+    </div>
+    <div class="flex gap-2">
+      <%= link_to t('roles.show.buttons.back'), roles_path, class: "rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700" %>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+    <div class="lg:col-span-2">
+      <div class="rounded-lg border border-slate-200 bg-white p-6 h-full">
+        <div class="flex flex-row justify-between items-start">
+          <h2 class="text-lg font-semibold text-slate-900 mb-4"><%= t('roles.show.details') %></h2>
+          <span class="inline-flex w-[60px] items-center justify-center rounded-lg px-3 py-1 text-xs <%= status_colors[@role.status] %>">
+            <%= @role.status_humanize %>
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-1">
+          <div>
+            <label class="text-sm font-medium text-slate-600"><%= t('roles.show.labels.description') %></label>
+            <%= simple_format(@role.description, class: "mt-2 text-slate-900 break-words") %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <%= render 'show_actions' %>
+  </div>
+
+  <%# <%= render 'show_roles_list' %>
+</main>

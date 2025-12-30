@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   root 'dashboards#home'
   resources :candidates
   resources :companies
+  resources :roles
 end

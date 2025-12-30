@@ -1,0 +1,47 @@
+pt-BR:
+  roles:
+    filters:
+      buttons:
+        all: Todos
+    form_search:
+      placeholder:
+        query: Buscar nome ou descrição...
+    form:
+      placeholder:
+        name: Nome da vaga
+        description: Descrição da vaga
+        phone: DDD + número
+    index_roles_list:
+      title: Lista de Vagas
+      roles_count: 'Mostrando %{roles} de %{total} vagas'
+      name: Nome
+      status: Status
+      company: Empresa
+      description: Descrição
+      actions: Ações
+      none_role: Nenhuma vaga encontrada
+    show_actions:
+      actions: Ações
+      edit: Editar vaga
+      delete: Excluir vaga
+      create_role: Criar vaga
+      confirm: Tem certeza que deseja excluir?
+    show_applications_list:
+    edit:
+      title: Editar Vaga
+    index:
+      title: Vagas
+      subtitle: Gerencie e acompanhe todas as vagas
+      new_role: Adicionar Vaga
+    new:
+      title: Adicionar Nova Vaga
+    show:
+      subtitle: Detalhes e informações da vaga
+      details: Informações
+      labels:
+        name: Nome da vaga
+        description: Descrição da vaga
+        company: Empresa
+      buttons:
+        back: Voltar
+
