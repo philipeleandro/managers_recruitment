@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "candidates_list" do %>
   <% if @candidates.any? %>
-    <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm" data-candidates-target="table">
+    <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm" data-candidates--candidates-target="table">
       <table class="w-full">
         <div class="px-6 py-4 border-b border-slate-200">
           <h2 class="text-lg font-semibold text-slate-900"><%= t('candidates.index_candidates_list.title') %></h2>
@@ -19,9 +19,9 @@
         </thead>
         <tbody>
           <% @candidates.each do |candidate| %>
-            <tr class="text-center border-b border-slate-200 hover:bg-slate-50 transition-colors" data-candidates-target="candidateRow">
+            <tr class="text-center border-b border-slate-200 hover:bg-slate-50 transition-colors" data-candidates--candidates-target="candidateRow">
               <td class="px-6 py-4">
-                <p class="text-left text-sm text-slate-600 hidden_exceed_text"><%= candidate.name %></p>
+                <p class="text-center text-sm text-slate-600 hidden_exceed_text"><%= candidate.name %></p>
               </td>
               <td class="px-6 py-4">
                 <p class="text-center text-sm text-slate-600 hidden_exceed_text"><%= candidate.email %></p>
@@ -48,7 +48,7 @@
                   <%= link_to inline_svg_tag('icons/pencil.svg', class: "lucide lucide-pen h-4 w-4 text-blue-600"),
                         edit_candidate_path(candidate),
                         class: "text-sm font-medium text-blue-600 hover:text-blue-700",
-                        data: { turbo_frame: "candidate_management", action: "click->candidates-form#forceOpen" } %>
+                        data: { turbo_frame: "candidate_management", action: "click->candidates--candidates-form#forceOpen" } %>
 
                   <%= link_to inline_svg_tag('icons/trash_can.svg', class: "lucide lucide-trash2 h-4 w-4 text-red-600"),
                       candidate_path(candidate),

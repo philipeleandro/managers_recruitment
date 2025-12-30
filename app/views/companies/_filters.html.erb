@@ -3,23 +3,23 @@
     <div class="flex gap-2 flex-wrap">
       <% current_status = params[:status].presence %>
 
-      <%= button_tag t('candidates.filters.buttons.all'),
+      <%= button_tag t('companies.filters.buttons.all'),
           class: link_classes.call(current_status.blank?),
           data: {
-            action: "click->candidates--candidates#filterByStatus",
+            action: "click->companies--companies#filterByStatus",
             status: "",
-            "candidates--candidates_target": "filterButton"
+            "companies--companies_target": "filterButton"
           }
         %>
 
-      <% Candidate::Status.to_a.each do |status| %>
+      <% Company::Status.to_a.each do |status| %>
           <%= button_tag status.first,
             type: 'button',
             class: link_classes.call(current_status == status.last),
             data: {
-              action: "click->candidates--candidates#filterByStatus",
+              action: "click->companies--companies#filterByStatus",
               status: status.last,
-              "candidates--candidates_target": "filterButton"
+              "companies--companies_target": "filterButton"
             }
           %>
         <% end %>

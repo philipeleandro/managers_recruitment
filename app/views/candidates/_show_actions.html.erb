@@ -2,7 +2,7 @@
   <div class="flex-1 rounded-lg border border-slate-200 bg-white p-6">
     <h3 class="font-semibold text-slate-900 mb-4"><%= t('candidates.show_actions.actions') %></h3>
     <div class="space-y-2">
-      <%= link_to t('candidates.show_actions.add_candidate_to_role'), candidate_path(@candidate), class: "block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-900 text-center hover:bg-slate-50" %>
+      <%= link_to t('candidates.show_actions.add_candidate_create_role'), candidate_path(@candidate), class: "block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-900 text-center hover:bg-slate-50" %>
       <%= link_to t('candidates.show_actions.edit'), edit_candidate_path(@candidate), class: "block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-900 text-center hover:bg-slate-50" %>
       <%= link_to t('candidates.show_actions.delete'), candidate_path(@candidate), data: { turbo_method: :delete, turbo_confirm: t('candidates.show_actions.confirm') ,turbo_frame: "_top" }, class: "block rounded-lg border border-red-200 px-4 py-2 text-sm font-medium text-red-600 text-center hover:bg-red-50" %>
     </div>
