@@ -1,0 +1,12 @@
+pt-BR:
+  companies:
+    create:
+      flashes:
+        success: Empresa criada com sucesso
+    update:
+      flashes:
+        success: Empresa atualizada com sucesso
+    delete:
+      flashes:
+        success: Empresa excluída com sucesso
+

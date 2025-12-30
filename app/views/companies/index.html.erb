@@ -1,0 +1,26 @@
+<main class="min-h-screen" data-controller="companies--companies-form companies--companies">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-4xl font-bold text-slate-900"><%= t('companies.index.title') %></h1>
+          <p class="mt-2 text-slate-600"><%= t('companies.index.subtitle') %></p>
+        </div>
+        <%= link_to t('companies.index.new_company'), new_company_path,
+            class: "rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700",
+            data: { turbo_frame: "company_management",
+            action: "click->companies--companies-form#showForm" },
+            id: 'new-company-button' %>
+      </div>
+
+      <div class="mt-6 hidden" data-companies--companies-form-target="companyForm">
+        <%= turbo_frame_tag "company_management" do %>
+        <% end %>
+      </div>
+    </div>
+
+    <%= render 'filters' %>
+
+    <%= render 'index_companies_list' %>
+  </div>
+</main>
