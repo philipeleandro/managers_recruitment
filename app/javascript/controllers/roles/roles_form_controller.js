@@ -29,7 +29,7 @@ export default class extends Controller {
     if (!button) return
 
     if (form.classList.contains("hidden")) {
-      button.innerText = "Adicionar Empresa"
+      button.innerText = "Criar Vaga"
     } else {
       button.innerText = "Recolher"
     }

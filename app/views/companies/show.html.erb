@@ -1,4 +1,4 @@
-<main class="w-full mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8" data-controller="companies--companies">
+<main class="w-full mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8" data-controller="recruitments--recruitments-form companies--companies roles--roles-form">
   <div class="mb-8 flex items-center justify-between">
     <div>
       <h1 class="text-4xl font-bold text-slate-900"><%= @company.name %></h1>
@@ -9,9 +9,19 @@
     </div>
   </div>
 
+  <div class="hidden mt-6" data-recruitments--recruitments-form-target="recruitmentForm">
+    <%= turbo_frame_tag "recruitment_management" do %>
+    <% end %>
+  </div>
+
+  <div class="hidden mt-6" data-roles--roles-form-target="roleForm">
+    <%= turbo_frame_tag "role_management" do %>
+    <% end %>
+  </div>
+
   <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
     <div class="lg:col-span-2">
-      <div class="rounded-lg border border-slate-200 bg-white p-6">
+      <div class="rounded-lg border border-slate-200 bg-white p-6 h-full">
         <div class="flex flex-row justify-between items-start">
           <h2 class="text-lg font-semibold text-slate-900 mb-4"><%= t('companies.show.details') %></h2>
           <span class="inline-flex w-[60px] items-center justify-center rounded-lg px-3 py-1 text-xs <%= status_colors[@company.status] %>">
@@ -44,7 +54,9 @@
     <%= render 'show_actions' %>
   </div>
 
-  <%= render 'show_filters' %>
+  <div class="mb-6 mt-6">
+    <%= render 'companies/tab/form_search' %>
+  </div>
 
-  <%= render 'show_list' %>
+  <%= render 'companies/tab/show_roles_list' %>
 </main>

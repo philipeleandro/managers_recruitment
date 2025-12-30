@@ -12,10 +12,15 @@ class RolesController < ApplicationController
   end
 
   def show
+    # futuramente vai ter os candidatos atrelados
     @roles = []
   end
 
   def new
+    unless turbo_frame_request?
+      redirect_to companies_path and return
+    end
+
     @role = Role.new
   end
 
