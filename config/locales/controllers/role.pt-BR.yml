@@ -1,0 +1,11 @@
+pt-BR:
+  roles:
+    create:
+      flashes:
+        success: Vaga criada com sucesso
+    update:
+      flashes:
+        success: Vaga atualizada com sucesso
+    delete:
+      flashes:
+        success: Vaga excluída com sucesso

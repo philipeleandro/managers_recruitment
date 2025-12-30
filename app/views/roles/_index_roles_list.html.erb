@@ -1,0 +1,65 @@
+<%= turbo_frame_tag "roles_list" do %>
+  <% if @roles.any? %>
+    <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm" data-roles--roles-target="table">
+      <table class="w-full">
+        <div class="px-6 py-4 border-b border-slate-200">
+          <h2 class="text-lg font-semibold text-slate-900"><%= t('roles.index_roles_list.title') %></h2>
+          <p class="text-sm text-slate-600 mt-1"><%= t('roles.index_roles_list.roles_count', roles: @roles.count, total: @roles.total_count) %></p>
+        </div>
+        <thead class="border-b border-slate-200">
+          <tr>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('roles.index_roles_list.name') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('roles.index_roles_list.company') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('roles.index_roles_list.status') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('roles.index_roles_list.actions') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @roles.each do |role| %>
+            <tr class="text-center border-b border-slate-200 hover:bg-slate-50 transition-colors" data-roles---roles-target="roleRow">
+              <td class="px-6 py-4 text-center">
+                <p class="text-center text-sm text-slate-600"><%= role.name %></p>
+              </td>
+              <td class="px-6 py-4 text-center">
+                <p class="text-center text-sm text-slate-600"><%= link_to role.company.name, company_path(role.company_id), target: '_blank', rel: 'noopener', class: "text-blue-600 hover:text-blue-700" %></p>
+              </td>
+              <td class="px-6 py-4 text-center">
+                <span class="inline-flex w-[60px] items-center justify-center rounded-lg px-3 py-0.5 text-xs <%= status_colors[role.status] %>">
+                  <%= role.status_humanize %>
+                </span>
+              </td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex gap-2 justify-center">
+                  <%= link_to inline_svg_tag('icons/archive.svg', class: "lucide lucide-file-text h-4 w-4 text-blue-600"),
+                        role_path(role),
+                        class: "text-sm font-medium text-blue-600 hover:text-blue-700",
+                        data: { turbo_frame: "_top" } %>
+
+                  <%= link_to inline_svg_tag('icons/pencil.svg', class: "lucide lucide-pen h-4 w-4 text-blue-600"),
+                        edit_role_path(role),
+                        class: "text-sm font-medium text-blue-600 hover:text-blue-700",
+                        data: { turbo_frame: "role_management", action: "click->roles--roles-form#forceOpen" } %>
+
+                  <%= link_to inline_svg_tag('icons/trash_can.svg', class: "lucide lucide-trash2 h-4 w-4 text-red-600"),
+                      role_path(role),
+                      data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?", turbo_frame: '_top' },
+                      class: "text-sm font-medium text-red-600 hover:text-red-700",
+                      id: 'delete-role-button' %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @roles, window: 1, outer_window: 1 %>
+    </div>
+  <% else %>
+    <div class="rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm">
+      <h2 class="text-lg font-semibold text-slate-900"><%= t('roles.index_roles_list.title') %></h2>
+
+      <div class="p-12 text-center">
+        <p class="text-slate-600"><%= t('roles.index_roles_list.none_role') %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

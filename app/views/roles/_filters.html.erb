@@ -1,0 +1,30 @@
+<div class="mb-6">
+  <div class="flex flex-row justify-between">
+    <div class="flex gap-2 flex-wrap">
+      <% current_status = params[:status].presence %>
+
+      <%= button_tag t('roles.filters.buttons.all'),
+          class: link_classes.call(current_status.blank?),
+          data: {
+            action: "click->roles--roles#filterByStatus",
+            status: "",
+            "roles--roles_target": "filterButton"
+          }
+        %>
+
+        <% Role::Status.to_a.each do |status| %>
+          <%= button_tag status.first,
+            type: 'button',
+            class: link_classes.call(current_status == status.last),
+            data: {
+              action: "click->roles--roles#filterByStatus",
+              status: status.last,
+              "roles--roles_target": "filterButton"
+            }
+          %>
+        <% end %>
+    </div>
+
+    <%= render 'form_search' %>
+  </div>
+</div>
