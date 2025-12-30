@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <%= form.hidden_field :company_id, value: params[:company_id] %>
+    <%= form.hidden_field :company_id %>
 
     <div class="col-span-1">
       <%= form.label :description, class: "block text-sm text-slate-900 mb-2" %>
@@ -32,7 +32,7 @@
     <div class="mt-8 flex gap-6">
       <%= form.submit role.new_record? ? "Criar Vaga" : "Atualizar Vaga", class: "rounded-lg w-full bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer" %>
       <%= link_to 'Cancelar',
-          company_path(role.company_id || params[:company_id]),
+          '#',
           class: 'rounded-lg w-full border border-slate-200 ' \
                 'px-6 py-2 text-sm font-medium text-slate-900 ' \
                 'hover:bg-slate-50 flex justify-center',

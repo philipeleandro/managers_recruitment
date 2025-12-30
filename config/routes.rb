@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :candidates
   resources :companies
   resources :roles
+  resources :recruitments
 end

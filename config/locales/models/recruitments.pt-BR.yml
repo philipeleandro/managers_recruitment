@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      recruitment:
+        one: Processo Seletivo
+        other: Processos Seletivos
+    attributes:
+      recruitment:
+        name: Nome
+        description: Descrição
+        status: Status
+        finish_date: Data de término
+        opening_date: Data de início
+        company_id: Empresa
+        company: Empresa
+        value: Valor
+        role_id: Cargo
+        created_at: criado em
+        updated_at: Atualizado em

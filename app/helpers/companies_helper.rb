@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module CompaniesHelper
-  def link_cancel_form(page_load, company_id)
+  def link_cancel_company_form(page_load, company_id)
     base = 'rounded-lg w-full border border-slate-200 ' \
            'px-6 py-2 text-sm font-medium text-slate-900 ' \
            'hover:bg-slate-50 flex justify-center'

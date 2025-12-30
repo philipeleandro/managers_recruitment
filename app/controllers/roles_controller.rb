@@ -17,11 +17,9 @@ class RolesController < ApplicationController
   end
 
   def new
-    unless turbo_frame_request?
-      redirect_to companies_path and return
-    end
+    redirect_to companies_path and return unless turbo_frame_request?
 
-    @role = Role.new
+    @role = Role.new(company_id: params[:company_id])
   end
 
   def edit; end
@@ -43,7 +41,7 @@ class RolesController < ApplicationController
   def destroy
     @role.destroy
 
-    redirect_to roles_path, notice: I18n.t('roles.delete.flashes.success')
+    redirect_to company_path(id: params[:company_id]), notice: I18n.t('roles.delete.flashes.success')
   end
 
   private

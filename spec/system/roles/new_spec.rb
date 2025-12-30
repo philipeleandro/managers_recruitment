@@ -2,11 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Role#New' do
+RSpec.describe 'Role#New', js: true do
   context 'when visit Role New' do
-    before { visit new_role_path }
+    let(:company) { create(:company) }
 
-    it { expect(page).to have_current_path(new_role_path) }
+    before do
+      visit company_path(id: company.id)
+      click_link 'Criar vaga'
+    end
+
+    it { expect(page).to have_current_path(company_path(id: company.id)) }
     it { expect(page).to have_content('Adicionar Nova Vaga') }
     it { expect(page).to have_field('Nome') }
     it { expect(page).to have_field('Descrição') }
