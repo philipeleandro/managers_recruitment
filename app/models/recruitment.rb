@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Recruitment < ApplicationRecord
   belongs_to :company
 

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :recruitment do
-    description { "MyString" }
+    description { 'MyString' }
     status { :new }
-    opening_date { "2025-12-30" }
-    finish_date { "2025-12-30" }
-    value { "9.99" }
-    association :company
+    opening_date { '2025-12-30' }
+    finish_date { '2025-12-30' }
+    value { '9.99' }
+    company
   end
 end

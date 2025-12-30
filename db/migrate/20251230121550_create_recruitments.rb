@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateRecruitments < ActiveRecord::Migration[8.1]
   def change
     create_table :recruitments do |t|
@@ -11,6 +13,6 @@ class CreateRecruitments < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-    add_index :recruitments, [:opening_date, :finish_date], name: 'index_recruitments_on_opening_and_finish_date'
+    add_index :recruitments, %i[opening_date finish_date], name: 'index_recruitments_on_opening_and_finish_date'
   end
 end

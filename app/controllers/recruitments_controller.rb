@@ -2,9 +2,7 @@
 
 class RecruitmentsController < ApplicationController
   def new
-    unless turbo_frame_request?
-      redirect_to companies_path and return
-    end
+    redirect_to companies_path and return unless turbo_frame_request?
 
     @recruitment = Recruitment.new(company_id: params[:company_id])
   end

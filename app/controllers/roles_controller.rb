@@ -17,9 +17,7 @@ class RolesController < ApplicationController
   end
 
   def new
-    unless turbo_frame_request?
-      redirect_to companies_path and return
-    end
+    redirect_to companies_path and return unless turbo_frame_request?
 
     @role = Role.new(company_id: params[:company_id])
   end
