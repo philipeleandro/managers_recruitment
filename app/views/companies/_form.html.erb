@@ -39,7 +39,7 @@
 
     <div class="mt-8 flex gap-6">
       <%= form.submit company.new_record? ? "Criar Empresa" : "Atualizar Empresa", class: "rounded-lg w-full bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer" %>
-      <%= link_cancel_form(page_load, company.try(:id)) %>
+      <%= link_cancel_company_form(page_load, company.try(:id)) %>
     </div>
   <% end %>
 </div>

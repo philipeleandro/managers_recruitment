@@ -12,21 +12,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    # @current_tab = params[:tab].presence
-    # @roles = []
-
-    # case @current_tab
-    # when 'roles'
-    #   @roles = Role.where(company: @company).page(params[:page]).per(10)
-    # when 'recruitment'
-    #   @recruitments = @company.recruitments
-    # end
-
-    # # 3. Se for uma chamada do Turbo (clique no botão), renderiza só a partial da aba
-    # if turbo_frame_request?
-    #   render partial: "roles/index_roles_list"
-    # end
-    # # Se não for Turbo (F5 na página), ele segue para o show.html.erb normal
+    @roles = company.roles.order(created_at: :desc).page(params[:page]).per(10) # vai ser o recruitment roles dps
   end
 
   def new
