@@ -1,0 +1,26 @@
+<main class="min-h-screen" data-controller="roles--roles-form roles--roles">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-4xl font-bold text-slate-900"><%= t('roles.index.title') %></h1>
+          <p class="mt-2 text-slate-600"><%= t('roles.index.subtitle') %></p>
+        </div>
+        <%= link_to t('roles.index.new_role'), new_role_path,
+            class: "rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700",
+            data: { turbo_frame: "role_management",
+            action: "click->roles--roles-form#showForm" },
+            id: 'new-role-button' %>
+      </div>
+
+      <div class="mt-6 hidden" data-roles--roles-form-target="roleForm">
+        <%= turbo_frame_tag "role_management" do %>
+        <% end %>
+      </div>
+    </div>
+
+    <%= render 'filters' %>
+
+    <%= render 'index_roles_list' %>
+  </div>
+</main>
