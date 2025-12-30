@@ -14,6 +14,3 @@ pt-BR:
         responsible_name: Nome do responsável
         created_at: Criado em
         updated_at: Atualizado em
-    errors:
-      not_valid: 'não é válido'
-      only_numbers: 'deve conter apenas números'

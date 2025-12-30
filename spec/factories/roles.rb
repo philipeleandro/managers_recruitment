@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :role do
     name { "MyString" }
     description { "MyText" }
-    status { "MyString" }
+    status { :active }
     association :company
   end
 end

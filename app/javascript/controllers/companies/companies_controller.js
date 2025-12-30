@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { Turbo } from "@hotwired/turbo-rails"
 
 export default class extends Controller {
   static targets = ["companyRow", "filterButton", "emptyState", "table"]
@@ -40,8 +41,11 @@ export default class extends Controller {
     const data = event.currentTarget.dataset.value
     const url = new URL(window.location.href)
     url.searchParams.set('tab', data)
-    const frame = document.getElementById("show_companies_list")
-    frame.src = url
+
+    Turbo.visit(url.toString(), {
+      frame: "show_companies_list",
+      action: "advance"
+    })
 
     this.updateActiveFilterButton(event.currentTarget)
   }
