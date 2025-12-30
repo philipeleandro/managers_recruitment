@@ -1,0 +1,53 @@
+pt-BR:
+  companies:
+    filters:
+      buttons:
+        all: Todos
+    form_search:
+      placeholder:
+        query: Buscar nome, email, responsável ou CNPJ...
+    form:
+      placeholder:
+        name: Nome completo
+        responsible_name: Nome completo do responsável
+        email: teste@exemplo.com
+        cnpj: Apenas números
+        phone: DDD + número
+    index_companies_list:
+      title: Lista de Empresas
+      companies_count: 'Mostrando %{companies} de %{total} empresas'
+      name: Nome
+      email: E-mail
+      cnpj: CNPJ
+      phone: Telefone
+      status: Status
+      responsible_name: Nome do responsável
+      actions: Ações
+      none_company: Nenhuma empresa encontrada
+    show_actions:
+      actions: Ações
+      edit: Editar empresa
+      delete: Excluir empresa
+      create_role: Criar vaga
+      confirm: Tem certeza que deseja excluir?
+    show_applications_list:
+    edit:
+      title: Editar Empresa
+    index:
+      title: Empresas
+      subtitle: Gerencie e acompanhe todas as empresas
+      new_company: Adicionar Empresa
+    new:
+      title: Adicionar Nova Empresa
+    show:
+      subtitle: Detalhes e informações da empresa
+      details: Informações
+      labels:
+        name: Nome completo
+        responsible_name: Nome completo do responsável
+        email: teste@exemplo.com
+        cnpj: Apenas números
+        phone: DDD + número
+      buttons:
+        back: Voltar
+

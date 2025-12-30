@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      company:
+        one: Empresa
+        other: Empresa
+    attributes:
+      company:
+        cnpj: CNPJ
+        name: Nome
+        phone_number: Telefone
+        email: E-mail
+        status: Status
+        responsible_name: Nome do responsável
+        created_at: Criado em
+        updated_at: Atualizado em
+    errors:
+      not_valid: 'não é válido'
+      only_numbers: 'deve conter apenas números'

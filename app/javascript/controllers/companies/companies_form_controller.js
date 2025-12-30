@@ -1,35 +1,35 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["candidateForm"]
+  static targets = ["companyForm"]
 
   showForm() {
-    this.candidateFormTarget.classList.toggle("hidden")
+    this.companyFormTarget.classList.toggle("hidden")
     this.updateButtonText()
   }
 
   forceOpen() {
-    this.candidateFormTarget.classList.remove("hidden")
+    this.companyFormTarget.classList.remove("hidden")
     window.scrollTo({ top: 0, behavior: 'smooth' })
     this.updateButtonText()
   }
 
   hideForm() {
-    if (!this.candidateFormTarget.classList.contains("hidden")) {
-      this.candidateFormTarget.classList.add("hidden")
+    if (!this.companyFormTarget.classList.contains("hidden")) {
+      this.companyFormTarget.classList.add("hidden")
       this.updateButtonText()
     }
   }
 
   updateButtonText() {
-    let form = this.candidateFormTarget
-    let button = document.getElementById('new-candidate-button')
+    let form = this.companyFormTarget
+    let button = document.getElementById('new-company-button')
 
 
     if (!button) return
 
     if (form.classList.contains("hidden")) {
-      button.innerText = "Adicionar Candidato"
+      button.innerText = "Adicionar Empresa"
     } else {
       button.innerText = "Recolher"
     }
@@ -37,7 +37,7 @@ export default class extends Controller {
 
   onPostSuccess(event) {
     if (event.detail.success) {
-      const tableFrame = document.getElementById("candidates_list")
+      const tableFrame = document.getElementById("companies_list")
 
       if (tableFrame) {
         tableFrame.src = window.location.href
