@@ -1,0 +1,18 @@
+pt-BR:
+  recruitments:
+    form_search:
+      placeholder:
+        query: Buscar nome ou descrição...
+    form:
+      placeholder:
+        name: Nome da vaga
+        description: Descrição da vaga
+        finish_date: Data de término
+        opening_date: Data de início
+        company: Selecione a empresa
+        role_id: Selecione o cargo
+        value: Valor a ser cobrado
+    edit:
+      title: Editar Processo Seletivo
+    new:
+      title: Adicionar Novo Processo Seletivo

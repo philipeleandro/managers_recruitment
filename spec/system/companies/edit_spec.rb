@@ -7,6 +7,7 @@ RSpec.describe 'Company#edit' do
     let(:company) { create(:company) }
 
     before { visit edit_company_path(id: company.id) }
+
     it { expect(page).to have_current_path(edit_company_path(company)) }
     it { expect(page).to have_content('Editar Empresa') }
     it { expect(page).to have_field('Nome', with: company.name) }

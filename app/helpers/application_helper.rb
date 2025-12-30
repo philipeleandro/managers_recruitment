@@ -15,7 +15,9 @@ module ApplicationHelper
     {
       new: 'bg-yellow-100 text-yellow-700',
       active: 'bg-green-100 text-green-700',
-      inactive: 'bg-red-100 text-red-700'
+      inactive: 'bg-red-100 text-red-700',
+      in_progress: 'bg-blue-100 text-blue-700',
+      completed: 'bg-green-100 text-green-700'
     }.with_indifferent_access
   end
 
