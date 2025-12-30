@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RolesHelper
-  def link_cancel_form(page_load, role_id)
+  def link_cancel_roles_form(page_load, role_id)
     base = 'rounded-lg w-full border border-slate-200 ' \
            'px-6 py-2 text-sm font-medium text-slate-900 ' \
            'hover:bg-slate-50 flex justify-center'
