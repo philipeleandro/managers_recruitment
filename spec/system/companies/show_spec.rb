@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
+include ActionView::Helpers::NumberHelper
+
 RSpec.describe 'Companies#Show' do
   context 'when visit Companies Show' do
     let(:company) { create(:company) }
@@ -20,5 +22,30 @@ RSpec.describe 'Companies#Show' do
     it { expect(page).to have_content(company.responsible_name) }
     it { expect(page).to have_content(company.email) }
     it { expect(page).to have_content(company.status_humanize) }
+  end
+
+  context 'when has recruitment' do
+    let(:company) { create(:company) }
+    let(:recruitment) { create(:recruitment, company: company) }
+    let(:recruitment_role) { create(:recruitment_role, recruitment: recruitment) }
+    let(:parsed_value) { number_with_precision(recruitment.value.round(2), precision: 2) }
+
+    before do
+      recruitment_role
+      visit company_path(company)
+    end
+
+    it { expect(page).to have_content(recruitment.status_humanize) }
+    it { expect(page).to have_content(parsed_value) }
+    it { expect(page).to have_content(recruitment.opening_date.strftime('%d/%m/%Y')) }
+    it { expect(page).to have_content(recruitment.finish_date.strftime('%d/%m/%Y')) }
+  end
+
+  context 'when has no recruitment' do
+    let(:company) { create(:company) }
+
+    before { visit company_path(company) }
+
+    it { expect(page).to have_content('Nenhum processo seletivo encontrado') }
   end
 end

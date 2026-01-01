@@ -56,13 +56,13 @@ RSpec.describe Companies::Filter do
       end
 
       context 'when query is present' do
-        let(:params) { [resource_active.cnpj, nil, 1] }
+        let(:params) { [resource_active.cnpj, :active, 1] }
 
         it { expect(result.size).to eq 1 }
       end
 
       context 'when has status' do
-        let(:params) { [resource_active.cnpj, :active, 1] }
+        let(:params) { [resource_active.name, :active, 1] }
 
         it { expect(result.size).to eq 1 }
       end

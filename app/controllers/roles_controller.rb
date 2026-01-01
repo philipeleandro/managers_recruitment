@@ -26,8 +26,9 @@ class RolesController < ApplicationController
 
   def create
     @role = Role.new(role_params)
+    path = company_path(id: role_params[:company_id])
 
-    return handle_success_response if @role.save
+    return handle_success_response(path) if @role.save
 
     handle_error_response(@role)
   end
@@ -39,9 +40,11 @@ class RolesController < ApplicationController
   end
 
   def destroy
+    company_id = @role.company_id
+
     @role.destroy
 
-    redirect_to company_path(id: params[:company_id]), notice: I18n.t('roles.delete.flashes.success')
+    redirect_to company_path(id: company_id), notice: I18n.t('roles.delete.flashes.success')
   end
 
   private

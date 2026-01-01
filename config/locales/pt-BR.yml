@@ -4,6 +4,7 @@ pt-BR:
     errors:
       not_valid: 'não é válido'
       only_numbers: 'deve conter apenas números'
+      finish_date_less_than_start_date: A data de conclusão ve ser anterior à data de conclusão
       messages:
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:

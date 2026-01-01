@@ -68,7 +68,7 @@ RSpec.describe Roles::Filter do
       end
 
       context 'when does not have status' do
-        let(:params) { [resource_active.name, nil, 1] }
+        let(:params) { [resource_inactive.name, nil, 1] }
 
         it { expect(result.size).to eq 1 }
       end

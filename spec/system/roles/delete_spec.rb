@@ -6,8 +6,8 @@ RSpec.describe 'Role#delete', js: true do
   let(:role) { create(:role) }
 
   before do
-    visit company_path(id: role.company.id)
-    click_link 'Criar vaga'
+    role
+    visit roles_path
   end
 
   context 'when successfully' do
@@ -16,7 +16,7 @@ RSpec.describe 'Role#delete', js: true do
         click_link 'delete-role-button'
       end
 
-      expect(page).to have_current_path(company_path(id: role.company.id))
+      expect(page).to have_current_path(roles_path)
       expect(page).to have_content('Vaga excluída com sucesso')
       expect(Role.count).to eq(0)
     end

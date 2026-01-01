@@ -1,9 +1,16 @@
 pt-BR:
   recruitments:
+    filters:
+      buttons:
+        all: Todos
     form_search:
       placeholder:
         query: Buscar nome ou descrição...
     form:
+      add_roles_message: Crie cargos para a empresa para poder atrelar ao processo seletivo.
+      empty_role_quantity: Valores vazios ou 0 serão ignorados.
+      quantity_and_roles: Cargos e quantidades
+      quantity: Qtd.
       placeholder:
         name: Nome da vaga
         description: Descrição da vaga
@@ -16,3 +23,12 @@ pt-BR:
       title: Editar Processo Seletivo
     new:
       title: Adicionar Novo Processo Seletivo
+    index_recruitments_list:
+      title: Processos Seletivos
+      recruitments_count: 'Mostrando %{recruitments} de %{total} processos seletivos'
+      opening_date: Data de início
+      finish_date: Data de término
+      value: Valor
+      status: Status
+      actions: Ações
+      none_recruitment: Nenhum processo seletivo encontrado

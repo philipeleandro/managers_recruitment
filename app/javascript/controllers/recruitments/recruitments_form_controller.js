@@ -37,14 +37,13 @@ export default class extends Controller {
 
   onPostSuccess(event) {
     if (event.detail.success) {
-      const tableFrame = document.getElementById("recruitments_list")
-
-      if (tableFrame) {
-        tableFrame.src = window.location.href
-      }
-
-      event.target.reset()
       this.hideForm()
+
+      const listFrame = document.getElementById("recruitment_list")
+
+      if (listFrame) {
+        listFrame.src = listFrame.src || window.location.href
+      }
     }
   }
 }
