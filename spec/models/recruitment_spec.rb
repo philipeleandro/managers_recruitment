@@ -21,7 +21,7 @@ RSpec.describe Recruitment do
   describe '#quantity_for_role' do
     subject(:quantity_for_role) { recruitment.quantity_for_role(role_id) }
 
-    let(:recruitment) { recruitment_role.recruitment}
+    let(:recruitment) { recruitment_role.recruitment }
 
     context 'when recruitment_role has role_id' do
       let(:role_id) { recruitment_role.roles_data.keys.first }

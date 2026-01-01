@@ -5,6 +5,8 @@ class RecruitmentsController < ApplicationController
   before_action :company, only: %i[new create edit update]
   before_action :redirect_path, only: %i[create update]
 
+  def show; end
+
   def new
     redirect_to companies_path and return unless turbo_frame_request?
 
@@ -13,13 +15,18 @@ class RecruitmentsController < ApplicationController
     @recruitment.build_recruitment_role
   end
 
-  def show
-  end
+  def edit; end
 
   def create
     @recruitment = Recruitment.new(recruitment_params)
 
     return handle_success_response(@redirect_path) if @recruitment.save
+
+    handle_error_response(@recruitment)
+  end
+
+  def update
+    return handle_success_response(@redirect_path) if @recruitment.update(recruitment_params)
 
     handle_error_response(@recruitment)
   end
@@ -30,14 +37,6 @@ class RecruitmentsController < ApplicationController
     @recruitment.destroy
 
     redirect_to company_path(company_id), notice: I18n.t('recruitments.delete.flashes.success')
-  end
-
-  def edit; end
-
-  def update
-    return handle_success_response(@redirect_path) if @recruitment.update(recruitment_params)
-
-    handle_error_response(@recruitment)
   end
 
   private
@@ -64,7 +63,7 @@ class RecruitmentsController < ApplicationController
       :finish_date,
       recruitment_role_attributes: [
         :id,
-        roles_data: {}
+        { roles_data: {} }
       ]
     )
   end

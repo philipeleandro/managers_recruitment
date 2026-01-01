@@ -2,16 +2,18 @@
 
 module ApplicationHelper
   def sortable(column, title = nil, direction = nil)
-    if asc_or_desc(direction) == 'asc'
-      icon = inline_svg_tag('icons/asc_direction.svg', class: 'w-4 h-4 ml-1')
+    icon = if asc_or_desc(direction) == 'asc'
+      inline_svg_tag('icons/asc_direction.svg', class: 'w-4 h-4 ml-1')
     else
-      icon = inline_svg_tag('icons/desc_direction.svg', class: 'w-4 h-4 ml-1')
+      inline_svg_tag('icons/desc_direction.svg', class: 'w-4 h-4 ml-1')
     end
 
     link_to raw("#{title}#{icon}"),
-            request.params.merge(sort: column, direction: asc_or_desc(direction)),
-            class: "flex items-center justify-center cursor-pointer hover:text-blue-600 #{'text-blue-600 font-bold' if params[:sort] == column}",
-            data: { turbo_action: "advance", turbo_frame: "recruitment_list" }
+      request.params.merge(sort: column, direction: asc_or_desc(direction)),
+      class: "flex items-center justify-center cursor-pointer hover:text-blue-600 #{if params[:sort] == column
+                                                                                      'text-blue-600 font-bold'
+      end}",
+      data: { turbo_action: 'advance', turbo_frame: 'recruitment_list' }
   end
 
   def flash_button_hover(key)

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :recruitment_role do
-    roles_data { { "1": "2" } }
+    roles_data { { '1': '2' } }
     recruitment
   end
 end

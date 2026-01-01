@@ -7,7 +7,6 @@ RSpec.describe 'Recruitment#update', js: true do
   let(:recruitment) { create(:recruitment, company: company) }
   let(:recruitment_role) { create(:recruitment_role, recruitment: recruitment) }
 
-
   context 'when successfully' do
     before do
       recruitment_role

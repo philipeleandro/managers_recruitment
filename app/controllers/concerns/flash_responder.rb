@@ -17,7 +17,7 @@ module FlashResponder
     flash.now[:notice] = message
 
     respond_to do |format|
-      redirect_path = redirect_path || url_for(controller: controller_name, action: :index)
+      redirect_path ||= url_for(controller: controller_name, action: :index)
 
       format.turbo_stream { render_turbo_stream }
       format.html { redirect_to redirect_path, notice: message }

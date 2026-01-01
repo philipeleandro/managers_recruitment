@@ -37,8 +37,8 @@ RSpec.describe 'Companies#Show' do
 
     it { expect(page).to have_content(recruitment.status_humanize) }
     it { expect(page).to have_content(parsed_value) }
-    it { expect(page).to have_content(recruitment.opening_date.strftime("%d/%m/%Y")) }
-    it { expect(page).to have_content(recruitment.finish_date.strftime("%d/%m/%Y")) }
+    it { expect(page).to have_content(recruitment.opening_date.strftime('%d/%m/%Y')) }
+    it { expect(page).to have_content(recruitment.finish_date.strftime('%d/%m/%Y')) }
   end
 
   context 'when has no recruitment' do
