@@ -4,6 +4,7 @@ class Recruitment::Status < EnumerateIt::Base
   associate_values(
     :new,
     :in_progress,
-    :completed
+    :finished,
+    :canceled
   )
 end

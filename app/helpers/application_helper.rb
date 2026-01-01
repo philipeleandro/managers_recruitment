@@ -1,6 +1,21 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def sortable(column, title = nil, direction = nil)
+    icon = if asc_or_desc(direction) == 'asc'
+      inline_svg_tag('icons/asc_direction.svg', class: 'w-4 h-4 ml-1')
+    else
+      inline_svg_tag('icons/desc_direction.svg', class: 'w-4 h-4 ml-1')
+    end
+
+    link_to raw("#{title}#{icon}"),
+      request.params.merge(sort: column, direction: asc_or_desc(direction)),
+      class: "flex items-center justify-center cursor-pointer hover:text-blue-600 #{if params[:sort] == column
+                                                                                      'text-blue-600 font-bold'
+      end}",
+      data: { turbo_action: 'advance', turbo_frame: 'recruitment_list' }
+  end
+
   def flash_button_hover(key)
     key.to_sym == :alert ? 'hover:bg-red-200' : 'hover:bg-green-200'
   end
@@ -17,7 +32,8 @@ module ApplicationHelper
       active: 'bg-green-100 text-green-700',
       inactive: 'bg-red-100 text-red-700',
       in_progress: 'bg-blue-100 text-blue-700',
-      completed: 'bg-green-100 text-green-700'
+      finished: 'bg-green-100 text-green-700',
+      canceled: 'bg-red-100 text-red-700'
     }.with_indifferent_access
   end
 
@@ -46,5 +62,9 @@ module ApplicationHelper
     return "#{base} bg-blue-600 text-white hover:bg-blue-700" if is_active
 
     "#{base} text-slate-600 hover:bg-slate-100"
+  end
+
+  def asc_or_desc(current_direction)
+    current_direction == 'asc' ? 'desc' : 'asc'
   end
 end

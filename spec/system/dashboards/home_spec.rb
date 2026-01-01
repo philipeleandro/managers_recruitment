@@ -7,7 +7,8 @@ RSpec.describe 'Dashboards#Home' do
     before { visit root_path }
 
     it { expect(page).to have_current_path(root_path) }
-    it { expect(page).to have_content('Processos abertos') }
+    it { expect(page).to have_content('Processos Novos') }
+    it { expect(page).to have_content('Processos em Andamento') }
     it { expect(page).to have_content('Bem vindo de volta') }
   end
 

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Company < ApplicationRecord
-  has_many :roles
-  has_many :recruitments
+  has_many :roles, dependent: :destroy
+  has_many :recruitments, dependent: :destroy
 
   has_enumeration_for :status, with: Status, create_helpers: true
 
