@@ -20,12 +20,9 @@ export default class extends Controller {
   }
 
   filterByStatus(event) {
-    const status = event.currentTarget.dataset.status
-    const url = status ? `/companies?status=${status}` : "/companies"
-    const frame = document.getElementById("companies_list")
-    frame.src = url
+    const clickedLink = event.currentTarget
 
-    this.updateActiveFilterButton(event.currentTarget)
+    this.updateActiveFilterButton(clickedLink)
   }
 
   updateActiveFilterButton(clickedButton) {

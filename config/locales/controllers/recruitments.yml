@@ -1,0 +1,11 @@
+pt-BR:
+  recruitments:
+    create:
+      flashes:
+        success: Processo Seletivo criado com sucesso
+    update:
+      flashes:
+        success: Processo Seletivo atualizado com sucesso
+    delete:
+      flashes:
+        success: Processo Seletivo excluído com sucesso

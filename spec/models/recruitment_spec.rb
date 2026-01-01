@@ -17,4 +17,24 @@ RSpec.describe Recruitment do
   describe 'associations' do
     it { is_expected.to belong_to(:company) }
   end
+
+  describe '#quantity_for_role' do
+    subject(:quantity_for_role) { recruitment.quantity_for_role(role_id) }
+
+    let(:recruitment) { recruitment_role.recruitment}
+
+    context 'when recruitment_role has role_id' do
+      let(:role_id) { recruitment_role.roles_data.keys.first }
+      let(:recruitment_role) { create(:recruitment_role) }
+
+      it { expect(quantity_for_role).to eq(recruitment_role.roles_data[role_id.to_s].to_i) }
+    end
+
+    context 'when recruitment_role does not have role_id' do
+      let(:role_id) { 'fake_id' }
+      let(:recruitment_role) { create(:recruitment_role, roles_data: {}) }
+
+      it { expect(quantity_for_role).to eq(0) }
+    end
+  end
 end
