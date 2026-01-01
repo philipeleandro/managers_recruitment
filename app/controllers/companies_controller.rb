@@ -12,7 +12,13 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @roles = company.roles.order(created_at: :desc).page(params[:page]).per(10) # vai ser o recruitment roles dps
+    @recruitments = ::Recruitments::Filter.call(
+      status: params[:status],
+      page: params[:page],
+      sort: params[:sort],
+      direction: params[:direction],
+      company_id: @company.id
+    )
   end
 
   def new

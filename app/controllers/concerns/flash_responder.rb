@@ -12,16 +12,15 @@ module FlashResponder
     end
   end
 
-  def handle_success_response
+  def handle_success_response(redirect_path = nil)
     message = I18n.t("#{controller_name}.#{action_name}.flashes.success")
     flash.now[:notice] = message
 
     respond_to do |format|
-      redirect_path = url_for(controller: controller_name, action: :index)
-
-      return redirect_to redirect_path, notice: message unless turbo_frame_request?
+      redirect_path = redirect_path || url_for(controller: controller_name, action: :index)
 
       format.turbo_stream { render_turbo_stream }
+      format.html { redirect_to redirect_path, notice: message }
     end
   end
 
