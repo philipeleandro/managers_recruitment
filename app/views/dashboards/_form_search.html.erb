@@ -1,0 +1,31 @@
+<div class="mb-6">
+  <div class="flex flex-row justify-between">
+    <div class="flex gap-2 flex-wrap">
+      <% current_status = params[:status].presence %>
+
+      <%= link_to t('recruitments.filters.buttons.all'),
+          root_path(status: [Recruitment::Status::NEW, Recruitment::Status::IN_PROGRESS]),
+          class: link_classes.call(current_status.blank?),
+          data: {
+            action: "click->recruitments--recruitments#filterByStatus",
+            recruitments__recruitments_target: "filterButton",
+            turbo_frame: "recruitment_list",
+            turbo_action: "advance"
+          }
+        %>
+
+      <% [[Recruitment::Status.t('new'), Recruitment::Status::NEW], [Recruitment::Status.t('in_progress'), Recruitment::Status::IN_PROGRESS]].to_a.each do |status| %>
+          <%= link_to status.first,
+            root_path(status: status.last),
+            class: link_classes.call(current_status == status.last),
+            data: {
+              turbo_frame: "recruitment_list",
+              turbo_action: "advance",
+              recruitments__recruitments_target: "filterButton",
+              action: "click->recruitments--recruitments#filterByStatus"
+            }
+          %>
+        <% end %>
+    </div>
+  </div>
+</div>
