@@ -10,7 +10,7 @@ module ApplicationHelper
       inline_svg_tag('icons/desc_direction.svg', class: 'w-4 h-4 ml-1')
     end
 
-    link_to "#{title}#{icon}".html_safe,
+    link_to safe_join([title, icon]),
       request.params.merge(sort: column, direction: asc_or_desc(direction)),
       class: "flex items-center justify-center cursor-pointer hover:text-blue-600 #{if params[:sort] == column
                                                                                       'text-blue-600 font-bold'
