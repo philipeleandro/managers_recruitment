@@ -1,30 +1,30 @@
 <div>
   <%= form_with(model: recruitment, data: { action: "turbo:submit-end->recruitments--recruitments-form#onPostSuccess" }) do |form| %>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="col-span-1 mb-4">
-        <%= form.label :description, class: "block text-sm text-slate-900" %>
+      <div class="col-span-1 mb-6">
+        <%= form.label :description, class: "block text-sm text-slate-900 mb-2" %>
         <%= form.text_field :description, class: "w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: t('recruitments.form.placeholder.description') %>
       </div>
 
       <div class="col-span-1">
-        <%= form.label :value, class: "block text-sm text-slate-900" %>
+        <%= form.label :value, class: "block text-sm text-slate-900 mb-2" %>
         <%= form.number_field :value, class: "w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: t('recruitments.form.placeholder.value') %>
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="col-span-1 mb-4">
-        <%= form.label :opening_date, class: "block text-sm text-slate-900" %>
+      <div class="col-span-1 mb-6">
+        <%= form.label :opening_date, class: "block text-sm text-slate-900 mb-2" %>
         <%= form.date_field :opening_date, class: "w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: t('recruitments.form.placeholder.opening_date') %>
       </div>
 
       <div>
-        <%= form.label :finish_date, class: "block text-sm text-slate-900" %>
+        <%= form.label :finish_date, class: "block text-sm text-slate-900 mb-2" %>
         <%= form.date_field :finish_date, class: "w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: t('recruitments.form.placeholder.finish_date') %>
       </div>
 
       <div>
-        <%= form.label :status, class: "block text-sm text-slate-900" %>
+        <%= form.label :status, class: "block text-sm text-slate-900 mb-2" %>
         <div class="relative">
           <%= form.select :status, Recruitment::Status.to_a.map { |s| [s.first, s.last] }, {}, class: "appearance-none w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 pr-10 text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white" %>
           <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-500">
@@ -35,7 +35,7 @@
     </div>
 
     <div class="col-span-2">
-      <label class="block text-sm font-medium text-slate-900"><%= t('recruitments.form.quantity_and_roles') %></label>
+      <label class="block text-sm font-medium text-slate-900 mb-2"><%= t('recruitments.form.quantity_and_roles') %></label>
       <div class="grid grid-cols-1 bg-slate-50 pt-1 pb-1 pr-4 pl-4 rounded-lg border border-slate-200 max-h-60 overflow-y-auto">
         <% if @company.roles.any? %>
           <%= form.fields_for :recruitment_role do |rr_form| %>
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="flex items-center gap-2">
-                  <label class="text-xs text-slate-500"><%= t('recruitments.form.quantity') %>:</label>
+                  <label class="text-xs text-slate-500 mb-2"><%= t('recruitments.form.quantity') %>:</label>
                   <input type="number"
                         name="recruitment[recruitment_role_attributes][roles_data][<%= role.id %>]"
                         value="<%= recruitment.quantity_for_role(role.id) %>"

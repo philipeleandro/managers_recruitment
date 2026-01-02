@@ -12,7 +12,9 @@
             <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= sortable "finish_date", t('recruitments.index_recruitments_list.finish_date'), params[:direction] %></th>
             <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= sortable "value", t('recruitments.index_recruitments_list.value'), params[:direction] %></th>
             <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('recruitments.index_recruitments_list.status') %></th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('recruitments.index_recruitments_list.actions') %></th>
+            <% unless home %>
+              <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('recruitments.index_recruitments_list.actions') %></th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
@@ -28,30 +30,32 @@
                 <p class="text-center text-sm text-slate-600"><%= "R$ #{number_with_precision(recruitment.value.round(2), precision: 2)}" %></p>
               </td>
               <td class="px-6 py-4 text-center">
-                <span class="inline-flex w-[70px] items-center justify-center rounded-lg px-3 py-0.5 text-xs <%= status_colors[recruitment.status] %>">
+                <span class="inline-flex w-[120px] items-center justify-center rounded-lg px-3 py-0.5 text-xs <%= status_colors[recruitment.status] %>">
                   <%= recruitment.status_humanize %>
                 </span>
               </td>
-              <td class="px-6 py-4 text-right">
-                <div class="flex gap-2 justify-center">
-                  <%= link_to inline_svg_tag('icons/archive.svg', class: "lucide lucide-file-text h-4 w-4 text-blue-600"),
-                        recruitment_path(recruitment),
-                        class: "text-sm font-medium text-blue-600 hover:text-blue-700",
-                        data: { turbo_frame: "_top" } %>
+              <% unless home %>
+                <td class="px-6 py-4 text-right">
+                  <div class="flex gap-2 justify-center">
+                    <%= link_to inline_svg_tag('icons/archive.svg', class: "lucide lucide-file-text h-4 w-4 text-blue-600"),
+                          recruitment_path(recruitment),
+                          class: "text-sm font-medium text-blue-600 hover:text-blue-700",
+                          data: { turbo_frame: "_top" } %>
 
-                  <%= link_to inline_svg_tag('icons/pencil.svg', class: "lucide lucide-pen h-4 w-4 text-blue-600"),
-                        edit_recruitment_path(recruitment),
-                        class: "text-sm font-medium text-blue-600 hover:text-blue-700",
-                        data: { turbo_frame: "recruitment_management", action: "click->recruitments--recruitments-form#forceOpen" },
-                        id: "edit-recruitment-button"  %>
+                    <%= link_to inline_svg_tag('icons/pencil.svg', class: "lucide lucide-pen h-4 w-4 text-blue-600"),
+                          edit_recruitment_path(recruitment),
+                          class: "text-sm font-medium text-blue-600 hover:text-blue-700",
+                          data: { turbo_frame: "recruitment_management", action: "click->recruitments--recruitments-form#forceOpen" },
+                          id: "edit-recruitment-button"  %>
 
-                  <%= link_to inline_svg_tag('icons/trash_can.svg', class: "lucide lucide-trash2 h-4 w-4 text-red-600"),
-                      recruitment_path(id: recruitment.id),
-                      data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?", turbo_frame: '_top' },
-                      class: "text-sm font-medium text-red-600 hover:text-red-700",
-                      id: 'delete-recruitment-button' %>
-                </div>
-              </td>
+                    <%= link_to inline_svg_tag('icons/trash_can.svg', class: "lucide lucide-trash2 h-4 w-4 text-red-600"),
+                        recruitment_path(id: recruitment.id),
+                        data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?", turbo_frame: '_top' },
+                        class: "text-sm font-medium text-red-600 hover:text-red-700",
+                        id: 'delete-recruitment-button' %>
+                  </div>
+                </td>
+               <% end %>
             </tr>
           <% end %>
         </tbody>

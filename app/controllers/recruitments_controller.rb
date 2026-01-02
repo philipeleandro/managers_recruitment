@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 class RecruitmentsController < ApplicationController
-  before_action :recruitment, only: %i[destroy edit update]
+  before_action :recruitment, only: %i[show destroy edit update]
   before_action :company, only: %i[new create edit update]
   before_action :redirect_path, only: %i[create update]
 
-  def show; end
+  def show
+    @roles = ::Recruitments::RolesSearcher.call(
+      resource: @recruitment,
+      page: params[:page]
+    )
+  end
 
   def new
     redirect_to companies_path and return unless turbo_frame_request?

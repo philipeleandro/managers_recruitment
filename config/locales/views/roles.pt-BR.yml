@@ -5,7 +5,7 @@ pt-BR:
         all: Todos
     form_search:
       placeholder:
-        query: Buscar nome ou descrição...
+        query: Buscar nome da vaga ...
     form:
       placeholder:
         name: Nome da vaga
