@@ -1,0 +1,20 @@
+<% if @roles.any? %>
+  <% @roles.each do |role|%>
+    <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm mt-8" data-recruitments--recruitments-target="table">
+      <table class="w-full">
+        <div class="px-6 py-4 border-b border-slate-200">
+          <h2 class="text-lg font-semibold text-slate-900"><%= role.name %></h2>
+          <p class="text-sm text-slate-600 mt-1"><%= t('recruitments.index_recruitments_list.recruitments_count', recruitments: @roles.count, total: @roles.total_count) %></p>
+        </div>
+      </table>
+    </div>
+  <% end %>
+<% else %>
+  <div class="rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm">
+    <h2 class="text-lg font-semibold text-slate-900"><%= t('recruitments.index_recruitments_list.title') %></h2>
+
+    <div class="p-12 text-center">
+      <p class="text-slate-600"><%= t('recruitments.index_recruitments_list.none_recruitment') %></p>
+    </div>
+  </div>
+<% end %>
