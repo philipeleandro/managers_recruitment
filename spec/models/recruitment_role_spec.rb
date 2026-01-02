@@ -19,7 +19,7 @@ RSpec.describe RecruitmentRole do
     end
 
     context 'when roles_data has role with zero quantity' do
-      let(:roles_data) { { '1' => '0', '2' => '3'} }
+      let(:roles_data) { { '1' => '0', '2' => '3' } }
       let(:expected_result) { { '2' => '3' } }
 
       it { expect(recruitment_role.roles_data).to eq(expected_result) }

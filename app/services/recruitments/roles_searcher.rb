@@ -38,9 +38,9 @@ module Recruitments
 
     def roles
       Role.where(id: role_ids)
-          .order(created_at: :desc)
-          .page(@page)
-          .per(LIMIT)
+        .order(created_at: :desc)
+        .page(@page)
+        .per(LIMIT)
     end
   end
 end

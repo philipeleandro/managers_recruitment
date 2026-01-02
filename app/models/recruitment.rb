@@ -15,7 +15,7 @@ class Recruitment < ApplicationRecord
   scope :in_progress, -> { where(status: Status::IN_PROGRESS) }
   scope :finished, -> { where(status: Status::FINISHED) }
   scope :new_and_in_progress, -> { where(status: [Status::NEW, Status::IN_PROGRESS]) }
-  scope :recruitment_roles_included, -> {  includes(:recruitment_role) }
+  scope :recruitment_roles_included, -> { includes(:recruitment_role) }
 
   def quantity_for_role(role_id)
     return 0 unless recruitment_role&.roles_data

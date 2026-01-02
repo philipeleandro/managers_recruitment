@@ -5,7 +5,9 @@ require 'rails_helper'
 RSpec.describe Recruitments::RolesSearcher do
   let(:role1) { create(:role) }
   let(:role2) { create(:role) }
-  let(:recruitment_role) { create(:recruitment_role, recruitment: recruitment, roles_data: { role1.id.to_s => '1', role2.id.to_s => '1' }) }
+  let(:recruitment_role) do
+    create(:recruitment_role, recruitment: recruitment, roles_data: { role1.id.to_s => '1', role2.id.to_s => '1' })
+  end
   let(:recruitment) { create(:recruitment) }
   let(:resource) { recruitment }
   let(:page) { 1 }

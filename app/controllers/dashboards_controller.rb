@@ -2,7 +2,7 @@
 
 class DashboardsController < ApplicationController
   def home
-     @recruitments = ::Recruitments::Filter.call(
+    @recruitments = ::Recruitments::Filter.call(
       status: params[:status],
       page: params[:page],
       sort: params[:sort],
