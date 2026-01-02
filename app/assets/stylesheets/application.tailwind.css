@@ -13,7 +13,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  src: local('Inter'), url('../fonts/regular.woff2') format('woff2');
+  src: local('Inter'), url('/fonts/regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -21,12 +21,12 @@
   font-family: 'Inter Semibold';
   font-style: normal;
   font-weight: 600;
-  src: local('Inter Semibold'), url('../fonts/semibold.woff2') format('woff2');
+  src: local('Inter Semibold'), url('/fonts/semibold.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter Bold';
-  src: local('Inter Bold'), url('../fonts/bold.woff2') format('woff2');
+  src: local('Inter Bold'), url('/fonts/bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -34,7 +34,7 @@
 
 .hidden_exceed_text {
   display: block;
-  width: 160px;
+  width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

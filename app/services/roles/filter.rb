@@ -15,7 +15,7 @@ module Roles
     end
 
     def call
-      resource = filtered_by_name_or_description
+      resource = filtered_by_name
       resource = filtered_by_status(resource)
 
       resource.order(created_at: :desc).page(@page).per(LIMIT)
@@ -27,10 +27,10 @@ module Roles
       Role.all
     end
 
-    def filtered_by_name_or_description
+    def filtered_by_name
       return default_resources if @query.blank?
 
-      default_resources.where(name_or_description_sql_query, query: "%#{@query}%")
+      default_resources.where(name_sql_query, query: "%#{@query}%")
     end
 
     def filtered_by_status(resource)
@@ -39,10 +39,9 @@ module Roles
       resource
     end
 
-    def name_or_description_sql_query
+    def name_sql_query
       "
-        unaccent(name) ILIKE unaccent(:query) OR
-        unaccent(description) ILIKE unaccent(:query)
+        unaccent(name) ILIKE unaccent(:query)
       "
     end
   end

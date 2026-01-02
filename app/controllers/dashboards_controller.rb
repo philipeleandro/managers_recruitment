@@ -2,6 +2,11 @@
 
 class DashboardsController < ApplicationController
   def home
-    @open_processes = []
+    @recruitments = ::Recruitments::Filter.call(
+      status: params[:status],
+      page: params[:page],
+      sort: params[:sort],
+      direction: params[:direction]
+    )
   end
 end

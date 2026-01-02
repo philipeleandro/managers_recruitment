@@ -21,19 +21,19 @@
           <% @candidates.each do |candidate| %>
             <tr class="text-center border-b border-slate-200 hover:bg-slate-50 transition-colors" data-candidates--candidates-target="candidateRow">
               <td class="px-6 py-4">
-                <p class="text-center text-sm text-slate-600 hidden_exceed_text"><%= candidate.name %></p>
+                <p class="max-w-[185px] truncate text-center text-sm text-slate-600"><%= candidate.name %></p>
               </td>
               <td class="px-6 py-4">
-                <p class="text-center text-sm text-slate-600 hidden_exceed_text"><%= candidate.email %></p>
+                <p class="max-w-[185px] truncate text-center text-sm text-slate-600"><%= candidate.email %></p>
               </td>
               <td class="px-6 py-4">
-                <p class="text-center text-sm text-slate-600"><%= formatted_cpf(candidate.cpf) %></p>
+                <p class="max-w-[185px] truncate text-center text-sm text-slate-600"><%= formatted_cpf(candidate.cpf) %></p>
               </td>
               <td class="px-6 py-4">
-                <p class="text-center text-sm text-slate-600"><%= formatted_phone(candidate.phone_number) %></p>
+                <p class="max-w-[185px] truncate text-center text-sm text-slate-600"><%= formatted_phone(candidate.phone_number) %></p>
               </td>
-              <td class="px-6 py-4 text-center">
-                <span class="inline-flex w-[60px] items-center justify-center rounded-lg px-3 py-0.5 text-xs <%= status_colors[candidate.status] %>">
+              <td class="max-w-[185px] px-6 py-4 text-center">
+                <span class="inline-flex w-full items-center justify-center rounded-lg px-3 py-0.5 text-xs <%= status_colors[candidate.status] %>">
                   <%= candidate.status_humanize %>
                 </span>
               </td>

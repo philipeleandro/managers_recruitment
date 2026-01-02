@@ -2,8 +2,6 @@
 
 require 'rails_helper'
 
-include ActionView::Helpers::NumberHelper
-
 RSpec.describe 'Companies#Show' do
   context 'when visit Companies Show' do
     let(:company) { create(:company) }

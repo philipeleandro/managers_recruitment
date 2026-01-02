@@ -1,81 +1,16 @@
 <!-- Main Content -->
-<main class="w-full mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+<main class="w-full mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8" data-controller="recruitments--recruitments">
   <!-- Welcome Section -->
   <div class="mb-8">
     <h2 class="text-3xl font-bold text-slate-900">Bem vindo de volta, <%= 'Philipe' %>!</h2>
     <p class="mt-2 text-slate-600">Gerencie seus processos seletivos e acompanhe as candidaturas</p>
   </div>
 
-  <!-- Stats Grid -->
   <%= render "stats" %>
 
-  <!-- Services Section -->
   <%= render "services" %>
 
-  <!-- Open Processes Section -->
-  <div class="rounded-xl border border-slate-200 bg-white shadow-sm" data-controller="processes">
-    <div class="border-b border-slate-200 px-6 py-4">
-      <div class="flex items-center justify-between">
-        <div>
-          <h3 class="text-lg font-bold text-slate-900">Abra novos processos seletivos</h3>
-          <p class="mt-1 text-sm text-slate-600">Processos seletivos atualmente ativos</p>
-        </div>
-        <%= link_to "Novo processo", 'new_process_path', class: "rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700" %>
-      </div>
-    </div>
+  <%= render "form_search"%>
 
-    <% if @open_processes.any? %>
-      <div class="overflow-x-auto">
-        <table class="w-full">
-          <thead class="border-b border-slate-200 bg-slate-50">
-            <tr>
-              <th class="px-6 py-3 text-left text-sm font-semibold text-slate-900">Position</th>
-              <th class="px-6 py-3 text-left text-sm font-semibold text-slate-900">Department</th>
-              <th class="px-6 py-3 text-center text-sm font-semibold text-slate-900">Applications</th>
-              <th class="px-6 py-3 text-center text-sm font-semibold text-slate-900">Status</th>
-              <th class="px-6 py-3 text-left text-sm font-semibold text-slate-900">Opened</th>
-              <th class="px-6 py-3 text-right text-sm font-semibold text-slate-900">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @open_processes.each do |process| %>
-              <tr class="border-b border-slate-200 hover:bg-slate-50" data-process-id="<%= process.id %>">
-                <td class="px-6 py-4">
-                  <p class="font-medium text-slate-900"><%= process.title %></p>
-                </td>
-                <td class="px-6 py-4">
-                  <p class="text-sm text-slate-600"><%= process.department %></p>
-                </td>
-                <td class="px-6 py-4 text-center">
-                  <span class="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700">
-                    <%= process.applications.count %>
-                  </span>
-                </td>
-                <td class="px-6 py-4 text-center">
-                  <span class="inline-flex items-center rounded-full bg-green-50 px-3 py-1 text-sm font-medium text-green-700">
-                    Active
-                  </span>
-                </td>
-                <td class="px-6 py-4">
-                  <p class="text-sm text-slate-600"><%= process.created_at.strftime("%b %d, %Y") %></p>
-                </td>
-                <td class="px-6 py-4 text-right">
-                  <div class="flex gap-2 justify-end">
-                    <%= link_to "View", process_path(process), class: "text-sm font-medium text-blue-600 hover:text-blue-700" %>
-                    <%= link_to "Edit", edit_process_path(process), class: "text-sm font-medium text-slate-600 hover:text-slate-900" %>
-                    <%= link_to "Delete", process_path(process), method: :delete, data: { confirm: "Are you sure?" }, class: "text-sm font-medium text-red-600 hover:text-red-700" %>
-                  </div>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    <% else %>
-      <div class="px-6 py-12 text-center">
-        <p class="text-slate-600 mb-4">Nenhum processo aberto no momento. Comece criando seu primeiro processo seletivo.</p>
-        <%= link_to "Criar Processo", '#', class: "inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700" %>
-      </div>
-    <% end %>
-  </div>
+  <%= render "recruitments/recruitments_list", home: true %>
 </main>
