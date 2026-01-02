@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  include ActionView::Helpers::NumberHelper
+
   def sortable(column, title = nil, direction = nil)
     icon = if asc_or_desc(direction) == 'asc'
       inline_svg_tag('icons/asc_direction.svg', class: 'w-4 h-4 ml-1')
@@ -8,7 +10,7 @@ module ApplicationHelper
       inline_svg_tag('icons/desc_direction.svg', class: 'w-4 h-4 ml-1')
     end
 
-    link_to raw("#{title}#{icon}"),
+    link_to "#{title}#{icon}".html_safe,
       request.params.merge(sort: column, direction: asc_or_desc(direction)),
       class: "flex items-center justify-center cursor-pointer hover:text-blue-600 #{if params[:sort] == column
                                                                                       'text-blue-600 font-bold'

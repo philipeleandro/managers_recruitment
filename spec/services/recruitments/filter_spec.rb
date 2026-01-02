@@ -3,18 +3,18 @@
 require 'rails_helper'
 
 RSpec.describe Recruitments::Filter do
-  let(:company1) { create(:company) }
-  let(:company2) { create(:company) }
-  let(:recruitment_new) { create(:recruitment, status: :new, company: company1) }
-  let(:recruitment_in_progress) { create(:recruitment, status: :in_progress, company: company1) }
-  let(:recruitment_finished) { create(:recruitment, status: :finished, company: company2) }
+  let(:company_first) { create(:company) }
+  let(:company_second) { create(:company) }
+  let(:recruitment_new) { create(:recruitment, status: :new, company: company_first) }
+  let(:recruitment_in_progress) { create(:recruitment, status: :in_progress, company: company_first) }
+  let(:recruitment_finished) { create(:recruitment, status: :finished, company: company_second) }
 
   describe '#initialize' do
     subject(:instance) { described_class.new(*params) }
 
     context 'when success' do
       context 'when all arguments are present' do
-        let(:params) { ['new', 1, 'created_at', 'desc', company1.id] }
+        let(:params) { ['new', 1, 'created_at', 'desc', company_first.id] }
 
         it { expect { instance }.not_to raise_error(ArgumentError) }
       end
@@ -32,7 +32,7 @@ RSpec.describe Recruitments::Filter do
   describe '.call' do
     subject(:result) { described_class.call(**params) }
 
-    let(:params) { { status: 'new', page: 1, sort: 'created_at', direction: 'desc', company_id: company1.id } }
+    let(:params) { { status: 'new', page: 1, sort: 'created_at', direction: 'desc', company_id: company_first.id } }
 
     it 'calls method instance call' do
       expect_any_instance_of(described_class).to receive(:call).once
@@ -66,13 +66,13 @@ RSpec.describe Recruitments::Filter do
       end
 
       context 'when company_id is present' do
-        let(:params) { [nil, 1, nil, nil, company1.id] }
+        let(:params) { [nil, 1, nil, nil, company_first.id] }
 
         it { expect(result.size).to eq 2 }
       end
 
       context 'when status and company_id are present' do
-        let(:params) { [:in_progress, 1, nil, nil, company1.id] }
+        let(:params) { [:in_progress, 1, nil, nil, company_first.id] }
 
         it { expect(result.size).to eq 1 }
       end

@@ -3,10 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Recruitments::RolesSearcher do
-  let(:role1) { create(:role) }
-  let(:role2) { create(:role) }
+  let(:role_first) { create(:role) }
+  let(:role_second) { create(:role) }
   let(:recruitment_role) do
-    create(:recruitment_role, recruitment: recruitment, roles_data: { role1.id.to_s => '1', role2.id.to_s => '1' })
+    create(
+      :recruitment_role, recruitment: recruitment,
+      roles_data: { role_first.id.to_s => '1', role_second.id.to_s => '1' }
+    )
   end
   let(:recruitment) { create(:recruitment) }
   let(:resource) { recruitment }
@@ -52,13 +55,13 @@ RSpec.describe Recruitments::RolesSearcher do
     context 'when success' do
       context 'when recruitment_role is present and has roles_data' do
         before do
-          role1
-          role2
+          role_first
+          role_second
           recruitment_role
         end
 
         it 'returns the roles' do
-          expect(result).to contain_exactly(role1, role2)
+          expect(result).to contain_exactly(role_first, role_second)
         end
       end
     end
