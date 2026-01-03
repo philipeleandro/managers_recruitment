@@ -16,18 +16,17 @@ class RecruitmentsController < ApplicationController
     redirect_to companies_path and return unless turbo_frame_request?
 
     @recruitment = @company.recruitments.build
-
-    @recruitment.build_recruitment_role
   end
 
   def edit; end
 
   def create
-    @recruitment = Recruitment.new(recruitment_params)
+    service = ::Recruitments::Creator.call(params)
+    @recruitment = service[:resource]
 
-    return handle_success_response(@redirect_path) if @recruitment.save
+    return handle_error_response(@recruitment, service[:errors]) if service[:errors]
 
-    handle_error_response(@recruitment)
+    handle_success_response(@redirect_path)
   end
 
   def update
@@ -66,9 +65,10 @@ class RecruitmentsController < ApplicationController
       :value,
       :opening_date,
       :finish_date,
-      recruitment_role_attributes: [
+      recruitment_roles_attributes: [
         :id,
-        { roles_data: {} }
+        :role_id,
+        :quantity
       ]
     )
   end

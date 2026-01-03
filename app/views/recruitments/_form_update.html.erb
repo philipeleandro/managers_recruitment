@@ -38,23 +38,23 @@
       <label class="block text-sm font-medium text-slate-900 mb-2"><%= t('recruitments.form.quantity_and_roles') %></label>
       <div class="grid grid-cols-1 bg-slate-50 pt-1 pb-1 pr-4 pl-4 rounded-lg border border-slate-200 max-h-60 overflow-y-auto">
         <% if @company.roles.any? %>
-          <%= form.fields_for :recruitment_role do |rr_form| %>
-            <% @company.roles.each_with_index do |role, index| %>
-              <div class="flex items-center justify-between border-b border-slate-200 pb-2 pt-2 last:border-0">
-                <div class="flex-1">
-                  <span class="text-sm font-medium text-slate-700"><%= role.name %></span>
-                </div>
+            <%= form.fields_for recruitment.recruitment_roles do |rr_form| %>
+              <% @company.roles.each_with_index do |role, index| %>
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2 pt-2 last:border-0">
+                  <div class="flex-1">
+                    <span class="text-sm font-medium text-slate-700"><%= role.name %></span>
+                  </div>
 
-                <div class="flex items-center gap-2">
-                  <label class="text-xs text-slate-500 mb-2"><%= t('recruitments.form.quantity') %>:</label>
-                  <input type="number"
-                        name="recruitment[recruitment_role_attributes][roles_data][<%= role.id %>]"
-                        value="<%= recruitment.quantity_for_role(role.id) %>"
-                        min="0"
-                        placeholder="0"
-                        class="text-center w-20 rounded-lg border border-slate-300 text-sm text-center focus:border-blue-500 focus:ring-blue-500" />
+                  <div class="flex items-center gap-2">
+                    <label class="text-xs text-slate-500 mb-2"><%= t('recruitments.form.quantity') %>:</label>
+                    <input type="number"
+                          name="recruitment[recruitment_role_attributes][roles_data][<%= role.id %>]"
+                          value="<%= recruitment.quantity_for_role(role.id) %>"
+                          min="0"
+                          placeholder="0"
+                          class="text-center w-20 rounded-lg border border-slate-300 text-sm text-center focus:border-blue-500 focus:ring-blue-500" />
+                  </div>
                 </div>
-              </div>
             <% end %>
           <% end %>
         <% else %>

@@ -15,11 +15,12 @@ class Recruitment < ApplicationRecord
   scope :in_progress, -> { where(status: Status::IN_PROGRESS) }
   scope :finished, -> { where(status: Status::FINISHED) }
   scope :new_and_in_progress, -> { where(status: [Status::NEW, Status::IN_PROGRESS]) }
-  scope :recruitment_roles_included, -> { includes(:recruitment_role) }
 
   def quantity_for_role(role_id)
-    return 0 unless recruitment_role&.roles_data
+    recruiment_role = recruitment_roles.find_by(role_id: role_id)
 
-    recruitment_role.roles_data[role_id.to_s].to_i
+    return 0 if recruiment_role.nil?
+
+    recruiment_role.quantity
   end
 end

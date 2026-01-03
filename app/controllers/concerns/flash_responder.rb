@@ -3,8 +3,8 @@
 module FlashResponder
   extend ActiveSupport::Concern
 
-  def handle_error_response(resource)
-    flash.now[:alert] = resource.errors.full_messages
+  def handle_error_response(resource, errors_message = nil)
+    flash.now[:alert] =  errors_message || resource.errors.full_messages
 
     respond_to do |format|
       format.turbo_stream { render_turbo_stream(:unprocessable_entity) }

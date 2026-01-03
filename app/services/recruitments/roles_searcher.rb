@@ -14,30 +14,13 @@ module Recruitments
     end
 
     def call
-      return [] unless valid_recruitment_role?
-
       roles
     end
 
     private
 
-    def recruitment_role
-      @recruitment_role ||= @resource.recruitment_role
-    end
-
-    def valid_recruitment_role?
-      return false if recruitment_role.nil?
-      return false if recruitment_role.roles_data.blank?
-
-      true
-    end
-
-    def role_ids
-      recruitment_role.roles_data.keys.map(&:to_i)
-    end
-
     def roles
-      Role.where(id: role_ids)
+      @resource.roles
         .order(created_at: :desc)
         .page(@page)
         .per(LIMIT)
