@@ -11,6 +11,8 @@
             <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('roles.index_roles_list.name') %></th>
             <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('roles.index_roles_list.company') %></th>
             <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('roles.index_roles_list.status') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('roles.index_roles_list.created_at') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('roles.index_roles_list.updated_at') %></th>
             <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('roles.index_roles_list.actions') %></th>
           </tr>
         </thead>
@@ -27,6 +29,12 @@
                 <span class="inline-flex w-[60px] items-center justify-center rounded-lg px-3 py-0.5 text-xs <%= status_colors[role.status] %>">
                   <%= role.status_humanize %>
                 </span>
+              </td>
+              <td class="px-6 py-4 text-center">
+                <p class="text-center text-sm text-slate-600"><%= role.created_at.strftime('%d/%m/%Y %H:%M') %></p>
+              </td>
+              <td class="px-6 py-4 text-center">
+                <p class="text-center text-sm text-slate-600"><%= role.updated_at.strftime('%d/%m/%Y %H:%M') %></p>
               </td>
               <td class="px-6 py-4 text-right">
                 <div class="flex gap-2 justify-center">
