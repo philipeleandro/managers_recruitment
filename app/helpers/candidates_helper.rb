@@ -43,7 +43,7 @@ module CandidatesHelper
       link_to candidate.resume.filename,
         rails_blob_path(candidate.resume),
         target: '_blank',
-        class: 'text-center text-sm text-blue-600 hover:text-blue-700 hidden_exceed_text',
+        class: 'text-sm text-blue-600 hover:text-blue-700',
         rel: 'noopener'
     else
       tag.span '-', class: 'text-sm text-slate-400'
