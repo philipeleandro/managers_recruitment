@@ -2,7 +2,8 @@
 
 class Recruitment < ApplicationRecord
   belongs_to :company
-  has_one :recruitment_role, dependent: :destroy
+  has_many :recruitment_roles, dependent: :destroy
+  has_many :roles, through: :recruitment_roles
 
   accepts_nested_attributes_for :recruitment_role, allow_destroy: true
 

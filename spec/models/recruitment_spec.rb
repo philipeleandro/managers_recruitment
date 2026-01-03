@@ -23,16 +23,16 @@ RSpec.describe Recruitment do
 
     let(:recruitment) { recruitment_role.recruitment }
 
-    context 'when recruitment_role has role_id' do
-      let(:role_id) { recruitment_role.roles_data.keys.first }
+    context 'with recruitment_role' do
       let(:recruitment_role) { create(:recruitment_role) }
+      let(:role_id) { recruitment_role.role_id }
 
-      it { expect(quantity_for_role).to eq(recruitment_role.roles_data[role_id.to_s].to_i) }
+      it { expect(quantity_for_role).to eq(recruitment_role.quantity) }
     end
 
-    context 'when recruitment_role does not have role_id' do
+    context 'without role' do
+      let(:recruitment_role) { create(:recruitment_role) }
       let(:role_id) { 'fake_id' }
-      let(:recruitment_role) { create(:recruitment_role, roles_data: {}) }
 
       it { expect(quantity_for_role).to eq(0) }
     end

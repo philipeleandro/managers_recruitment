@@ -2,15 +2,8 @@
 
 class RecruitmentRole < ApplicationRecord
   belongs_to :recruitment
+  belongs_to :role
 
-  before_save :remove_empty_roles
 
-  private
-
-  def remove_empty_roles
-    array_roles_data = roles_data.to_a
-    cleaned_roles_data = array_roles_data.map { |role_data| role_data unless role_data.last.to_i.zero? }
-
-    self.roles_data = cleaned_roles_data.compact.to_h
-  end
+  has_enumeration_for :status, with: Status, create_helpers: true
 end
