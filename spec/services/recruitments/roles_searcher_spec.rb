@@ -5,12 +5,6 @@ require 'rails_helper'
 RSpec.describe Recruitments::RolesSearcher do
   let(:role_first) { create(:role) }
   let(:role_second) { create(:role) }
-  let(:recruitment_role) do
-    create(
-      :recruitment_role, recruitment: recruitment,
-      roles_data: { role_first.id.to_s => '1', role_second.id.to_s => '1' }
-    )
-  end
   let(:recruitment) { create(:recruitment) }
   let(:resource) { recruitment }
   let(:page) { 1 }
@@ -51,36 +45,28 @@ RSpec.describe Recruitments::RolesSearcher do
     subject(:result) { instance.call }
 
     let(:instance) { described_class.new(resource, page) }
+    let(:recruitment) { create(:recruitment) }
+    let(:resource) { recruitment }
 
     context 'when success' do
-      context 'when recruitment_role is present and has roles_data' do
+      context 'when recruitment has associated roles' do
+        let(:recruitment_role_one) { create(:recruitment_role, recruitment: recruitment, role: role_first, quantity: 1) }
+        let(:recruitment_role_two) { create(:recruitment_role, recruitment: recruitment, role: role_second, quantity: 1) }
+
         before do
-          role_first
-          role_second
-          recruitment_role
+          recruitment_role_one
+          recruitment_role_two
         end
 
-        it 'returns the roles' do
+        it 'returns the associated roles' do
           expect(result).to contain_exactly(role_first, role_second)
         end
       end
     end
 
-    context 'when fail' do
-      context 'when recruitment_role is nil' do
-        let(:recruitment) { create(:recruitment, recruitment_role: nil) }
-
-        it 'returns an empty array' do
-          expect(result).to eq([])
-        end
-      end
-
-      context 'when roles_data is blank' do
-        let(:recruitment_role) { create(:recruitment_role, roles_data: {}) }
-
-        it 'returns an empty array' do
-          expect(result).to eq([])
-        end
+    context 'when there are no associated roles' do
+      it 'returns an empty array' do
+        expect(result).to eq([])
       end
     end
   end
