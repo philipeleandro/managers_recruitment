@@ -4,9 +4,11 @@ require 'rails_helper'
 
 RSpec.describe 'Recruitment#Create', js: true do
   let(:company) { create(:company) }
+  let(:role) { create(:role, company: company) }
 
   context 'when successfully' do
     before do
+      role
       visit company_path(id: company.id)
       click_link 'Criar Processo Seletivo'
     end
@@ -26,6 +28,7 @@ RSpec.describe 'Recruitment#Create', js: true do
 
   context 'when fails' do
     before do
+      role
       visit company_path(id: company.id)
       click_link 'Criar Processo Seletivo'
     end
