@@ -10,6 +10,7 @@ pt-BR:
       add_roles_message: Crie cargos para a empresa para poder atrelar ao processo seletivo.
       empty_role_quantity: Valores vazios ou 0 serão ignorados.
       quantity_and_roles: Cargos e quantidades
+      none_role: Nenhuma vaga encontrada
       quantity: Qtd.
       placeholder:
         name: Nome da vaga

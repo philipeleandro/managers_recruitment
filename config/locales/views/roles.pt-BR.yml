@@ -20,6 +20,8 @@ pt-BR:
       description: Descrição
       actions: Ações
       none_role: Nenhuma vaga encontrada
+      created_at: Criado em
+      updated_at: Atualizado em
     show_actions:
       actions: Ações
       edit: Editar vaga
