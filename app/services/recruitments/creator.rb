@@ -46,7 +46,7 @@ module Recruitments
     end
 
     def recruitment_roles_data
-      recruitment_roles_params = @params.dig(:recruitment, :recruitment_role_attributes, :roles_data).permit!
+      recruitment_roles_params = @params.dig(:recruitment, :recruitment_role_attributes, :roles_data).try(:permit!)
       recruitment_roles_params = recruitment_roles_params.to_h.to_a
       cleaned_roles_data = recruitment_roles_params.map { |role_data| role_data unless role_data.last.to_i.zero? }
 
