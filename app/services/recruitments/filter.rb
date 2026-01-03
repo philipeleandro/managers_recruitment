@@ -18,7 +18,6 @@ module Recruitments
 
     def call
       resource = default_resources
-      resource = load_recruitment_roles(resource)
       resource = filtered_by_status(resource)
       resource = sorted_resources(resource, @sort, @direction)
 
@@ -43,10 +42,6 @@ module Recruitments
       return resource.where(status: @status) if @status.present?
 
       resource
-    end
-
-    def load_recruitment_roles(resource)
-      resource.includes(:recruitment_role)
     end
   end
 end
