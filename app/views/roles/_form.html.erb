@@ -1,5 +1,5 @@
 <div>
-  <%= form_with(model: role, data: { action: "turbo:submit-end->roles--roles-form#onPostSuccess" }) do |form| %>
+  <%= form_with(model: role, data: { turbo_frame: (page_load ? '_top' : nil), action: "turbo:submit-end->roles--roles-form#onPostSuccess" }) do |form| %>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
       <div class="col-span-1">
         <%= form.label :name, class: "block text-sm text-slate-900 mb-2" %>

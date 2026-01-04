@@ -11,11 +11,11 @@
         <% end %>
         <ul class="list-disc pl-5 space-y-1">
           <% message.each do |msg| %>
-            <li><%= msg %></li>
+            <li><%= msg.strip %></li>
           <% end %>
         </ul>
       <% else %>
-        <span class="block break-all"><%= message %></span>
+        <span class="block break-all"><%= message.strip %></span>
       <% end %>
     </div>
 
