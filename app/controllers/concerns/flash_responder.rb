@@ -19,8 +19,9 @@ module FlashResponder
     respond_to do |format|
       redirect_path ||= url_for(controller: controller_name, action: :index)
 
+      return (redirect_to redirect_path, notice: message) unless turbo_frame_request?
+
       format.turbo_stream { render_turbo_stream }
-      format.html { redirect_to redirect_path, notice: message }
     end
   end
 
