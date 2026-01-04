@@ -135,11 +135,11 @@ pt-BR:
       required: é obrigatório(a)
       taken: já está em uso
       too_long:
-        one: 'é muito longo (máximo: %{count} caracter)'
-        other: 'é muito longo (máximo: %{count} caracteres)'
+        one: 'é muito longo (máximo - %{count} caracter)'
+        other: 'é muito longo (máximo - %{count} caracteres)'
       too_short:
-        one: 'é muito curto (mínimo: %{count} caracter)'
-        other: 'é muito curto (mínimo: %{count} caracteres)'
+        one: 'é muito curto (mínimo - %{count} caracter)'
+        other: 'é muito curto (mínimo - %{count} caracteres)'
       wrong_length:
         one: não possui o tamanho esperado (%{count} caracter)
         other: não possui o tamanho esperado (%{count} caracteres)
