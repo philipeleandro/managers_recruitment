@@ -4,7 +4,7 @@ RSpec.describe Application do
   subject(:application) { build(:application) }
 
   describe 'associations' do
-    it { expect(application).to belong_to(:recruitment) }
+    it { expect(application).to belong_to(:recruitment_role) }
     it { expect(application).to belong_to(:candidate) }
   end
 end
