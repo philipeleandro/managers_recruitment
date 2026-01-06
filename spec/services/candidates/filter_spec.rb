@@ -14,7 +14,7 @@ RSpec.describe Candidates::Filter do
       context 'when all arguments are present' do
         let(:params) { [resource_new.cpf, 'new', 1] }
 
-        it { expect { instance }.not_to raise_error(ArgumentError) }
+        it { expect { instance }.not_to raise_error }
       end
     end
 

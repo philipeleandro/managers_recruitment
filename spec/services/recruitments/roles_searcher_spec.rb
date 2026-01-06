@@ -16,7 +16,7 @@ RSpec.describe Recruitments::RolesSearcher do
       context 'when all arguments are present' do
         let(:params) { [resource, page] }
 
-        it { expect { instance }.not_to raise_error(ArgumentError) }
+        it { expect { instance }.not_to raise_error }
       end
     end
 

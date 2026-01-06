@@ -16,7 +16,7 @@ RSpec.describe Recruitments::Filter do
       context 'when all arguments are present' do
         let(:params) { ['new', 1, 'created_at', 'desc', company_first.id] }
 
-        it { expect { instance }.not_to raise_error(ArgumentError) }
+        it { expect { instance }.not_to raise_error }
       end
     end
 

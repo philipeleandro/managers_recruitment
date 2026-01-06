@@ -13,7 +13,7 @@ RSpec.describe Roles::Filter do
       context 'when all arguments are present' do
         let(:params) { [resource_active.name, 'active', 1] }
 
-        it { expect { instance }.not_to raise_error(ArgumentError) }
+        it { expect { instance }.not_to raise_error }
       end
     end
 
