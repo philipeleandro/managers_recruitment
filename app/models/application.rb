@@ -7,6 +7,7 @@ class Application < ApplicationRecord
   belongs_to :recruitment_role
 
   scope :by_candidate, ->(candidate_id) { where(candidate_id: candidate_id) }
+  scope :new_last_month, -> { where('created_at > ?', Date.current - 30.days) }
 
   scope :by_recruitment_and_role, lambda { |recruitment_id, role_id|
     joins(:recruitment_role)

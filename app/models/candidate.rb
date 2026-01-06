@@ -16,6 +16,8 @@ class Candidate < ApplicationRecord
   validates :cpf, length: { maximum: 11 }
   validates :resume, attached: true, content_type: ['application/pdf'], size: { less_than: 10.megabytes }
 
+  scope :new_last_month, -> { where('created_at > ?', Date.current - 30.days) }
+
   validate :validate_document
 
   def validate_document
