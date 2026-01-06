@@ -1,0 +1,7 @@
+pt-BR:
+  recruitment_roles:
+    open_to_apply:
+      success: Processo aberto para candidaturas
+    close_to_apply:
+      success: Processo não aceita mais candidaturas
+

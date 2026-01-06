@@ -8,19 +8,19 @@ RSpec.describe 'Application#Create' do
   before { visit apply_path(token: recruitment_role.token) }
 
   context 'when successfully' do
-    it 'creates a new application' do
+    before do
       fill_in 'Nome', with: 'João Silva'
       fill_in 'E-mail', with: 'user@test.com'
       fill_in 'CPF', with: CPF.generate
       fill_in 'Telefone', with: '11999999999'
       attach_file 'Currículo', Rails.root.join('spec/fixtures/files/resume_test.pdf')
       click_button 'Candidatar-se'
-
-      expect(page).to have_current_path(apply_path(token: recruitment_role.token))
-      expect(page).to have_content('Candidatura enviada com sucesso')
-      expect(Application.count).to eq(1)
-      expect(Candidate.count).to eq(1)
     end
+
+    it { expect(page).to have_current_path(apply_path(token: recruitment_role.token)) }
+    it { expect(page).to have_content('Candidatura enviada com sucesso') }
+    it { expect(Application.count).to eq(1) }
+    it { expect(Candidate.count).to eq(1) }
   end
 
   context 'when fails' do

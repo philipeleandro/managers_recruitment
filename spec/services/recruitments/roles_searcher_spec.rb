@@ -50,8 +50,12 @@ RSpec.describe Recruitments::RolesSearcher do
 
     context 'when success' do
       context 'when recruitment has associated roles' do
-        let(:recruitment_role_one) { create(:recruitment_role, recruitment: recruitment, role: role_first, quantity: 1) }
-        let(:recruitment_role_two) { create(:recruitment_role, recruitment: recruitment, role: role_second, quantity: 1) }
+        let(:recruitment_role_one) do
+          create(:recruitment_role, recruitment: recruitment, role: role_first, quantity: 1)
+        end
+        let(:recruitment_role_two) do
+          create(:recruitment_role, recruitment: recruitment, role: role_second, quantity: 1)
+        end
 
         before do
           recruitment_role_one

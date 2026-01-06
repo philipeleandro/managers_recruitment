@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Application < ApplicationRecord
   has_enumeration_for :status, with: Status, create_helpers: true
 
@@ -6,17 +8,19 @@ class Application < ApplicationRecord
 
   scope :by_candidate, ->(candidate_id) { where(candidate_id: candidate_id) }
 
-  scope :by_recruitment_and_role, ->(recruitment_id, role_id) {
-    joins(:recruitment_role).
-    where(recruitment_roles: {
-      recruitment_id: recruitment_id, role_id: role_id
-    })
+  scope :by_recruitment_and_role, lambda { |recruitment_id, role_id|
+    joins(:recruitment_role)
+      .where(recruitment_roles: {
+        recruitment_id: recruitment_id, role_id: role_id
+      }
+            )
   }
 
-  scope :by_recruitment, ->(recruitment_id) {
-    joins(:recruitment_role).
-    where(recruitment_roles: {
-      recruitment_id: recruitment_id
-    })
+  scope :by_recruitment, lambda { |recruitment_id|
+    joins(:recruitment_role)
+      .where(recruitment_roles: {
+        recruitment_id: recruitment_id
+      }
+            )
   }
 end

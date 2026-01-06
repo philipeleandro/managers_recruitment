@@ -4,7 +4,7 @@ module FlashResponder
   extend ActiveSupport::Concern
 
   def handle_error_response(resource, errors_message = nil)
-    flash.now[:alert] =  errors_message || resource.errors.full_messages
+    flash.now[:alert] = errors_message || resource.errors.full_messages
 
     respond_to do |format|
       format.turbo_stream { render_turbo_stream(:unprocessable_entity) }
@@ -19,7 +19,7 @@ module FlashResponder
     respond_to do |format|
       redirect_path ||= url_for(controller: controller_name, action: :index)
 
-      return (redirect_to redirect_path, notice: message) unless turbo_frame_request?
+      return redirect_to redirect_path, notice: message unless turbo_frame_request?
 
       format.turbo_stream { render_turbo_stream }
     end

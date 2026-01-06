@@ -2,13 +2,13 @@
 
 module Applications
   class WorkflowCreator
-    def initialize(candidate_params = {}, recruitment_role)
+    def initialize(recruitment_role, candidate_params = {})
       @candidate_params = candidate_params
       @recruitment_role = recruitment_role
     end
 
-    def self.call(candidate_params = {}, recruitment_role)
-      new(candidate_params, recruitment_role).call
+    def self.call(recruitment_role, candidate_params = {})
+      new(recruitment_role, candidate_params).call
     end
 
     def call
@@ -24,7 +24,7 @@ module Applications
       message = e.message.split(':').last
 
       { resource: Candidate.new(@candidate_params), errors: message.split(',') }
-    rescue StandardError => e
+    rescue StandardError
       { resource: Candidate.new(@candidate_params), errors: error_message }
     end
 
@@ -36,7 +36,7 @@ module Applications
         recruitment_role_id: @recruitment_role.id
       )
 
-      raise StandardError.new if @application
+      raise StandardError if @application
     end
 
     def create_application

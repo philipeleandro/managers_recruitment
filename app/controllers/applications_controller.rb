@@ -7,11 +7,11 @@ class ApplicationsController < ApplicationController
   before_action :application, only: %i[approve reject]
 
   def new
-    return render :invalid_recruitment if @recruitment_role.nil?
+    render :invalid_recruitment if @recruitment_role.nil?
   end
 
   def create
-    service = ::Applications::WorkflowCreator.call(candidate_params, @recruitment_role)
+    service = ::Applications::WorkflowCreator.call(@recruitment_role, candidate_params)
 
     return handle_error_response(service[:resource], service[:errors]) if service[:errors]
 
@@ -28,7 +28,6 @@ class ApplicationsController < ApplicationController
   ensure
     redirect_to recruitment_path(id: @application.recruitment_role.recruitment_id)
   end
-
 
   def approve
     @application.approved!

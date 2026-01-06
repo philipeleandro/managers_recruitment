@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Recruitments
   class Creator
     def initialize(params = {})
@@ -31,18 +33,22 @@ module Recruitments
 
     def recruitment_roles_creation
       recruitment_roles_data.each do |roles_data|
-        RecruitmentRole.create!(recruitment_id: @recruitment.id, role_id: roles_data.first.to_i, quantity: roles_data.last.to_i)
+        RecruitmentRole.create!(
+          recruitment_id: @recruitment.id, role_id: roles_data.first.to_i,
+          quantity: roles_data.last.to_i
+        )
       end
     end
 
     def recruitment_params
-      @params.dig(:recruitment).permit(
+      @params[:recruitment].permit(
         :description,
         :company_id,
         :status,
         :value,
         :opening_date,
-        :finish_date)
+        :finish_date
+      )
     end
 
     def recruitment_roles_data

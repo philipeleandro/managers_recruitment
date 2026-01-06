@@ -70,10 +70,10 @@ class RecruitmentsController < ApplicationController
       :value,
       :opening_date,
       :finish_date,
-      recruitment_roles_attributes: [
-        :id,
-        :role_id,
-        :quantity
+      recruitment_roles_attributes: %i[
+        id
+        role_id
+        quantity
       ]
     )
   end

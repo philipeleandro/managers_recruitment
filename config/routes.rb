@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post 'apply/:token' => 'applications#create'
   post 'apply/:id/reject' => 'applications#reject', as: :reject_application
   post 'apply/:id/approve' => 'applications#approve', as: :approve_application
-  post 'recruitment/:recruitment_id/role/:role_id/open_to_apply' => 'recruitment_roles#open_to_apply', as: :open_to_apply
-  post 'recruitment/:recruitment_id/role/:role_id/close_to_apply' => 'recruitment_roles#close_to_apply', as: :close_to_apply
+  post 'recruitment/:recruitment_id/role/:role_id/open_to_apply' => 'recruitment_roles#open_to_apply',
+    as: :open_to_apply
+  post 'recruitment/:recruitment_id/role/:role_id/close_to_apply' => 'recruitment_roles#close_to_apply',
+    as: :close_to_apply
 end

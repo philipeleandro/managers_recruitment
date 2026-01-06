@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 class RecruitmentRolesController < ApplicationController
@@ -7,7 +6,7 @@ class RecruitmentRolesController < ApplicationController
   def open_to_apply
     @recruitment_role.open_to_applications!
 
-    flash[:notice] = 'Processo aberto para candidaturas'
+    flash[:notice] = I18n.t('recruitment_roles.open_to_applications.success')
   rescue StandardError => e
     flash[:error] = e.message
   ensure
@@ -17,7 +16,7 @@ class RecruitmentRolesController < ApplicationController
   def close_to_apply
     @recruitment_role.closed_to_applications!
 
-    flash[:notice] = 'Processo fechado para candidaturas'
+    flash[:notice] = I18n.t('recruitment_roles.close_to_applications.success')
   rescue StandardError => e
     flash[:error] = e.message
   ensure

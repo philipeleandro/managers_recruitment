@@ -4,7 +4,7 @@ class Candidate < ApplicationRecord
   has_enumeration_for :status, with: Status, create_helpers: true
 
   has_one_attached :resume
-  has_many :applications
+  has_many :applications, dependent: :restrict_with_error
   has_many :recruitments, through: :applications
 
   before_destroy :purge_resume
