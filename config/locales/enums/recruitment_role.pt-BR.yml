@@ -1,0 +1,6 @@
+pt-BR:
+  enumerations:
+    recruitment_role/status:
+      new: Novo
+      open_to_applications: Aberto para candidaturas
+      closed_to_applications: Fechado para candidaturas

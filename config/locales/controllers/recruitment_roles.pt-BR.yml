@@ -1,0 +1,6 @@
+pt-BR:
+  recruitment_roles:
+    open_to_applications:
+      success: 'Vaga aberta para aplicações com sucesso'
+    close_to_applications:
+      success: 'Vaga fechada para aplicações com sucesso'
