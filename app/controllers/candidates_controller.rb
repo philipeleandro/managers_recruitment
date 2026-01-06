@@ -38,9 +38,11 @@ class CandidatesController < ApplicationController
   end
 
   def destroy
-    @candidate.destroy
+    return redirect_to candidates_path, notice: I18n.t('candidates.delete.flashes.success') if @candidate.destroy
 
-    redirect_to candidates_path, notice: I18n.t('candidates.delete.flashes.success')
+    flash[:alert] = @candidate.errors.full_messages
+
+    redirect_to candidates_path
   end
 
   private

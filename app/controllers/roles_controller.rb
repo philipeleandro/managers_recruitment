@@ -11,10 +11,7 @@ class RolesController < ApplicationController
     )
   end
 
-  def show
-    # futuramente vai ter os candidatos atrelados
-    @roles = []
-  end
+  def show; end
 
   def new
     redirect_to companies_path and return unless turbo_frame_request?
@@ -42,9 +39,14 @@ class RolesController < ApplicationController
   def destroy
     company_id = @role.company_id
 
-    @role.destroy
+    if @role.destroy
+      return redirect_to company_path(id: company_id),
+        notice: I18n.t('candidates.delete.flashes.success')
+    end
 
-    redirect_to company_path(id: company_id), notice: I18n.t('roles.delete.flashes.success')
+    flash[:alert] = @role.errors.full_messages
+
+    redirect_to company_path(id: company_id)
   end
 
   private
