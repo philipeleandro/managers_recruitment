@@ -35,6 +35,7 @@ pt-BR:
       recruitment: Processo Seletivo
       role: Cargo
       status: Status
+      created_at: Criado em
       actions: Ações
       approve_candidate: Aprovar candidato
       reject_candidate: Reprovar candidato
@@ -55,6 +56,8 @@ pt-BR:
         email: E-mail
         phone: Telefone
         resume: Currículo
+        created_at: Criado(a) em
+        updated_at: Atualizado(a) em
       buttons:
         back: Voltar
 

@@ -37,6 +37,14 @@
             <label class="text-sm font-medium text-slate-600"><%= t('candidates.show.labels.resume') %></label>
             <p class="w-[250px] break-all mt-2 text-slate-900"><%= resume_present?(@candidate) %></p>
           </div>
+          <div>
+            <label class="text-sm font-medium text-slate-600"><%= t('candidates.show.labels.created_at') %>:</label>
+            <p class="mt-2 text-slate-900"><%= @candidate.created_at.strftime("%d/%m/%Y %H:%M") %></p>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-600"><%= t('candidates.show.labels.updated_at') %>:</label>
+            <p class="mt-2 text-slate-900"><%= @candidate.updated_at.strftime("%d/%m/%Y %H:%M") %></p>
+          </div>
         </div>
       </div>
     </div>

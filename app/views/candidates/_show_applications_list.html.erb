@@ -11,6 +11,7 @@
             <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.show_applications_list.recruitment') %></th>
             <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.show_applications_list.role') %></th>
             <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.show_applications_list.status') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.show_applications_list.created_at') %></th>
             <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('candidates.show_applications_list.actions') %></th>
           </tr>
         </thead>
@@ -35,6 +36,11 @@
                 <span class="inline-flex w-[120px] items-center justify-center rounded-lg px-3 py-0.5 text-xs <%= status_colors[application.status] %>">
                   <%= application.status_humanize %>
                 </span>
+              </td>
+              <td class="px-6 py-4">
+                <p class="text-center text-sm text-slate-600">
+                  <%= application.created_at.strftime("%d/%m/%Y %H:%M") %>
+                </p>
               </td>
               <td class="px-6 py-4 text-right">
                 <div class="flex gap-2 items-center justify-center">

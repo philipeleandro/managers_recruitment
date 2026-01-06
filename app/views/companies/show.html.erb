@@ -47,6 +47,14 @@
             <label class="text-sm font-medium text-slate-600"><%= t('companies.show.labels.phone') %></label>
             <p class="mt-2 text-slate-900"><%= formatted_phone(@company.phone_number) %></p>
           </div>
+          <div>
+            <label class="text-sm font-medium text-slate-600"><%= t('companies.show.labels.created_at') %>:</label>
+            <p class="mt-2 text-slate-900"><%= @company.created_at.strftime("%d/%m/%Y %H:%M") %></p>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-600"><%= t('companies.show.labels.updated_at') %>:</label>
+            <p class="mt-2 text-slate-900"><%= @company.updated_at.strftime("%d/%m/%Y %H:%M") %></p>
+          </div>
         </div>
       </div>
     </div>

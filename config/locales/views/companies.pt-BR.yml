@@ -48,6 +48,8 @@ pt-BR:
         email: teste@exemplo.com
         cnpj: Apenas números
         phone: DDD + número
+        created_at: Criado(a) em
+        updated_at: Atualizado(a) em
       buttons:
         back: Voltar
 

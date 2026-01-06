@@ -41,7 +41,7 @@
             <p class="text-sm text-blue-600 hover:text-blue-700"><%= link_to application.candidate.name, candidate_path(application.candidate), target: '_blank', rel: 'noopener' %></p>
           </td>
           <td class="px-6 py-4 text-center">
-            <p class="text-center text-sm text-slate-600"><%= application.created_at.strftime("%d/%m/%Y") %></p>
+            <p class="text-center text-sm text-slate-600"><%= application.created_at.strftime("%d/%m/%Y %H:%M") %></p>
           </td>
           <td class="px-6 py-4 text-center">
             <span class="inline-flex w-[120px] items-center justify-center rounded-lg px-3 py-0.5 text-xs <%= status_colors[application.status] %>">

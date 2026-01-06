@@ -20,6 +20,17 @@
         </div>
 
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-1">
+          <div class="grid gap-6 sm:grid-cols-2 mb-6">
+            <div>
+              <label class="text-sm font-medium text-slate-600"><%= t('roles.show.labels.created_at') %>:</label>
+              <p class="mt-2 text-slate-900"><%= @role.created_at.strftime("%d/%m/%Y %H:%M") %></p>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-slate-600"><%= t('roles.show.labels.updated_at') %>:</label>
+              <p class="mt-2 text-slate-900"><%= @role.updated_at.strftime("%d/%m/%Y") %></p>
+            </div>
+          </div>
+
           <div>
             <label class="text-sm font-medium text-slate-600"><%= t('roles.show.labels.description') %></label>
             <%= simple_format(@role.description, class: "mt-2 text-slate-900 break-words") %>

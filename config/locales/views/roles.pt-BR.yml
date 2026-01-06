@@ -44,6 +44,8 @@ pt-BR:
         name: Nome da vaga
         description: Descrição da vaga
         company: Empresa
+        created_at: Criado em
+        updated_at: Atualizado em
       buttons:
         back: Voltar
 

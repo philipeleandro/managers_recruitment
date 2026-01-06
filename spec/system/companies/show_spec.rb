@@ -20,6 +20,8 @@ RSpec.describe 'Companies#Show' do
     it { expect(page).to have_content(company.responsible_name) }
     it { expect(page).to have_content(company.email) }
     it { expect(page).to have_content(company.status_humanize) }
+    it { expect(page).to have_content(company.created_at.strftime("%d/%m/%Y %H:%M")) }
+    it { expect(page).to have_content(company.updated_at.strftime("%d/%m/%Y %H:%M")) }
   end
 
   context 'when has recruitment' do

@@ -46,8 +46,15 @@
             <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.quantity_apply') %>:</label>
             <p class="mt-2 text-slate-900"><%= Application.by_recruitment(@recruitment.id).count %></p>
           </div>
+          <div>
+            <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.created_at') %>:</label>
+            <p class="mt-2 text-slate-900"><%= @recruitment.created_at.strftime("%d/%m/%Y %H:%M") %></p>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.updated_at') %>:</label>
+            <p class="mt-2 text-slate-900"><%= @recruitment.updated_at.strftime("%d/%m/%Y %H:%M") %></p>
+          </div>
         </div>
-
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-1 mb-6">
           <div>
             <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.description') %>:</label>

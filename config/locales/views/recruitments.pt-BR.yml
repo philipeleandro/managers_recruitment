@@ -46,5 +46,8 @@ pt-BR:
       roles: Cargos
       quantity_apply: Quantidade de candidaturas
       description: Descrição
+      created_at: Criado em
+      updated_at: Atualizado em
+
 
 
