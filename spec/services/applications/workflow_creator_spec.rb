@@ -14,7 +14,7 @@ RSpec.describe Applications::WorkflowCreator do
   before { recruitment_role }
 
   describe '.call' do
-    subject(:result) { described_class.call(candidate_params, recruitment_role) }
+    subject(:result) { described_class.call(recruitment_role, candidate_params) }
 
     it 'calls method instance call' do
       expect_any_instance_of(described_class).to receive(:call).once
@@ -23,7 +23,7 @@ RSpec.describe Applications::WorkflowCreator do
   end
 
   describe '#call' do
-    subject(:result) { described_class.new(candidate_params, recruitment_role).call }
+    subject(:result) { described_class.new(recruitment_role, candidate_params).call }
 
     context 'when success' do
       context 'when a new candidate is created' do
@@ -83,6 +83,28 @@ RSpec.describe Applications::WorkflowCreator do
         it 'returns the candidate as resource with errors' do
           expect(result[:resource]).to be_a(Candidate)
           expect(result[:errors]).to eq('Ocorreu uma falha ao realizar sua candidatura')
+        end
+      end
+
+      context 'when application already exists' do
+        let!(:existing_application) { create(:application, recruitment_role: recruitment_role) }
+        let(:existing_candidate) { existing_application.candidate }
+        let(:candidate_params) do
+          {
+            name: existing_candidate.name,
+            email: existing_candidate.email,
+            cpf: existing_candidate.cpf,
+            phone_number: existing_candidate.phone_number,
+            resume: fixture_file_upload('resume_test.pdf', 'application/pdf')
+          }
+        end
+
+        it { expect { result }.not_to change(Candidate, :count) }
+        it { expect { result }.not_to change(Application, :count) }
+
+        it 'returns an error message' do
+          expect(result[:resource]).to be_a(Candidate)
+          expect(result[:errors]).to eq('Candidatura já enviada')
         end
       end
     end
