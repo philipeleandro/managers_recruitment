@@ -15,20 +15,19 @@ class Recruitment < ApplicationRecord
   scope :finished, -> { where(status: Status::FINISHED) }
   scope :new_and_in_progress, -> { where(status: [Status::NEW, Status::IN_PROGRESS]) }
 
-  scope :last_month_in_progress, -> {
+  scope :last_month_in_progress, lambda {
     where(
       status: Status::IN_PROGRESS,
       created_at: (Date.current - 30.days)..Date.current.end_of_day
     )
   }
 
-  scope :last_month_opening, -> {
+  scope :last_month_opening, lambda {
     where(
       status: Status::NEW,
       created_at: (Date.current - 30.days)..Date.current.end_of_day
     )
   }
-
 
   def quantity_for_role(role_id)
     recruiment_role = recruitment_roles.find_by(role_id: role_id)
