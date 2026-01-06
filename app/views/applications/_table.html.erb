@@ -2,7 +2,7 @@
   <div class="flex justify-between px-6 py-4 border-b border-slate-200">
     <div>
       <h2 class="text-lg font-semibold text-slate-900"><%= role.name %></h2>
-      <p class="text-sm text-slate-600 mt-1"><%= "Mostrando #{@applications.count} de #{@applications.total_count}" %></p>
+      <p class="text-sm text-slate-600 mt-1"><%= I18n.t('applications.table.applications_count', applications: @applications.count, total: @applications.total_count) %></p>
     </div>
     <% if @recruitment_role %>
       <div class="flex gap-6 justify-center items-center">
@@ -38,7 +38,7 @@
       <% @applications.each do |application| %>
         <tr class="text-center border-b border-slate-200 hover:bg-slate-50 transition-colors" data-recruitments--recruitments-target="recruitmentRow">
           <td class="px-6 py-4 text-center">
-            <p class="text-sm text-blue-600 hover:text-blue-700"><%= link_to application.candidate.name, candidate_path(application.candidate)%></p>
+            <p class="text-sm text-blue-600 hover:text-blue-700"><%= link_to application.candidate.name, candidate_path(application.candidate), target: '_blank', rel: 'noopener' %></p>
           </td>
           <td class="px-6 py-4 text-center">
             <p class="text-center text-sm text-slate-600"><%= application.created_at.strftime("%d/%m/%Y") %></p>

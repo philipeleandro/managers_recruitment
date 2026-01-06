@@ -17,7 +17,7 @@ RSpec.describe 'Application#Create' do
       click_button 'Candidatar-se'
 
       expect(page).to have_current_path(apply_path(token: recruitment_role.token))
-      expect(page).to have_content('Você se candidatou para a vaga com sucesso!')
+      expect(page).to have_content('Candidatura enviada com sucesso')
       expect(Application.count).to eq(1)
       expect(Candidate.count).to eq(1)
     end

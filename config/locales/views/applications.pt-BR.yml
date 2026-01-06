@@ -23,4 +23,5 @@ pt-BR:
       approve_candidate: Aprovar candidato
       reject_candidate: Reprovar candidato
       none_candidate: Nenhum candidato encontrado
+      applications_count: 'Mostrando %{applications} de %{total} candidaturas'
 
