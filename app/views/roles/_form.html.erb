@@ -1,5 +1,5 @@
 <div>
-  <%= form_with(model: role, data: { turbo_frame: (page_load ? '_top' : nil), action: "turbo:submit-end->roles--roles-form#onPostSuccess" }) do |form| %>
+  <%= form_with(model: role, data: { turbo_frame: (page_load ? '_top' : nil), action: "turbo:submit-end->recruitments--recruitments-form#onRolePostSuccess" }) do |form| %>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
       <div class="col-span-1">
         <%= form.label :name, class: "block text-sm text-slate-900 mb-2" %>
@@ -37,8 +37,7 @@
                 'px-6 py-2 text-sm font-medium text-slate-900 ' \
                 'hover:bg-slate-50 flex justify-center',
           data: {
-            turbo_frame: 'recruitment_management',
-            action: 'click->roles--roles-form#hideForm'
+            action: 'click->recruitments--recruitments-form#hideRoleForm'
         } %>
     </div>
   <% end %>

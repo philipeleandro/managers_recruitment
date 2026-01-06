@@ -5,12 +5,12 @@
       <%= link_to 'Criar Processo Seletivo', new_recruitment_path(company_id: @company.id),
               class: "block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-900 text-center hover:bg-slate-50",
               data: { turbo_frame: "recruitment_management",
-              action: "click->recruitments--recruitments-form#showForm" },
+              action: "click->recruitments--recruitments-form#showRecruitmentForm" },
               id: 'new-recruitment-button' %>
       <%= link_to t('companies.show_actions.create_role'), new_role_path(company_id: @company.id),
               class: "block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-900 text-center hover:bg-slate-50",
               data: { turbo_frame: "role_management",
-              action: "click->roles--roles-form#showForm" },
+              action: "click->recruitments--recruitments-form#showRoleForm" },
               id: 'new-role-button' %>
       <%= link_to t('companies.show_actions.edit'), edit_company_path(@company), class: "block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-900 text-center hover:bg-slate-50" %>
       <%= link_to t('companies.show_actions.delete'), company_path(@company), data: { turbo_method: :delete, turbo_confirm: t('companies.show_actions.confirm') ,turbo_frame: "_top" }, class: "block rounded-lg border border-red-200 px-4 py-2 text-sm font-medium text-red-600 text-center hover:bg-red-50" %>

@@ -46,7 +46,7 @@
                   <%= link_to inline_svg_tag('icons/pencil.svg', class: "lucide lucide-pen h-4 w-4 text-blue-600"),
                         edit_role_path(role),
                         class: "text-sm font-medium text-blue-600 hover:text-blue-700",
-                        data: { turbo_frame: "role_management", action: "click->roles--roles-form#forceOpen" } %>
+                        data: { turbo_frame: "role_management", action: "click->recruitments--recruitments-form#forceOpenRoleForm" } %>
 
                   <%= link_to inline_svg_tag('icons/trash_can.svg', class: "lucide lucide-trash2 h-4 w-4 text-red-600"),
                       role_path(role),

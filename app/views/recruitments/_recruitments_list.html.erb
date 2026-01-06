@@ -49,7 +49,7 @@
                     <%= link_to inline_svg_tag('icons/pencil.svg', class: "lucide lucide-pen h-4 w-4 text-blue-600"),
                           edit_recruitment_path(recruitment),
                           class: "text-sm font-medium text-blue-600 hover:text-blue-700",
-                          data: { turbo_frame: "recruitment_management", action: "click->recruitments--recruitments-form#forceOpen" },
+                          data: { turbo_frame: "recruitment_management", action: "click->recruitments--recruitments-form#forceOpenRecruitmentForm" },
                           id: "edit-recruitment-button"  %>
 
                     <%= link_to inline_svg_tag('icons/trash_can.svg', class: "lucide lucide-trash2 h-4 w-4 text-red-600"),
