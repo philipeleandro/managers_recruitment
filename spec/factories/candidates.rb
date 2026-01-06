@@ -6,7 +6,7 @@ FactoryBot.define do
     cpf { CPF.generate }
     status { :new }
     phone_number { '11999999999' }
-    name { 'Joe' }
+    sequence(:name) { |n| "Joe #{n}" }
 
     after(:build) do |candidate|
       candidate.resume.attach(

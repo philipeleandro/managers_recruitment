@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :role do
-    name { 'MyString' }
+    sequence(:name) { |n| "Role #{n}" }
     description { 'MyText' }
     status { :active }
     company
