@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { Turbo } from "@hotwired/turbo-rails"
 
 export default class extends Controller {
-  static targets = ["companyRow", "filterButton", "emptyState", "table"]
+  static targets = ["companyRow", "filterButton", "emptyState", "filterRoleButton", "rolesListWrapper"]
 
   connect() {
     this.addHoverEffect()
@@ -47,10 +47,27 @@ export default class extends Controller {
     this.updateActiveFilterButton(event.currentTarget)
   }
 
-  deleteCompany(event) {
-    event.preventDefault()
-    if (confirm("Are you sure you want to delete this company?")) {
-      event.target.closest("form").submit()
-    }
+  filterByRole(event) {
+    const roleName = event.currentTarget.dataset.roleName
+    const url = new URL(window.location.href)
+    url.searchParams.set('role_name', roleName)
+
+    this.rolesListWrapperTarget.classList.remove('hidden')
+
+    Turbo.visit(url.toString(), {
+      frame: 'roles_list',
+      action: 'advance'
+    })
+
+    this.updateActiveFilterRoleButton(event.currentTarget)
+  }
+
+  updateActiveFilterRoleButton(clickedButton) {
+    this.filterRoleButtonTargets.forEach(btn => {
+      btn.classList.remove('bg-blue-600', 'text-white', 'hover:bg-blue-700')
+      btn.classList.add('bg-gradient-to-b', 'text-slate-600', 'hover:bg-slate-100')
+    })
+    clickedButton.classList.remove('bg-gradient-to-b', 'text-slate-600', 'hover:bg-slate-100')
+    clickedButton.classList.add('bg-blue-600', 'text-white', 'hover:bg-blue-700')
   }
 }

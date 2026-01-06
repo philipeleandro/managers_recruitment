@@ -1,0 +1,6 @@
+pt-BR:
+  services:
+    applications:
+      workflow_creator:
+        error: Ocorreu uma falha ao realizar sua candidatura
+        existing_apply: Candidatura já enviada

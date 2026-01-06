@@ -1,0 +1,26 @@
+pt-BR:
+  applications:
+    form:
+      role_name: 'Vaga: %{role}'
+      insert_data: 'Preencha os dados'
+      name: Nome
+      email: E-mail
+      cpf: CPF
+      phone: Telefone
+      resume: Currículo
+      placeholder:
+        name: Nome completo
+        email: teste@exemplo.com
+        cpf: Apenas números
+        phone: DDD + número
+    new:
+      role_name: 'Vaga: %{role}'
+    table:
+      candidate: Candidato
+      apply_date: Data de Candidatura
+      status: Status
+      actions: Ações
+      approve_candidate: Aprovar candidato
+      reject_candidate: Reprovar candidato
+      none_candidate: Nenhum candidato encontrado
+

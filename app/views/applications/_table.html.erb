@@ -1,0 +1,77 @@
+<table class="w-full">
+  <div class="flex justify-between px-6 py-4 border-b border-slate-200">
+    <div>
+      <h2 class="text-lg font-semibold text-slate-900"><%= role.name %></h2>
+      <p class="text-sm text-slate-600 mt-1"><%= "Mostrando #{@applications.count} de #{@applications.total_count}" %></p>
+    </div>
+    <% if @recruitment_role %>
+      <div class="flex gap-6 justify-center items-center">
+        <div class="flex gap-4 items-center">
+          <%= link_to inline_svg_tag('icons/user_round_plus.svg', class: "lucide lucide-user-round-plus h-4 w-4 text-green-600"),
+                open_to_apply_path(role_id: role.id, recruitment_id: recruitment.id),
+                title: "Abrir processo para candidaturas",
+                class: "cursor-pointer text-sm font-medium text-blue-600 hover:text-blue-700",
+                data: { turbo_frame: "_top", turbo_method: :post } unless @recruitment_role.open_to_applications? %>
+
+          <%= link_to inline_svg_tag('icons/user_round_x.svg', class: "lucide lucide-user-round-x h-4 w-4 text-red-600"),
+                close_to_apply_path(role_id: role.id, recruitment_id: recruitment.id),
+                title: "Fechar processo para candidaturas",
+                class: "cursor-pointer text-sm font-medium text-blue-600 hover:text-blue-700",
+                data: { turbo_frame: "_top", turbo_method: :post } unless @recruitment_role.closed_to_applications? %>
+        </div>
+        <p class="text-sm text-slate-600 mt-1"><%= create_or_copy_link_button(@recruitment_role) %></p>
+      </div>
+    <% end %>
+  </div>
+  <thead class="border-b border-slate-200">
+    <% if @applications.any? %>
+      <tr>
+        <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= I18n.t('applications.table.candidate') %></th>
+        <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= I18n.t('applications.table.apply_date') %></th>
+        <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= I18n.t('applications.table.status') %></th>
+        <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= I18n.t('applications.table.actions') %></th>
+      </tr>
+    <% end %>
+  </thead>
+  <tbody>
+    <% if @applications.any? %>
+      <% @applications.each do |application| %>
+        <tr class="text-center border-b border-slate-200 hover:bg-slate-50 transition-colors" data-recruitments--recruitments-target="recruitmentRow">
+          <td class="px-6 py-4 text-center">
+            <p class="text-sm text-blue-600 hover:text-blue-700"><%= link_to application.candidate.name, candidate_path(application.candidate)%></p>
+          </td>
+          <td class="px-6 py-4 text-center">
+            <p class="text-center text-sm text-slate-600"><%= application.created_at.strftime("%d/%m/%Y") %></p>
+          </td>
+          <td class="px-6 py-4 text-center">
+            <span class="inline-flex w-[120px] items-center justify-center rounded-lg px-3 py-0.5 text-xs <%= status_colors[application.status] %>">
+              <%= application.status_humanize %>
+            </span>
+          </td>
+          <td class="px-6 py-4 text-right">
+            <div class="flex gap-2 justify-center">
+              <%= button_to inline_svg_tag('icons/circle_check.svg', class: "lucide lucide-cicle-check h-4 w-4 text-green-600"),
+                    approve_application_path(application),
+                    title: I18n.t('applications.table.approve_candidate') ,
+                    class: "cursor-pointer text-sm font-medium text-blue-600 hover:text-blue-700",
+                    data: { turbo_frame: "_top" } unless application.approved? %>
+
+              <%= button_to inline_svg_tag('icons/circle_close.svg', class: "lucide lucide-circle-x h-4 w-4 text-red-600"),
+                    reject_application_path(application),
+                    title:  I18n.t('applications.table.reject_candidate'),
+                    class: "cursor-pointer text-sm font-medium text-blue-600 hover:text-blue-700",
+                    data: { turbo_frame: "_top" } unless application.rejected? %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr class="text-center border-b border-slate-200 hover:bg-slate-50 transition-colors" data-recruitments--recruitments-target="recruitmentRow">
+        <td class="px-6 py-4 text-center">
+          <p class="mt-8 mb-8 text-center text-sm text-slate-600"><%= I18n.t('applications.table.none_candidate') %></p>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @applications, window: 1, outer_window: 1 %>

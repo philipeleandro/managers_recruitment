@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_30_224923) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_03_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "unaccent"
@@ -56,6 +56,16 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_30_224923) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "applications", force: :cascade do |t|
+    t.bigint "candidate_id", null: false
+    t.datetime "created_at", null: false
+    t.bigint "recruitment_role_id", null: false
+    t.string "status", default: "in_process", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_applications_on_candidate_id"
+    t.index ["recruitment_role_id"], name: "index_applications_on_recruitment_role_id"
+  end
+
   create_table "candidates", force: :cascade do |t|
     t.string "cpf"
     t.datetime "created_at", null: false
@@ -79,10 +89,15 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_30_224923) do
 
   create_table "recruitment_roles", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.integer "quantity", default: 0
     t.bigint "recruitment_id", null: false
-    t.jsonb "roles_data", default: {}, null: false
+    t.bigint "role_id", null: false
+    t.string "status", default: "new", null: false
+    t.string "token"
     t.datetime "updated_at", null: false
     t.index ["recruitment_id"], name: "index_recruitment_roles_on_recruitment_id"
+    t.index ["role_id"], name: "index_recruitment_roles_on_role_id"
+    t.index ["token"], name: "index_recruitment_roles_on_token", unique: true
   end
 
   create_table "recruitments", force: :cascade do |t|
@@ -110,7 +125,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_30_224923) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "applications", "candidates"
+  add_foreign_key "applications", "recruitment_roles"
   add_foreign_key "recruitment_roles", "recruitments"
+  add_foreign_key "recruitment_roles", "roles"
   add_foreign_key "recruitments", "companies"
   add_foreign_key "roles", "companies"
 end

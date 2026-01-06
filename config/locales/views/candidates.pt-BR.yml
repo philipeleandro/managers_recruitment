@@ -27,9 +27,18 @@ pt-BR:
       actions: Ações
       edit: Editar candidato
       delete: Excluir candidato
-      add_candidate_to_role: Atrelar a vaga
       confirm: Tem certeza que deseja excluir?
+      add_candidate_create_role: Atrelar a processo seletivo
     show_applications_list:
+      title: Lista de Candidaturas
+      applications_count: 'Mostrando %{applications} de %{total} candidaturas'
+      recruitment: Processo Seletivo
+      role: Cargo
+      status: Status
+      actions: Ações
+      approve_candidate: Aprovar candidato
+      reject_candidate: Reprovar candidato
+      none_application: Nenhuma candidatura encontrada
     edit:
       title: Editar Candidato
     index:

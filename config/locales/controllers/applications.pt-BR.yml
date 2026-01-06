@@ -1,0 +1,13 @@
+pt-BR:
+  applications:
+    new:
+      invalid_link: Não conseguimos localizar o processo seletivo
+      contact_recruiter: Em caso de dúvidas, entre em contato com o recrutador.
+    create:
+      apply:
+        success: Candidatura enviada com sucesso
+    reject:
+      success: Candidatura reprovada com sucesso
+    approve:
+      success: Candidatura aceita com sucesso
+

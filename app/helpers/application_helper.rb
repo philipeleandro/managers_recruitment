@@ -35,7 +35,10 @@ module ApplicationHelper
       inactive: 'bg-red-100 text-red-700',
       in_progress: 'bg-blue-100 text-blue-700',
       finished: 'bg-green-100 text-green-700',
-      canceled: 'bg-red-100 text-red-700'
+      canceled: 'bg-red-100 text-red-700',
+      in_process: 'bg-yellow-100 text-yellow-700',
+      rejected: 'bg-red-100 text-red-700',
+      approved: 'bg-green-100 text-green-700'
     }.with_indifferent_access
   end
 

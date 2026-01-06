@@ -1,0 +1,6 @@
+pt-BR:
+  enumerations:
+    application/status:
+      in_process: Em Andamento
+      approved: Aprovado
+      rejected: Reprovado

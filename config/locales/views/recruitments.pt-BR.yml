@@ -33,3 +33,18 @@ pt-BR:
       status: Status
       actions: Ações
       none_recruitment: Nenhum processo seletivo encontrado
+      apply_quantity: Qtd. Candidaturas
+    show:
+      buttons:
+        back: Voltar
+      title: Detalhes do processo seletivo
+      subtitle: Informações sobre as vagas e candidaturas
+      value: Valor
+      opening_date: Data de início
+      finish_date: Data de Conclusão
+      company: Empresa
+      roles: Cargos
+      quantity_apply: Quantidade de candidaturas
+      description: Descrição
+
+

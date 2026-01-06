@@ -5,8 +5,6 @@ class Recruitment < ApplicationRecord
   has_many :recruitment_roles, dependent: :destroy
   has_many :roles, through: :recruitment_roles
 
-  accepts_nested_attributes_for :recruitment_role, allow_destroy: true
-
   has_enumeration_for :status, with: Status, create_helpers: true
 
   validates :description, :status, :opening_date, :finish_date, :value, presence: true

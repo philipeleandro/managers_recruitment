@@ -1,11 +1,11 @@
 <main class="w-full mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8" data-controller="recruitments--recruitments">
   <div class="mb-8 flex items-center justify-between">
     <div>
-      <h1 class="text-4xl font-bold text-slate-900">Detalhes do processo seletivo</h1>
-      <p class="mt-2 text-slate-600"><%= t('companies.show.subtitle') %></p>
+      <h1 class="text-4xl font-bold text-slate-900"><%= t('recruitments.show.title') %></h1>
+      <p class="mt-2 text-slate-600"><%= t('recruitments.show.subtitle') %></p>
     </div>
     <div class="flex gap-2">
-      <%= link_to t('companies.show.buttons.back'), company_path(@recruitment.company_id), class: "rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700" %>
+      <%= link_to t('recruitments.show.buttons.back'), company_path(@recruitment.company_id), class: "rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700" %>
     </div>
   </div>
 
@@ -20,36 +20,36 @@
         </div>
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 mb-6">
           <div>
-            <label class="text-sm font-medium text-slate-600">Valor:</label>
+            <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.value') %>:</label>
             <p class="mt-2 text-slate-900"><%= "R$ #{number_with_precision(@recruitment.value.round(2), precision: 2)}" %></p>
           </div>
           <div>
-            <label class="text-sm font-medium text-slate-600">Data de abertura:</label>
+            <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.opening_date') %>:</label>
             <p class="mt-2 text-slate-900"><%= @recruitment.opening_date.strftime("%d/%m/%Y") %></p>
           </div>
           <div>
-            <label class="text-sm font-medium text-slate-600">Data de conclusão:</label>
+            <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.finish_date') %>:</label>
             <p class="mt-2 text-slate-900">
               <%= @recruitment.finish_date.strftime("%d/%m/%Y") %>
             </p>
           </div>
           <div>
-            <label class="text-sm font-medium text-slate-600">Empresa:</label>
+            <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.company') %>:</label>
             <p class="mt-2 text-blue-600 hover:text-blue-700"><%= link_to @recruitment.company.name, company_path(@recruitment.company.id) %></p>
           </div>
           <div>
-            <label class="text-sm font-medium text-slate-600">Cargos:</label>
-            <p class="mt-2 text-slate-900">Assistente, tentente, gerente, escritorgerente, escritorgerente, escritorgerente, escritor</p>
+            <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.roles') %>:</label>
+            <p class="mt-2 text-slate-900"><%= @recruitment.roles.pluck(:name).join(", ") %></p>
           </div>
           <div>
-            <label class="text-sm font-medium text-slate-600">Quantidade de Candidatos:</label>
-            <p class="mt-2 text-slate-900">27</p>
+            <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.quantity_apply') %>:</label>
+            <p class="mt-2 text-slate-900"><%= Application.by_recruitment(@recruitment.id).count %></p>
           </div>
         </div>
 
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-1 mb-6">
           <div>
-            <label class="text-sm font-medium text-slate-600">Descrição:</label>
+            <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.description') %>:</label>
             <p class="mt-2 text-slate-900"><%= @recruitment.description %></p>
           </div>
         </div>
@@ -57,5 +57,9 @@
     </div>
   </div>
 
-  <%= render 'roles_list' %>
+  <%= render 'filter_roles' %>
+
+  <div data-recruitments--recruitments-target="rolesListWrapper">
+    <%= render 'role' %>
+  </div>
 </main>

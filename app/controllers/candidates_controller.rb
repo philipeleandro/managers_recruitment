@@ -12,7 +12,9 @@ class CandidatesController < ApplicationController
   end
 
   def show
-    @applications = []
+    @applications = Application.by_candidate(@candidate.id)
+      .page(params[:page])
+      .per(10)
   end
 
   def new

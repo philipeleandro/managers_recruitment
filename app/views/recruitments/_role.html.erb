@@ -1,0 +1,15 @@
+<%= turbo_frame_tag 'roles_list' do %>
+  <% if @role.present? %>
+    <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm mt-8">
+      <%= render 'applications/table', role: @role, recruitment: @recruitment %>
+    </div>
+  <% else %>
+    <div class="rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm mt-8">
+      <h2 class="text-lg font-semibold text-slate-900"><%= t('recruitments.index_recruitments_list.title') %></h2>
+
+      <div class="p-12 text-center">
+        <p class="text-slate-600"><%= t('recruitments.index_recruitments_list.none_recruitment') %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

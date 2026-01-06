@@ -1,0 +1,17 @@
+<div class="mb-6 mt-6">
+  <div class="flex flex-row justify-between">
+    <div class="flex gap-2 flex-wrap">
+      <% @recruitment.roles.order(created_at: :desc).each do |role| %>
+          <%= button_tag role.name,
+            type: 'button',
+            class: link_classes.call(@role.name == role.name),
+            data: {
+              action: "click->recruitments--recruitments#filterByRole",
+              role_name: role.name,
+              "recruitments--recruitments_target": "filterRoleButton"
+            }
+          %>
+        <% end %>
+    </div>
+  </div>
+</div>

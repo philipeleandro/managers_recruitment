@@ -3,54 +3,52 @@
     <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
       <table class="w-full">
         <div class="px-6 py-4 border-b border-slate-200">
-          <h2 class="text-lg font-semibold text-slate-900">Lista de Aplicações</h2>
-          <p class="text-sm text-slate-600 mt-1">Mostrando <%= @applications.count %> de <%= 200 %> Aplicações</p>
+          <h2 class="text-lg font-semibold text-slate-900"><%= t('applications.show_applications_list.title') %></h2>
+          <p class="text-sm text-slate-600 mt-1"><%= t('applications.show_applications_list.applications_count', applications: @applications.count, total: @applications.total_count) %></p>
         </div>
         <thead class="border-b border-slate-200">
           <tr>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Nome</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">E-mail</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">CPF</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Telefone</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Status</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Currículo</th>
-            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900">Ações</th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('applications.show_applications_list.recruitment') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('applications.show_applications_list.role') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('applications.show_applications_list.status') %></th>
+            <th class="px-6 py-4 text-center text-sm font-semibold text-slate-900"><%= t('applications.show_applications_list.actions') %></th>
           </tr>
         </thead>
         <tbody>
           <% @applications.each do |application| %>
             <tr class="text-center border-b border-slate-200 hover:bg-slate-50 transition-colors">
               <td class="px-6 py-4">
-                <p class="text-left font-medium text-slate-900"><%= application.name %></p>
+                <p class="text-center text-sm text-slate-900">
+                  <%= link_to 'Acessar página',
+                    recruitment_path(application.recruitment_role.recruitment.id),
+                    target: '_blank',
+                    rel: 'noopener',
+                    class: "text-blue-600 hover:text-blue-700" %>
+                </p>
               </td>
               <td class="px-6 py-4">
-                <p class="text-left text-sm text-slate-600"><%= application.email %></p>
+                <p class="text-center text-sm text-slate-600">
+                  <%= application.recruitment_role.role.name %>
+                </p>
               </td>
-              <td class="px-6 py-4">
-                <p class="text-left text-sm text-slate-600"><%= application.cpf %></p>
-              </td>
-              <td class="px-6 py-4">
-                <p class="text-left text-sm text-slate-600"><%= application.phone_number %></p>
-              </td>
-              <td class="px-6 py-4">
-                <% if application.resume.present? %>
-                  <%= link_to "Visualizar", rails_blob_path(application.resume), target: "_blank", class: "text-sm font-medium text-blue-600 hover:text-blue-700" %>
-                <% else %>
-                  <span class="text-sm text-slate-400">Sem curriculo</span>
-                <% end %>
+              <td class="max-w-[185px] truncate px-6 py-4 text-center">
+                <span class="inline-flex w-[120px] items-center justify-center rounded-lg px-3 py-0.5 text-xs <%= status_colors[application.status] %>">
+                  <%= application.status_humanize %>
+                </span>
               </td>
               <td class="px-6 py-4 text-right">
-                <div class="flex gap-2 justify-center">
-                  <%= link_to inline_svg_tag('icons/pencil.svg', class: "lucide lucide-pen h-4 w-4 text-blue-600"),
-                        edit_application_path(application),
-                        class: "text-sm font-medium text-blue-600 hover:text-blue-700",
-                        data: { turbo_frame: "candidate_management", action: "click->candidates-form#forceOpen" } %>
+                <div class="flex gap-2 items-center justify-center">
+                  <%= button_to inline_svg_tag('icons/circle_check.svg', class: "lucide lucide-cicle-check h-4 w-4 text-green-600"),
+                    approve_application_path(application),
+                    title: t('applications.show_applications_list.recruitment'),
+                    class: "flex items-center cursor-pointer text-sm font-medium text-blue-600 hover:text-blue-700",
+                    data: { turbo_frame: "_top" } unless application.approved? %>
 
-                  <%= link_to inline_svg_tag('icons/trash_can.svg', class: "lucide lucide-trash2 h-4 w-4 text-red-600"),
-                      candidate_path(candidate),
-                      data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?" },
-                      class: "text-sm font-medium text-red-600 hover:text-red-700",
-                      id: 'delete-candidate-button' %>
+                 <%= button_to inline_svg_tag('icons/circle_close.svg', class: "lucide lucide-circle-x h-4 w-4 text-red-600"),
+                    reject_application_path(application),
+                    title: t('applications.show_applications_list.reject_candidate'),
+                    class: "flex items-center cursor-pointer text-sm font-medium text-blue-600 hover:text-blue-700",
+                    data: { turbo_frame: "_top" } unless application.rejected? %>
                 </div>
               </td>
             </tr>
@@ -62,11 +60,11 @@
     </div>
   <% else %>
     <div class="rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm">
-      <h2 class="text-lg font-semibold text-slate-900">Lista de Aplicações</h2>
-      <p class="text-sm text-slate-600 mt-1">Mostrando <%= @applications.count %> aplicações</p>
+      <h2 class="text-lg font-semibold text-slate-900"><%= t('applications.show_applications_list.title') %></h2>
+      <p class="text-sm text-slate-600 mt-1"><%= t('applications.show_applications_list.applications_count', applications: @applications.count, total: @applications.total_count) %></p>
 
       <div class="p-12 text-center">
-        <p class="text-slate-600">Nenhuma aplicação encontrada</p>
+        <p class="text-slate-600"><%= t('applications.show_applications_list.none_application') %></p>
       </div>
     </div>
   <% end %>
