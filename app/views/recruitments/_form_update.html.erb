@@ -34,37 +34,6 @@
       </div>
     </div>
 
-    <div class="col-span-2">
-      <label class="block text-sm font-medium text-slate-900 mb-2"><%= t('recruitments.form.quantity_and_roles') %></label>
-      <div class="grid grid-cols-1 bg-slate-50 pt-1 pb-1 pr-4 pl-4 rounded-lg border border-slate-200 max-h-60 overflow-y-auto">
-        <% if @company.roles.any? %>
-            <%= form.fields_for recruitment.recruitment_roles do |rr_form| %>
-              <% @company.roles.each_with_index do |role, index| %>
-                <div class="flex items-center justify-between border-b border-slate-200 pb-2 pt-2 last:border-0">
-                  <div class="flex-1">
-                    <span class="text-sm font-medium text-slate-700"><%= role.name %></span>
-                  </div>
-
-                  <div class="flex items-center gap-2">
-                    <label class="text-xs text-slate-500 mb-2"><%= t('recruitments.form.quantity') %>:</label>
-                    <input type="number"
-                          name="recruitment[recruitment_role_attributes][roles_data][<%= role.id %>]"
-                          value="<%= recruitment.quantity_for_role(role.id) %>"
-                          min="0"
-                          placeholder="0"
-                          class="text-center w-20 rounded-lg border border-slate-300 text-sm text-center focus:border-blue-500 focus:ring-blue-500" />
-                  </div>
-                </div>
-            <% end %>
-          <% end %>
-        <% else %>
-          <p class="text-center text-xs text-slate-600 mt-4"><%= t('recruitments.form.none_role') %></p>
-          <p class="text-center text-xs text-slate-600 mb-4"><%= t('recruitments.form.add_roles_message') %></p>
-        <% end %>
-      </div>
-      <p class="text-xs text-slate-500 mt-2"><%= t('recruitments.form.empty_role_quantity') %></p>
-    </div>
-
     <div class="mt-8 flex gap-6">
       <%= form.submit recruitment.new_record? ? "Criar Recrutamento" : "Atualizar Recrutamento", class: "rounded-lg w-full bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer" %>
       <%= link_to 'Cancelar', '#',
