@@ -5,6 +5,18 @@ module RecruitmentsHelper
     recruitment_role.open_to_applications? ? copy_button(recruitment_role) : ''
   end
 
+  def join_roles_and_quantity(roles)
+    return if roles.empty?
+
+    roles_quantity = roles.map do |role|
+      recruitment_role = role.recruitment_roles.find_by(role_id: role.id)
+
+      "#{role.name} (#{recruitment_role.quantity})"
+    end
+
+    roles_quantity.join(', ')
+  end
+
   private
 
   def copy_button(recruitment_role)

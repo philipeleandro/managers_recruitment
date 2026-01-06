@@ -39,7 +39,8 @@
           </div>
           <div>
             <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.roles') %>:</label>
-            <p class="mt-2 text-slate-900"><%= @recruitment.roles.pluck(:name).join(", ") %></p>
+            <p class="mt-2 text-slate-900"><%= join_roles_and_quantity(@recruitment.roles) %>
+            </p>
           </div>
           <div>
             <label class="text-sm font-medium text-slate-600"><%= t('recruitments.show.quantity_apply') %>:</label>
