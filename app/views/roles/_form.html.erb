@@ -17,20 +17,29 @@
           </div>
         </div>
       </div>
+
+      <% if params[:company_id].blank?%>
+        <%= description_field(form)%>
+
+        <div class="col-span-1">
+          <%= form.label :company_id, class: "block text-sm text-slate-900 mb-2" %>
+          <div class="relative">
+            <%= form.select :company_id, Company.all.to_a.map { |company| [company.name, company.id] }, { include_blank: true }, class: "appearance-none w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 pr-10 text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white" %>
+            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-500">
+              <%= inline_svg_tag 'icons/dropdown-arrow.svg' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
 
-    <%= form.hidden_field :company_id %>
-
-    <div class="col-span-1">
-      <%= form.label :description, class: "block text-sm text-slate-900 mb-2" %>
-      <%= form.text_area :description,
-          rows: 1,
-          class: "block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none resize-y",
-          placeholder: t('roles.form.placeholder.description') %>
-    </div>
+    <%  if params[:company_id].present? %>
+      <%= form.hidden_field :company_id %>
+      <%= description_field(form) %>
+    <% end %>
 
     <div class="mt-8 flex gap-6">
-      <%= form.submit role.new_record? ? "Criar Vaga" : "Atualizar Vaga", class: "rounded-lg w-full bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer" %>
+      <%= form.submit role.new_record? ? "Criar Cargo" : "Atualizar Cargo", class: "rounded-lg w-full bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer" %>
       <%= link_to 'Cancelar',
           '#',
           class: 'rounded-lg w-full border border-slate-200 ' \
