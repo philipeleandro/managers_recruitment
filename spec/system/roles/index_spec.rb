@@ -13,7 +13,7 @@ RSpec.describe 'Role#Index' do
       end
 
       it { expect(page).to have_current_path(roles_path) }
-      it { expect(page).to have_content('Lista de Vagas') }
+      it { expect(page).to have_content('Lista de Cargos') }
       it { expect(page).to have_content('Nome') }
       it { expect(page).to have_content('Status') }
       it { expect(page).to have_content('Ações') }
@@ -24,7 +24,7 @@ RSpec.describe 'Role#Index' do
           find('input[name="query"]').send_keys(:enter)
         end
 
-        it { expect(page).to have_content('Lista de Vagas') }
+        it { expect(page).to have_content('Lista de Cargos') }
         it { expect(page).to have_content(role.name) }
       end
     end
@@ -33,8 +33,8 @@ RSpec.describe 'Role#Index' do
       before { visit roles_path }
 
       it { expect(page).to have_current_path(roles_path) }
-      it { expect(page).to have_content('Lista de Vagas') }
-      it { expect(page).to have_content('Nenhuma vaga encontrada') }
+      it { expect(page).to have_content('Lista de Cargos') }
+      it { expect(page).to have_content('Nenhuma cargo encontrada') }
     end
   end
 end

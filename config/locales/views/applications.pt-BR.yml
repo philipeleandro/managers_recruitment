@@ -1,7 +1,7 @@
 pt-BR:
   applications:
     form:
-      role_name: 'Vaga: %{role}'
+      role_name: 'Cargo: %{role}'
       insert_data: 'Preencha os dados'
       name: Nome
       email: E-mail
@@ -14,7 +14,7 @@ pt-BR:
         cpf: Apenas números
         phone: DDD + número
     new:
-      role_name: 'Vaga: %{role}'
+      role_name: 'Cargo: %{role}'
     table:
       candidate: Candidato
       apply_date: Data de Candidatura

@@ -22,8 +22,8 @@ RSpec.describe 'Candidates#show' do
       it { expect(page).to have_content(candidate.email) }
       it { expect(page).to have_content(candidate.status_humanize) }
       it { expect(page).to have_content(candidate.resume.filename) }
-      it { expect(page).to have_content(candidate.created_at.strftime("%d/%m/%Y %H:%M")) }
-      it { expect(page).to have_content(candidate.updated_at.strftime("%d/%m/%Y %H:%M")) }
+      it { expect(page).to have_content(candidate.created_at.strftime('%d/%m/%Y %H:%M')) }
+      it { expect(page).to have_content(candidate.updated_at.strftime('%d/%m/%Y %H:%M')) }
     end
 
     context 'when a candidate has no applications' do

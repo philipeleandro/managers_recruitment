@@ -28,8 +28,8 @@ RSpec.describe 'Recruitments#show', js: true do
         it { expect(page).to have_content(recruitment.finish_date.strftime('%d/%m/%Y')) }
         it { expect(page).to have_content(recruitment.company.name) }
         it { expect(page).to have_content(recruitment.description) }
-        it { expect(page).to have_content(recruitment.created_at.strftime("%d/%m/%Y %H:%M")) }
-        it { expect(page).to have_content(recruitment.updated_at.strftime("%d/%m/%Y %H:%M")) }
+        it { expect(page).to have_content(recruitment.created_at.strftime('%d/%m/%Y %H:%M')) }
+        it { expect(page).to have_content(recruitment.updated_at.strftime('%d/%m/%Y %H:%M')) }
       end
 
       it 'shows associated role names' do

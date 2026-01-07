@@ -2,10 +2,10 @@ pt-BR:
   roles:
     create:
       flashes:
-        success: Vaga criada com sucesso
+        success: Cargo criado com sucesso
     update:
       flashes:
-        success: Vaga atualizada com sucesso
+        success: Cargo atualizado com sucesso
     delete:
       flashes:
-        success: Vaga excluída com sucesso
+        success: Cargo excluído com sucesso

@@ -2,5 +2,5 @@ pt-BR:
   activerecord:
     models:
       recruitment_roles:
-        one: Recrutamento de vaga
-        other: Recrutamento de vagas
+        one: Recrutamento para cargo
+        other: Recrutamento para cargos

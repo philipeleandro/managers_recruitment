@@ -2,8 +2,8 @@ pt-BR:
   activerecord:
     models:
       role:
-        one: Vaga
-        other: Vagas
+        one: Cargo
+        other: Cargos
     attributes:
       role:
         name: Nome
@@ -11,5 +11,5 @@ pt-BR:
         status: Status
         company_id: Empresa
         company: Empresa
-        created_at: criada em
-        updated_at: Atualizada em
+        created_at: Criado em
+        updated_at: Atualizado em

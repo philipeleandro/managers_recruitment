@@ -10,11 +10,11 @@ pt-BR:
       add_roles_message: Crie cargos para a empresa para poder atrelar ao processo seletivo.
       empty_role_quantity: Valores vazios ou 0 serão ignorados.
       quantity_and_roles: Cargos e quantidades
-      none_role: Nenhuma vaga encontrada
+      none_role: Nenhuma cargo encontrada
       quantity: Qtd.
       placeholder:
-        name: Nome da vaga
-        description: Descrição da vaga
+        name: Nome da cargo
+        description: Descrição da cargo
         finish_date: Data de término
         opening_date: Data de início
         company: Selecione a empresa
@@ -38,7 +38,7 @@ pt-BR:
       buttons:
         back: Voltar
       title: Detalhes do processo seletivo
-      subtitle: Informações sobre as vagas e candidaturas
+      subtitle: Informações sobre as cargos e candidaturas
       value: Valor
       opening_date: Data de início
       finish_date: Data de Conclusão

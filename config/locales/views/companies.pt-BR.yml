@@ -28,7 +28,7 @@ pt-BR:
       actions: Ações
       edit: Editar empresa
       delete: Excluir empresa
-      create_role: Criar vaga
+      create_role: Criar cargo
       confirm: Tem certeza que deseja excluir?
     show_applications_list:
     edit:

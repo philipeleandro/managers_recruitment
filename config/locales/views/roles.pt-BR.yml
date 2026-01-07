@@ -5,44 +5,44 @@ pt-BR:
         all: Todos
     form_search:
       placeholder:
-        query: Buscar nome da vaga ...
+        query: Buscar nome da cargo ...
     form:
       placeholder:
-        name: Nome da vaga
-        description: Descrição da vaga
+        name: Nome da cargo
+        description: Descrição da cargo
         phone: DDD + número
     index_roles_list:
-      title: Lista de Vagas
-      roles_count: 'Mostrando %{roles} de %{total} vagas'
+      title: Lista de Cargos
+      roles_count: 'Mostrando %{roles} de %{total} cargos'
       name: Nome
       status: Status
       company: Empresa
       description: Descrição
       actions: Ações
-      none_role: Nenhuma vaga encontrada
+      none_role: Nenhuma cargo encontrada
       created_at: Criado em
       updated_at: Atualizado em
     show_actions:
       actions: Ações
-      edit: Editar vaga
-      delete: Excluir vaga
-      create_role: Criar vaga
+      edit: Editar cargo
+      delete: Excluir cargo
+      create_role: Criar cargo
       confirm: Tem certeza que deseja excluir?
     show_applications_list:
     edit:
-      title: Editar Vaga
+      title: Editar Cargo
     index:
-      title: Vagas
-      subtitle: Gerencie e acompanhe todas as vagas
-      new_role: Adicionar Vaga
+      title: Cargos
+      subtitle: Gerencie e acompanhe todos os cargos
+      new_role: Criar Cargo
     new:
-      title: Adicionar Nova Vaga
+      title: Adicionar Novo Cargo
     show:
-      subtitle: Detalhes e informações da vaga
+      subtitle: Detalhes e informações da cargo
       details: Informações
       labels:
-        name: Nome da vaga
-        description: Descrição da vaga
+        name: Nome da cargo
+        description: Descrição da cargo
         company: Empresa
         created_at: Criado em
         updated_at: Atualizado em

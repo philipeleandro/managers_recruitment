@@ -29,7 +29,7 @@ export default class extends Controller {
     if (!button) return
 
     if (form.classList.contains("hidden")) {
-      button.innerText = "Criar Vaga"
+      button.innerText = "Criar Cargo"
     } else {
       button.innerText = "Recolher"
     }

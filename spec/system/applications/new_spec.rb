@@ -12,7 +12,7 @@ RSpec.describe 'Application#New' do
       click_button 'Candidatar-se'
     end
 
-    it { expect(page).to have_content("Vaga: #{recruitment_role.role.name}") }
+    it { expect(page).to have_content("Cargo: #{recruitment_role.role.name}") }
     it { expect(page).to have_content('Nome') }
     it { expect(page).to have_content('E-mail') }
     it { expect(page).to have_content('Telefone') }
