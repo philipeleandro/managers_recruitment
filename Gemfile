@@ -40,7 +40,7 @@ gem 'enumerate_it'
 
 gem 'cpf_cnpj', '1.0.1'
 
-gem 'factory_bot_rails', '6.4.4'
+gem 'factory_bot_rails', '6.5.1'
 
 gem 'active_storage_validations', '2.0.0'
 
