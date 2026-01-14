@@ -6,7 +6,7 @@ gem 'importmap-rails'
 
 gem 'jbuilder'
 
-gem 'pg', '~> 1.1'
+gem 'pg', '~> 1.6'
 
 gem 'propshaft'
 
