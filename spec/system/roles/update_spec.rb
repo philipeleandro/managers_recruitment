@@ -5,7 +5,10 @@ require 'rails_helper'
 RSpec.describe 'Roles#update' do
   let(:role) { create(:role) }
 
-  before { visit edit_role_path(id: role.id) }
+  before do
+    sign_in_as_admin
+    visit edit_role_path(id: role.id)
+  end
 
   context 'when successfully' do
     it 'updates a role' do

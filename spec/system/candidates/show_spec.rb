@@ -5,7 +5,10 @@ require 'rails_helper'
 RSpec.describe 'Candidates#show' do
   let(:candidate) { create(:candidate) }
 
-  before { visit candidate_path(candidate) }
+  before do
+    sign_in_as_admin
+    visit candidate_path(candidate)
+  end
 
   describe 'page content' do
     context 'when viewing candidate details' do

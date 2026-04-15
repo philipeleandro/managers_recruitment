@@ -8,6 +8,7 @@ RSpec.describe 'Candidates#Index' do
       let(:candidate) { create(:candidate) }
 
       before do
+        sign_in_as_admin
         candidate
         visit candidates_path
       end
@@ -34,7 +35,10 @@ RSpec.describe 'Candidates#Index' do
     end
 
     context 'when there is no candidates' do
-      before { visit candidates_path }
+      before do
+        sign_in_as_admin
+        visit candidates_path
+      end
 
       it { expect(page).to have_current_path(candidates_path) }
       it { expect(page).to have_content('Lista de Candidatos') }

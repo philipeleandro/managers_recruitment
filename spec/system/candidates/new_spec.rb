@@ -4,7 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Candidates#New' do
   context 'when visit Candidates New' do
-    before { visit new_candidate_path }
+    before do
+      sign_in_as_admin
+      visit new_candidate_path
+    end
 
     it { expect(page).to have_current_path(new_candidate_path) }
     it { expect(page).to have_content('Adicionar Novo Candidato') }

@@ -36,6 +36,19 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
+Capybara.register_driver :selenium_remote do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--window-size=1400,1400')
+  options.add_argument('--headless=new')
+
+  # Selenium Grid 4 (imagem standalone-chrome): use a raiz, não /wd/hub.
+  url = ENV.fetch('SELENIUM_REMOTE_URL', 'http://selenium:4444')
+  Capybara::Selenium::Driver.new(app, browser: :remote, url: url, options: options)
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
@@ -74,33 +87,24 @@ RSpec.configure do |config|
 
   config.include ActionView::Helpers::NumberHelper, type: :system
 
+  # System spec sem JS: Rack::Test (rápido).
   config.before(:each, type: :system) do
+    Capybara.app_host = nil
     driven_by :rack_test
   end
 
+  # JS true: o browser roda em outro processo/container. Ele precisa abrir uma URL
+  # alcançável para o servidor do Capybara (Puma). Em Docker Compose, use:
+  # CAPYBARA_APP_HOST=http://web:4000
   config.before(:each, js: true, type: :system) do
-    Capybara.register_driver :selenium_remote do |app|
-      options = Selenium::WebDriver::Chrome::Options.new
-      options.add_argument('--no-sandbox')
-      options.add_argument('--disable-dev-shm-usage')
-      options.add_argument('--window-size=1400,1400')
-      options.add_argument('--headless=new')
-
-      Capybara::Selenium::Driver.new(
-        app,
-        browser: :remote,
-        url: 'http://selenium:4444/wd/hub',
-        options: options
-      )
-    end
+    Capybara.server_host = '0.0.0.0'
+    Capybara.server_port = ENV.fetch('CAPYBARA_SERVER_PORT', '4000').to_i
+    Capybara.app_host = ENV.fetch('CAPYBARA_APP_HOST', "http://127.0.0.1:#{Capybara.server_port}")
 
     driven_by :selenium_remote
+  end
 
-    Capybara.server_host = '0.0.0.0'
-    Capybara.server_port = 4000
-
-    ip = Socket.ip_address_list.detect(&:ipv4_private?).ip_address
-
-    Capybara.app_host = "http://#{ip}:#{Capybara.server_port}"
+  config.after(:each, type: :system) do
+    Capybara.reset_sessions!
   end
 end

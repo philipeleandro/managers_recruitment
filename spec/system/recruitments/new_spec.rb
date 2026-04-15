@@ -7,6 +7,7 @@ RSpec.describe 'Recruitment#New' do
     let(:company) { create(:company) }
 
     before do
+      sign_in_as_admin
       visit company_path(id: company.id)
       click_link 'Criar Processo Seletivo'
     end

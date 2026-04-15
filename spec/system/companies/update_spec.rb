@@ -5,7 +5,10 @@ require 'rails_helper'
 RSpec.describe 'Companies#update' do
   let(:company) { create(:company) }
 
-  before { visit edit_company_path(id: company.id) }
+  before do
+    sign_in_as_admin
+    visit edit_company_path(id: company.id)
+  end
 
   context 'when successfully' do
     it 'updates a company' do

@@ -9,10 +9,11 @@ RSpec.describe 'Recruitment#update', js: true do
 
   context 'when successfully' do
     before do
+      sign_in_as_admin
       recruitment_role
 
       visit company_path(id: company.id)
-      click_link 'edit-recruitment-button'
+      find('#edit-recruitment-button', match: :first).click
     end
 
     it 'updates an existing recruitment' do
@@ -30,10 +31,11 @@ RSpec.describe 'Recruitment#update', js: true do
 
   context 'when fails' do
     before do
+      sign_in_as_admin
       recruitment_role
 
       visit company_path(id: company.id)
-      click_link 'edit-recruitment-button'
+      find('#edit-recruitment-button', match: :first).click
     end
 
     it 'shows errors when data is invalid' do

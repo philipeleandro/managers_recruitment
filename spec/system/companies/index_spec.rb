@@ -8,6 +8,7 @@ RSpec.describe 'Company#Index' do
       let(:company) { create(:company) }
 
       before do
+        sign_in_as_admin
         company
         visit companies_path
       end
@@ -34,7 +35,10 @@ RSpec.describe 'Company#Index' do
     end
 
     context 'when there is no companies' do
-      before { visit companies_path }
+      before do
+        sign_in_as_admin
+        visit companies_path
+      end
 
       it { expect(page).to have_current_path(companies_path) }
       it { expect(page).to have_content('Lista de Empresas') }

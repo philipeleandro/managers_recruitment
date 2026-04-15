@@ -7,6 +7,7 @@ RSpec.describe 'Candidates#delete', js: true do
     let(:candidate) { create(:candidate) }
 
     before do
+      sign_in_as_admin
       candidate
       visit candidates_path
     end
@@ -27,6 +28,7 @@ RSpec.describe 'Candidates#delete', js: true do
     let(:candidate) { application.candidate }
 
     before do
+      sign_in_as_admin
       application
       visit candidates_path
     end

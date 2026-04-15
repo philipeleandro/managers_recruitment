@@ -6,7 +6,10 @@ RSpec.describe 'Candidates#edit' do
   context 'when visit Candidates Edit' do
     let(:candidate) { create(:candidate) }
 
-    before { visit edit_candidate_path(id: candidate.id) }
+    before do
+      sign_in_as_admin
+      visit edit_candidate_path(id: candidate.id)
+    end
 
     it { expect(page).to have_current_path(edit_candidate_path(candidate)) }
     it { expect(page).to have_content('Editar Candidato') }

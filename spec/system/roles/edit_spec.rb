@@ -6,7 +6,10 @@ RSpec.describe 'Role#edit' do
   context 'when visit Role Edit' do
     let(:role) { create(:role) }
 
-    before { visit edit_role_path(id: role.id) }
+    before do
+      sign_in_as_admin
+      visit edit_role_path(id: role.id)
+    end
 
     it { expect(page).to have_current_path(edit_role_path(role)) }
     it { expect(page).to have_content('Editar Cargo') }

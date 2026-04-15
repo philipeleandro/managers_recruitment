@@ -6,7 +6,10 @@ RSpec.describe 'Company#edit' do
   context 'when visit Company Edit' do
     let(:company) { create(:company) }
 
-    before { visit edit_company_path(id: company.id) }
+    before do
+      sign_in_as_admin
+      visit edit_company_path(id: company.id)
+    end
 
     it { expect(page).to have_current_path(edit_company_path(company)) }
     it { expect(page).to have_content('Editar Empresa') }

@@ -8,6 +8,7 @@ RSpec.describe 'Role#Create', js: true do
   context 'when successfully' do
     context 'when visiting company view' do
       before do
+        sign_in_as_admin
         visit company_path(id: company.id)
         click_link 'Criar cargo'
       end
@@ -25,6 +26,7 @@ RSpec.describe 'Role#Create', js: true do
 
     context 'when visiting role view' do
       before do
+        sign_in_as_admin
         company
         visit roles_path
         click_link 'Criar Cargo'
@@ -45,6 +47,7 @@ RSpec.describe 'Role#Create', js: true do
 
   context 'when fails' do
     before do
+      sign_in_as_admin
       visit company_path(id: company.id)
       click_link 'Criar cargo'
     end

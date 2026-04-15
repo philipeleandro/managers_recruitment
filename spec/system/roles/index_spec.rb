@@ -8,6 +8,7 @@ RSpec.describe 'Role#Index' do
       let(:role) { create(:role) }
 
       before do
+        sign_in_as_admin
         role
         visit roles_path
       end
@@ -30,7 +31,10 @@ RSpec.describe 'Role#Index' do
     end
 
     context 'when there is no roles' do
-      before { visit roles_path }
+      before do
+        sign_in_as_admin
+        visit roles_path
+      end
 
       it { expect(page).to have_current_path(roles_path) }
       it { expect(page).to have_content('Lista de Cargos') }

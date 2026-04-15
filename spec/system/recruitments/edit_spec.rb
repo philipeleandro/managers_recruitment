@@ -8,17 +8,17 @@ RSpec.describe 'Recruitment#edit' do
     let(:recruitment) { create(:recruitment, company: company) }
 
     before do
+      sign_in_as_admin
       recruitment
 
       visit company_path(id: company.id)
-      click_link 'Criar Processo Seletivo'
+      find('#edit-recruitment-button', match: :first).click
     end
 
-    it { expect(page).to have_content('Adicionar Novo Processo Seletivo') }
+    it { expect(page).to have_content('Editar Processo Seletivo') }
     it { expect(page).to have_field('Descrição') }
     it { expect(page).to have_field('Data de início') }
     it { expect(page).to have_field('Data de término') }
     it { expect(page).to have_field('Valor') }
-    it { expect(page).to have_content('Cargos e quantidades') }
   end
 end

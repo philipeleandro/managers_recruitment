@@ -10,7 +10,10 @@ RSpec.describe 'Companies#Show' do
     let(:cnpj) { company.cnpj }
     let(:formatted_cnpj) { CNPJ.new(cnpj).formatted }
 
-    before { visit company_path(company) }
+    before do
+      sign_in_as_admin
+      visit company_path(company)
+    end
 
     it { expect(page).to have_current_path(company_path(company)) }
     it { expect(page).to have_content('Detalhes e informações da empresa') }
@@ -31,6 +34,7 @@ RSpec.describe 'Companies#Show' do
     let(:parsed_value) { number_with_precision(recruitment.value.round(2), precision: 2) }
 
     before do
+      sign_in_as_admin
       recruitment_role
       visit company_path(company)
     end
@@ -44,7 +48,10 @@ RSpec.describe 'Companies#Show' do
   context 'when has no recruitment' do
     let(:company) { create(:company) }
 
-    before { visit company_path(company) }
+    before do
+      sign_in_as_admin
+      visit company_path(company)
+    end
 
     it { expect(page).to have_content('Nenhum processo seletivo encontrado') }
   end

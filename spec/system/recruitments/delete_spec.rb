@@ -9,6 +9,7 @@ RSpec.describe 'Recruitment#delete', js: true do
 
   context 'when successfully' do
     before do
+      sign_in_as_admin
       recruitment_role
 
       visit company_path(id: company.id)

@@ -8,6 +8,7 @@ RSpec.describe 'Recruitment#Create', js: true do
 
   context 'when successfully' do
     before do
+      sign_in_as_admin
       role
       visit company_path(id: company.id)
       click_link 'Criar Processo Seletivo'
@@ -28,6 +29,7 @@ RSpec.describe 'Recruitment#Create', js: true do
 
   context 'when fails' do
     before do
+      sign_in_as_admin
       role
       visit company_path(id: company.id)
       click_link 'Criar Processo Seletivo'

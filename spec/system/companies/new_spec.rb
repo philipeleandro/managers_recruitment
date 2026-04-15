@@ -4,7 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Company#New' do
   context 'when visit Company New' do
-    before { visit new_company_path }
+    before do
+      sign_in_as_admin
+      visit new_company_path
+    end
 
     it { expect(page).to have_current_path(new_company_path) }
     it { expect(page).to have_content('Adicionar Nova Empresa') }

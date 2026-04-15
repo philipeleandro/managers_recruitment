@@ -7,6 +7,7 @@ RSpec.describe 'Role#New', js: true do
     let(:company) { create(:company) }
 
     before do
+      sign_in_as_admin
       visit company_path(id: company.id)
       click_link 'Criar cargo'
     end
@@ -20,6 +21,7 @@ RSpec.describe 'Role#New', js: true do
 
   context 'when accesses role view' do
     before do
+      sign_in_as_admin
       visit roles_path
       click_link 'Criar Cargo'
     end

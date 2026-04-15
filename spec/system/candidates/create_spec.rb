@@ -3,7 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Candidates#Create' do
-  before { visit new_candidate_path }
+  before do
+    sign_in_as_admin
+    visit new_candidate_path
+  end
 
   context 'when successfully' do
     it 'creates a new candidate' do

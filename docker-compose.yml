@@ -1,4 +1,3 @@
-version: '3'
 services:
   web:
     build:
@@ -6,6 +5,8 @@ services:
       dockerfile: Dockerfile.dev
     environment:
       RAILS_ENV: development
+      CAPYBARA_APP_HOST: http://web:4000
+      SELENIUM_REMOTE_URL: http://selenium:4444
     depends_on:
       - postgres
       - redis

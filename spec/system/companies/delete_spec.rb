@@ -6,6 +6,7 @@ RSpec.describe 'Company#delete', js: true do
   let(:company) { create(:company) }
 
   before do
+    sign_in_as_admin
     company
     visit companies_path
   end

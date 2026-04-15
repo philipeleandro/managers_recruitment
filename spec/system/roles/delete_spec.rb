@@ -7,6 +7,7 @@ RSpec.describe 'Roles#delete', js: true do
   let(:company) { role.company }
 
   before do
+    sign_in_as_admin
     role
     visit roles_path
   end
@@ -28,6 +29,7 @@ RSpec.describe 'Roles#delete', js: true do
     let(:company_of_role_with_dependency) { role.company }
 
     before do
+      sign_in_as_admin
       recruitment_role
       company_of_role_with_dependency
       visit roles_path

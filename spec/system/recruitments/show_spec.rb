@@ -16,6 +16,7 @@ RSpec.describe 'Recruitments#show', js: true do
       let(:react_recruitment_role) { create(:recruitment_role, recruitment: recruitment, role: react_role) }
 
       before do
+        sign_in_as_admin
         react_recruitment_role
         applications
         visit recruitment_path(recruitment)
@@ -53,6 +54,7 @@ RSpec.describe 'Recruitments#show', js: true do
       let(:react_recruitment_role) { create(:recruitment_role, recruitment: recruitment, role: react_role) }
 
       before do
+        sign_in_as_admin
         ruby_recruitment_role
         react_recruitment_role
         visit recruitment_path(recruitment)
@@ -84,6 +86,7 @@ RSpec.describe 'Recruitments#show', js: true do
       end
 
       before do
+        sign_in_as_admin
         recruitment_role_open
         recruitment_role_closed
         visit recruitment_path(recruitment)
@@ -143,6 +146,7 @@ RSpec.describe 'Recruitments#show', js: true do
       let(:second_application) { applications.second }
 
       before do
+        sign_in_as_admin
         first_application
         second_application
         visit recruitment_path(recruitment)
@@ -208,7 +212,10 @@ RSpec.describe 'Recruitments#show', js: true do
     context 'when no roles are present for the recruitment' do
       let(:recruitment_without_roles) { create(:recruitment, company: company) }
 
-      before { visit recruitment_path(recruitment_without_roles) }
+      before do
+        sign_in_as_admin
+        visit recruitment_path(recruitment_without_roles)
+      end
 
       it { expect(page).to have_content('Nenhum processo seletivo encontrado') }
     end
