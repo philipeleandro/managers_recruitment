@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'Dashboards#Home' do
   context 'when visit dashboards home' do
-    before { visit root_path }
+    before { visit home_path }
 
-    it { expect(page).to have_current_path(root_path) }
+    it { expect(page).to have_current_path(home_path) }
     it { expect(page).to have_content('Processos Novos') }
     it { expect(page).to have_content('Processos em Andamento') }
     it { expect(page).to have_content('Bem vindo de volta') }
@@ -15,7 +15,7 @@ RSpec.describe 'Dashboards#Home' do
   context 'when click on services links' do
     context 'when click on create candidate' do
       before do
-        visit root_path
+        visit home_path
         click_link 'Adicionar candidato'
       end
 

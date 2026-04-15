@@ -5,13 +5,23 @@ Rails.application.routes.draw do
 
   devise_for :admins
 
-  root 'dashboards#home'
+  devise_scope :admin do
+    authenticated :admin do
+      root to: 'dashboards#home', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root to: 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+
   resources :candidates
   resources :companies
   resources :roles
   resources :recruitments
   resources :applications
 
+  get 'home' => 'dashboards#home', as: :home
   get 'apply/:token' => 'applications#new', as: :apply
   post 'apply/:token' => 'applications#create'
   post 'apply/:id/reject' => 'applications#reject', as: :reject_application

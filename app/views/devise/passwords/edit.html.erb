@@ -1,0 +1,35 @@
+<div class="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] w-full px-4">
+  <div class="w-full mx-auto max-w-md">
+    <div class="rounded-xl border border-slate-200 bg-white p-6">
+      <h2 class="text-lg font-semibold text-slate-900 mb-6"><%= t('devise.passwords.edit.title') %></h2>
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.hidden_field :reset_password_token %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="grid grid-cols-1 gap-6">
+          <div class="col-span-1">
+            <%= f.label :password, t('devise.passwords.edit.new_password'), class: "block text-sm text-slate-900 mb-2" %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+            <% end %>
+            <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: t('devise.passwords.form.placeholder.new_password') %>
+          </div>
+
+          <div class="col-span-1">
+            <%= f.label :password_confirmation, t('devise.passwords.edit.confirm_new_password'), class: "block text-sm text-slate-900 mb-2" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full py-2.5 pl-4 text-sm rounded-lg border border-slate-300 px-4 py-2 text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: t('devise.passwords.form.placeholder.password_confirmation') %>
+          </div>
+        </div>
+
+        <div class="mt-8 flex gap-6">
+          <%= f.submit t('devise.passwords.edit.change_my_password'), class: "rounded-lg w-full bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer" %>
+        </div>
+      <% end %>
+
+      <div class="mt-6 text-center">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,10 @@
 module ApplicationHelper
   include ActionView::Helpers::NumberHelper
 
+  def first_name(name)
+    name.split(' ').first
+  end
+
   def sortable(column, title = nil, direction = nil)
     icon = if asc_or_desc(direction) == 'asc'
       inline_svg_tag('icons/asc_direction.svg', class: 'w-4 h-4 ml-1')

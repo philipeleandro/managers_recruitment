@@ -8,7 +8,7 @@ module CompaniesHelper
 
     if page_load
       return link_to 'Cancelar',
-        company_id.nil? ? root_path : company_path(id: company_id),
+        company_id.nil? ? home_path : company_path(id: company_id),
         class: base,
         data: { turbo_frame: '_top' }
     end

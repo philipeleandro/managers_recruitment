@@ -10,7 +10,7 @@ class RecruitmentsController < ApplicationController
     @role = params[:role_name].present? ? roles.find_by(name: params[:role_name]) : roles.first
 
     if @role.present?
-      @applications = Application.by_recruitment_and_role(@recruitment.id, @role.id).page(params[:page]).per(10)
+      @applications = Application.by_recruitment_and_role(@recruitment.id, @role.id).order(updated_at: :desc).page(params[:page]).per(10)
       @recruitment_role = RecruitmentRole.find_by(recruitment_id: @recruitment.id, role_id: @role.id)
     else
       @applications = Application.none.page(params[:page])

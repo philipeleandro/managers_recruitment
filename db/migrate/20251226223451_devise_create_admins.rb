@@ -33,6 +33,7 @@ class DeviseCreateAdmins < ActiveRecord::Migration[8.1]
       # t.datetime :locked_at
 
       t.string :name, null: false, default: ''
+      t.string :status, null: false, default: 'inactive'
 
       t.timestamps null: false
     end

@@ -22,7 +22,7 @@ module CandidatesHelper
 
     if page_load
       return link_to 'Cancelar',
-        candidate_id.nil? ? root_path : candidate_path(id: candidate_id),
+        candidate_id.nil? ? home_path : candidate_path(id: candidate_id),
         class: base,
         data: { turbo_frame: '_top' }
     end

@@ -4,7 +4,7 @@
       <% current_status = params[:status].presence %>
 
       <%= link_to t('recruitments.filters.buttons.all'),
-          root_path(status: [Recruitment::Status::NEW, Recruitment::Status::IN_PROGRESS]),
+          home_path(status: [Recruitment::Status::NEW, Recruitment::Status::IN_PROGRESS]),
           class: link_classes.call(current_status.blank?),
           data: {
             action: "click->recruitments--recruitments#filterByStatus",
@@ -16,7 +16,7 @@
 
       <% [[Recruitment::Status.t('new'), Recruitment::Status::NEW], [Recruitment::Status.t('in_progress'), Recruitment::Status::IN_PROGRESS]].to_a.each do |status| %>
           <%= link_to status.first,
-            root_path(status: status.last),
+            home_path(status: status.last),
             class: link_classes.call(current_status == status.last),
             data: {
               turbo_frame: "recruitment_list",

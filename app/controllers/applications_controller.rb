@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationsController < ApplicationController
-  layout 'public'
+  skip_before_action :authenticate_admin!, only: [:new, :create]
 
   before_action :recruitment_role, only: %i[new create]
   before_action :application, only: %i[approve reject]
